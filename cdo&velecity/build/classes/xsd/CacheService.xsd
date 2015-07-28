@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Object">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Server" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Name" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Value" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Host" type="xs:string" use="required"/>
+						<xs:attribute name="Port" type="xs:int" use="required"/>
+						<xs:attribute name="Capacity" type="xs:long" use="required"/>
+						<xs:attribute name="Driver" type="xs:string" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Prefix">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Object" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="PrefixedTrans" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CachedObject">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="KeyId" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Name" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IdValueId" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ServiceName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="TransName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Postfix">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Object" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="PostfixedTrans" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="AddCachedObject">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="KeyId" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Name" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IdValueId" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DeleteCachedObject">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="KeyId" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Name" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IdValueId" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ModifyCachedObject">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="KeyId" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ReadTrans" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Field" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="Id" use="required">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="ValueId" use="required">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="ServiceName" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="TransName" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Name" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IdValueId" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="\{(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]|\.|\[|\])*\}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="ServiceName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="TransName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

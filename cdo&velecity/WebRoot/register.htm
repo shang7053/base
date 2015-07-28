@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>新用户注册</title>
+	
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="cdojs/CDO.js"></script>
+<script type="text/javascript" src="cdojs/Utility.js"></script>
+<script type="text/javascript" src="cdojs/HttpClient.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+	<script>
+		var localurl=String(window.document.location.href);
+		var tel=GetParameterFromUrl(localurl,"tel");
+		if(null==tel||""==jQuery.trim(tel)){
+			jQuery("#msgbox").html("非法的请求参数");			
+		}
+	</script>
+</head>
+<body>
+	<div id="msgbox">sss</div>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by any (Ru-Board) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="LocalCache">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Trans" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="KeyId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="ServiceName" type="xs:string" use="required"/>
+						<xs:attribute name="TransName" type="xs:string" use="required"/>
+						<xs:attribute name="ObjectName" type="xs:string" use="required"/>
+						<xs:attribute name="Life" type="xs:int" use="required"/>
+						<xs:attribute name="Absolute" type="xs:boolean" use="optional" default="true"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--插件配置文件-->
+<ServicePlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/ServiceBus.xsd">
+</ServicePlugin>

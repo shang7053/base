@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--缓存配置文件-->
+<LocalCache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/LocalCache.xsd">
+	<!--商品列表缓存1分钟-->
+	<!-- <Trans ObjectName="GoodsList" ServiceName="UserService" TransName="getUserList" Life="100" Absolute="true">
+	</Trans> -->
+</LocalCache>

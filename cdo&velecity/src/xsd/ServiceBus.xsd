@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by any (Ru-Board) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ServicePlugin">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Name" type="xs:string" use="required"/>
+						<xs:attribute name="Value" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CheckToDo" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="ServiceName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="TransName" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PrefixService" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Name" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="ClassPath" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ServiceConfig" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TransService" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="ClassPath" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ActiveService" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="ClassPath" type="xs:string" use="required"/>
+									<xs:attribute name="Clustered" type="xs:boolean" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="MongoService" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="Resource" type="xs:string" use="required"/>
+									<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DataService" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="Resource" type="xs:string" use="required"/>
+									<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Name" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DataPostfix" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="Resource" type="xs:string" use="required"/>
+						<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PostfixService" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Name" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="ClassPath" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EventService" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Name" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Resource" type="xs:string" use="required"/>
+						<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ServiceBus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Name" type="xs:string" use="required"/>
+						<xs:attribute name="Value" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DataServiceEngine" type="xs:string" default="" minOccurs="0"/>
+				<xs:element name="DataGroup" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Database" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="User">
+											<xs:complexType>
+												<xs:attribute name="UserName" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:minLength value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Password" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Property" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="Name" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:minLength value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Value" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ConnectionPool" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="MinConnectionCount" type="xs:int" default="1" minOccurs="0"/>
+													<xs:element name="MaxConnectionCount" type="xs:int" default="3" minOccurs="0"/>
+													<xs:element name="Timeout" type="xs:int" default="60" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="URI" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="LoadLevel" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:int">
+												<xs:minInclusive value="1"/>
+												<xs:maxInclusive value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Id" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Driver" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="ClassPath" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MongoDB" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DB" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Id" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="URI" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UserName" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Password" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="DefaultDBId" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Plugin" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Resource" type="xs:string" use="required"/>
+						<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ClusterController" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="DataGroupId" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MaxDeadSecond" type="xs:int" use="optional" default="5"/>
+						<xs:attribute name="PulseSecond" type="xs:int" use="optional" default="2"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EventProcessor" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="ThreadCount" type="xs:int" default="1"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence minOccurs="0">
+					<xs:element name="LocalNode">
+						<xs:complexType>
+							<xs:attribute name="Id" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="RemoteNode" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice>
+										<xs:element name="HttpServiceClient">
+											<xs:complexType>
+												<xs:attribute name="URL" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:pattern value="http://(\S)+"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SockServiceClient">
+											<xs:complexType>
+												<xs:attribute name="ServerXXX" type="xs:string" use="required"/>
+												<xs:attribute name="ServerPort" type="xs:int" use="required"/>
+												<xs:attribute name="DataTimeout" type="xs:int" use="optional" default="600"/>
+												<xs:attribute name="ServerCount" type="xs:int" default="2"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+									<xs:element name="ToDoFilter">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Action" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="ServiceName" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="TransName" use="optional" default="">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="Allowed" type="xs:boolean" use="optional" default="true"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="Default" type="xs:boolean" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="TransFilter">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Action" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="ServiceName" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="TransName" use="optional" default="">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="Enabled" type="xs:boolean" use="optional" default="true"/>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="LocalCache" minOccurs="0">
+													<xs:complexType>
+														<xs:attribute name="Resource" type="xs:string" use="required"/>
+														<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="Default" type="xs:boolean" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="EventFilter">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Action" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="ServiceName" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="TransName" use="optional" default="">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="Enabled" type="xs:boolean" use="optional" default="true"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="Default" type="xs:boolean" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="Id" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="NodeList">
+							<xs:complexType>
+								<xs:attribute name="Resource" type="xs:string" use="required"/>
+								<xs:attribute name="Encoding" type="xs:string" use="optional" default="utf-8"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:sequence>
+			<xs:attribute name="DataGroupId" use="optional" default="">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

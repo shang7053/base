@@ -1,0 +1,45 @@
+package scc.util.cache.data;
+
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+
+
+import scc.util.cache.exception.ArgsNullException;
+
+
+public final class CacheData {
+	private Logger logger=Logger.getLogger(CacheData.class);
+	public CacheData(Date loadDate, Object data) {
+		super();
+		setData(data);
+		setLoadDate(loadDate);
+	}
+
+	private Date loadDate;
+	private Object data;
+	public Date getLoadDate() {
+		return loadDate;
+	}
+	public void setLoadDate(Date loadDate) {
+		if(null==loadDate)
+			try {
+				throw new ArgsNullException("参数:loadDate不可为空");
+			} catch (ArgsNullException e) {
+				logger.error(e);
+			}
+		this.loadDate = loadDate;
+	}
+	public Object getData() {
+		return data;
+	}
+	public void setData(Object data) {
+		if(null==data)
+			try {
+				throw new ArgsNullException("参数:data不可为空");
+			} catch (ArgsNullException e) {
+				logger.error(e);
+			}
+		this.data = data;
+	}
+}

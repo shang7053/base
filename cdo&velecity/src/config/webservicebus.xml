@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--分布式配置文件文件-->
+<WebServiceBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- cdo请求之前执行
+	<PostfixService Name="UserPostfixService" ClassPath="scc.cdo.test.web.service.UserPostfixService"/> -->
+</WebServiceBus>

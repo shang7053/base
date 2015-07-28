@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by any (Ru-Board) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="TransFilter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="Service">
+						<xs:complexType>
+							<xs:attribute name="ServiceName" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="Permission" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="refused"/>
+										<xs:enumeration value="needchecked"/>
+										<xs:enumeration value="allowed"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Trans">
+						<xs:complexType>
+							<xs:attribute name="ServiceName" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="TransName" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="((_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*)*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="Permission" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="refused"/>
+										<xs:enumeration value="needchecked"/>
+										<xs:enumeration value="allowed"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="DefaultPermission">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="refused"/>
+							<xs:enumeration value="needchecked"/>
+							<xs:enumeration value="allowed"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="LocalServiceURL" type="xs:string" minOccurs="0"/>
+				<xs:element name="OnRefused" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Return">
+								<xs:complexType>
+									<xs:attribute name="Code" type="xs:int" use="required"/>
+									<xs:attribute name="Text" type="xs:string" use="required"/>
+									<xs:attribute name="Info" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

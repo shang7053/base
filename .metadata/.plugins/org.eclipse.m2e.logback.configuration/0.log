@@ -1,0 +1,175 @@
+2015-07-28 14:00:18,831 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com-scc:common-inter:0.0.1-SNAPSHOT @ E:\git\base\common-inter\pom.xml.
+2015-07-28 14:00:19,420 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:19,428 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:00:19,433 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:19,434 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:00:28,421 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:cunsumer:0.0.1-SNAPSHOT @ E:\git\base\cunsumer\pom.xml.
+2015-07-28 14:00:29,822 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:32,287 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:33,141 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:33,143 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:00:33,174 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:33,175 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:00:33,559 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:cunsumer:0.0.1-SNAPSHOT @ E:\git\base\cunsumer\pom.xml.
+2015-07-28 14:00:33,895 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:34,400 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:34,523 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:39,117 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:00:39,273 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:39,279 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:00:39,287 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:00:39,288 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:01:07,223 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:provider:0.0.1-SNAPSHOT @ E:\git\base\provider\pom.xml.
+2015-07-28 14:01:07,662 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:08,235 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:08,684 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:08,685 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:01:08,691 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:08,692 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:01:08,806 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:provider:0.0.1-SNAPSHOT @ E:\git\base\provider\pom.xml.
+2015-07-28 14:01:09,148 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:09,718 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:09,877 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:11,097 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:01:11,227 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:11,229 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:01:11,237 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:11,238 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:01:19,040 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cmicroentropy:scc_sccutil:0.0.1-SNAPSHOT @ E:\git\base\scc_sccutil\pom.xml.
+2015-07-28 14:01:19,109 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:01:19,344 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:19,346 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-07-28 14:01:19,349 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:19,350 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2015-07-28 14:01:19,677 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cmicroentropy:scc_sccutil:0.0.1-SNAPSHOT @ E:\git\base\scc_sccutil\pom.xml.
+2015-07-28 14:01:19,742 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:01:20,741 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:01:20,801 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:20,801 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:01:20,803 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:01:20,804 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:02:22,627 [Worker-5] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2015-07-28 14:02:22,827 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com-scc:common-inter:0.0.1-SNAPSHOT @ E:\git\base\common-inter\pom.xml.
+2015-07-28 14:02:22,878 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:cunsumer:0.0.1-SNAPSHOT @ E:\git\base\cunsumer\pom.xml.
+2015-07-28 14:02:23,142 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:23,320 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:provider:0.0.1-SNAPSHOT @ E:\git\base\provider\pom.xml.
+2015-07-28 14:02:23,370 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:23,523 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cmicroentropy:scc_sccutil:0.0.1-SNAPSHOT @ E:\git\base\scc_sccutil\pom.xml.
+2015-07-28 14:02:23,578 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:02:23,973 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:24,111 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:24,570 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:24,683 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:25,006 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /common-inter/src/main/java
+2015-07-28 14:02:25,007 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /common-inter/src/main/resources
+2015-07-28 14:02:25,007 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /common-inter/src/test/java
+2015-07-28 14:02:25,008 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /common-inter/src/test/resources
+2015-07-28 14:02:25,102 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /cunsumer/src/main/java
+2015-07-28 14:02:25,103 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /cunsumer/src/main/resources
+2015-07-28 14:02:25,104 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /cunsumer/src/test/java
+2015-07-28 14:02:25,105 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /cunsumer/src/test/resources
+2015-07-28 14:02:25,492 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /provider/src/main/java
+2015-07-28 14:02:25,492 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /provider/src/main/resources
+2015-07-28 14:02:25,493 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /provider/src/test/java
+2015-07-28 14:02:25,493 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /provider/src/test/resources
+2015-07-28 14:02:25,783 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /scc_sccutil/src/main/java
+2015-07-28 14:02:25,783 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /scc_sccutil/src/main/resources
+2015-07-28 14:02:25,785 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /scc_sccutil/src/test/java
+2015-07-28 14:02:25,785 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /scc_sccutil/src/test/resources
+2015-07-28 14:02:26,154 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com-scc:common-inter:0.0.1-SNAPSHOT @ E:\git\base\common-inter\pom.xml.
+2015-07-28 14:02:26,300 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:cunsumer:0.0.1-SNAPSHOT @ E:\git\base\cunsumer\pom.xml.
+2015-07-28 14:02:26,310 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:26,754 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:26,857 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:27,119 [Worker-5] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for cunsumer
+2015-07-28 14:02:27,247 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com-scc:provider:0.0.1-SNAPSHOT @ E:\git\base\provider\pom.xml.
+2015-07-28 14:02:27,255 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:27,790 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:27,943 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:28,237 [Worker-5] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for provider
+2015-07-28 14:02:28,386 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cmicroentropy:scc_sccutil:0.0.1-SNAPSHOT @ E:\git\base\scc_sccutil\pom.xml.
+2015-07-28 14:02:28,388 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:02:28,473 [Worker-5] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 5 sec
+2015-07-28 14:02:28,665 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:28,666 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:02:28,669 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:28,670 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:02:29,085 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:29,243 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:29,244 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:02:29,252 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:29,253 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:02:29,653 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jstl:jstl:jar:1.1.2 has been relocated to javax.servlet:jstl:jar:1.1.2
+2015-07-28 14:02:29,770 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:29,771 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:02:29,778 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:29,780 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:02:30,041 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xmlbeans:xmlbeans:jar:2.3.0 has been relocated to org.apache.xmlbeans:xmlbeans:jar:2.3.0
+2015-07-28 14:02:30,075 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:30,076 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-07-28 14:02:30,082 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:02:30,084 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2015-07-28 14:04:58,222 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:58,224 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:04:58,226 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:58,227 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:04:58,286 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:58,288 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:04:58,296 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:58,297 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:04:59,021 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:59,022 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:04:59,028 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:59,029 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:04:59,810 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:59,811 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-07-28 14:04:59,817 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:04:59,818 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2015-07-28 14:05:32,352 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,353 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:32,356 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,357 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:32,407 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,408 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:05:32,415 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,416 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:32,638 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,640 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:05:32,647 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:32,648 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:33,154 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:33,155 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-07-28 14:05:33,163 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:33,164 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2015-07-28 14:05:34,551 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,552 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,554 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,555 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,567 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,567 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,569 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,570 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,610 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,611 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,612 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,613 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,625 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,626 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:34,628 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:34,629 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:35,648 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,650 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:35,651 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,652 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:35,706 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,708 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:05:35,716 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,717 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:35,945 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,946 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-07-28 14:05:35,953 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:35,954 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-28 14:05:36,425 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:36,427 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-07-28 14:05:36,434 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-07-28 14:05:36,435 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource

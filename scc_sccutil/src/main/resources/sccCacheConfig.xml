@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sjws>
+	<!-- 设置为0则表示不缓存数据,单位毫秒 -->
+	<time id="data" time="60000"/>
+	<!-- 设置定时器启动时间，单位小时 4-->
+	<timer id="clearOverdueCacheTimer"  delay="0" period="4"/>
+</sjws>

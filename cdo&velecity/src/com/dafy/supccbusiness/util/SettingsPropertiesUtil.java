@@ -13,24 +13,24 @@ import com.dafy.supccbusiness.web.listener.CDOListerner;
  *
  */
 public class SettingsPropertiesUtil {
-	private static Logger logger=Logger.getLogger(SettingsPropertiesUtil.class);
+	private static final Logger LOGGER=Logger.getLogger(SettingsPropertiesUtil.class);
 	private static Properties p=new Properties();
 	static{
 		try {
-			logger.info("加载配置文件settings.properties");
+			LOGGER.info("加载配置文件settings.properties");
 			InputStream is=CDOListerner.class.getClassLoader().getResourceAsStream("config/settings.properties");
 			if(null!=is){
 				p.load(is);
 			}else{
-				logger.error("src下的config文件夹内未找到settings.properties");
+				LOGGER.error("src下的config文件夹内未找到settings.properties");
 			}
 		} catch (IOException e) {
-			logger.error("配置文件加载失败", e);
+			LOGGER.error("配置文件加载失败", e);
 			e.printStackTrace();
 		}
 	}
 	public static String getProperties(String key){
-		logger.info("加载配置文件settings.properties中的属性："+key+",值："+p.get(key));
+		LOGGER.info("加载配置文件settings.properties中的属性："+key+",值："+p.get(key));
 		if(null!=p.get(key))
 			return (String) p.get(key);
 		return null;

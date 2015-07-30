@@ -11,13 +11,13 @@ import scc.util.propeties.service.IProperties;
 
 public class PropertiesImpl implements IProperties{
 	private static Properties props = new Properties();
-	private static Logger logger=Logger.getLogger(PropertiesImpl.class);
+	private static final Logger LOGGER=Logger.getLogger(PropertiesImpl.class);
 	
 	private boolean load(String fileName){
 		try {
 			props.load(PropertiesImpl.class.getClassLoader().getResourceAsStream(fileName));
 		} catch (IOException e) {
-			logger.error(e);
+			LOGGER.error(e);
 			return false;
 		}
 		return true;
@@ -54,13 +54,13 @@ public class PropertiesImpl implements IProperties{
 				props.setProperty(parameterName, parameterValue);
 				props.store(fos,"");
 			} catch (IOException e) {
-				logger.error(e);
+				LOGGER.error(e);
 			}finally{
 				if(null!=fos){
 					try {
 						fos.close();
 					} catch (IOException e) {
-						logger.error(e);
+						LOGGER.error(e);
 					}
 				}
 			}

@@ -528,5 +528,5 @@ public interface IDate {
 	 * @param date
 	 * @return
 	 */
-	Date MonthLastDay(Date date);
+	Date monthLastDay(Date date);
 }

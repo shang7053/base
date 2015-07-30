@@ -27,7 +27,7 @@ public class TestDubbo extends HttpServlet {
      */
     public TestDubbo() {
         super();
-        System.out.println(Arrays.toString(SpringContextUtil.getApplicationContext().getBeanDefinitionNames()));
+//        System.out.println(Arrays.toString(SpringContextUtil.getApplicationContext().getBeanDefinitionNames()));
         // TODO Auto-generated constructor stub
     }
 
@@ -43,7 +43,7 @@ public class TestDubbo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  // IUserService userService=SpringContextUtil.getBean("IUserService");
-	   System.out.println(Arrays.toString(SpringContextUtil.getApplicationContext().getBeanDefinitionNames()));
+//	   System.out.println(Arrays.toString(SpringContextUtil.getApplicationContext().getBeanDefinitionNames()));
 	   test.getUserService().insert();
 	   test.getUserService().getUserById(1);
 	   test.getUserService().getUsers();

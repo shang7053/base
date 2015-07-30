@@ -15,38 +15,38 @@ import com.dafy.supccbusiness.util.SettingsPropertiesUtil;
  *
  */
 public class CDOListerner implements ServletContextListener{
-	private static Logger logger=Logger.getLogger(CDOListerner.class);
+	private static final Logger LOGGER=Logger.getLogger(CDOListerner.class);
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
-		logger.info("ServletContext销毁");
-		logger.info("获取BusinessService实例");
+		LOGGER.info("ServletContext销毁");
+		LOGGER.info("获取BusinessService实例");
 		BusinessService service = BusinessService.getInstance();
 		if (service.isRunning() == false) {
 			return;
 		}
-		logger.info("停止LocalCache");
+		LOGGER.info("停止LocalCache");
 		LocalCache.getInstance().stop();
-		logger.info("停止BusinessService");
+		LOGGER.info("停止BusinessService");
 		service.stop();
-		logger.info("cdo 停止------------------------------");
+		LOGGER.info("cdo 停止------------------------------");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		logger.info("创建ServletContext");
-		logger.info("获取BusinessService实例");
+		LOGGER.info("创建ServletContext");
+		LOGGER.info("获取BusinessService实例");
 		BusinessService service = BusinessService.getInstance();
-		logger.info("启动BusinessService");
+		LOGGER.info("启动BusinessService");
 		Return ret = service.start(SettingsPropertiesUtil.getProperties("servicebus_file"));
 		if (ret.getCode() != 0) {
-			logger.error("BusinessService 启动失败!!! " + ret.getText());
+			LOGGER.error("BusinessService 启动失败!!! " + ret.getText());
 			return;
 		}
-		logger.info("BusinessService 启动成功------------------------------");
+		LOGGER.info("BusinessService 启动成功------------------------------");
 		LocalCache.getInstance().start();
-		logger.info("LocalCache 启动成功------------------------------");
-		logger.info("cdo 启动成功------------------------------");
+		LOGGER.info("LocalCache 启动成功------------------------------");
+		LOGGER.info("cdo 启动成功------------------------------");
 	}
 
 }

@@ -23,7 +23,7 @@ import scc.util.string.service.IString;
  *
  */
 public class StringUtilOperateImpl implements IString {
-	private Logger logger = Logger.getLogger(StringUtilOperateImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(StringUtilOperateImpl.class);
 
 	@Override
 	public boolean isNull(String str) {
@@ -113,7 +113,7 @@ public class StringUtilOperateImpl implements IString {
 		try {
 			return sdf.parse(date);
 		} catch (ParseException e) {
-			logger.error(e);
+			LOGGER.error(e);
 		}
 		return null;
 	}
@@ -128,7 +128,7 @@ public class StringUtilOperateImpl implements IString {
 	public String simpleEncryption(String str) {
 		try {
 			byte[] _ssoToken = str.getBytes("UTF-8");
-			String name = new String();
+			String name=null;
 			for (int i = 0; i < _ssoToken.length; i++) {
 				int asc = _ssoToken[i];
 				_ssoToken[i] = (byte) (asc + 27);
@@ -136,7 +136,7 @@ public class StringUtilOperateImpl implements IString {
 			}
 			return name;
 		} catch (Exception e) {
-			logger.error(e);
+			LOGGER.error(e);
 			return null;
 		}
 	}
@@ -144,7 +144,7 @@ public class StringUtilOperateImpl implements IString {
 	@Override
 	public String simpleDecryption(String str) {
 		try {
-			String name = new String();
+			String name = null;
 			java.util.StringTokenizer st = new java.util.StringTokenizer(str, "%");
 			while (st.hasMoreElements()) {
 				int asc = Integer.parseInt((String) st.nextElement()) - 27;
@@ -152,7 +152,7 @@ public class StringUtilOperateImpl implements IString {
 			}
 			return name;
 		} catch (Exception e) {
-			logger.error(e);
+			LOGGER.error(e);
 			return null;
 		}
 	}
@@ -170,7 +170,7 @@ public class StringUtilOperateImpl implements IString {
 			try {
 				result.put(pi[0], URLDecoder.decode(pi[1],"UTF-8"));
 			} catch (UnsupportedEncodingException e) {
-				logger.error(e);
+				LOGGER.error(e);
 			}
 		}
 		return result;

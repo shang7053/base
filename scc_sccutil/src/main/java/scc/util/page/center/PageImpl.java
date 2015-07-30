@@ -35,7 +35,9 @@ public class PageImpl implements Ipage{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally{  
-            pw.close();  
+			if (pw!=null) {
+				pw.close();  
+			}
         }   
 	}
 	public String readHtmlFromFlie(String filePath,String charsetName) {
@@ -75,7 +77,7 @@ public class PageImpl implements Ipage{
 		return htmlCode.toString();
 	}
 	public static void main(String[] args) {
-		System.out.println(new PageImpl().getHtmlCode("http://127.0.0.1:8080/sjws_soa_product/bulidingpandect/CdeBuildingInfoController/toBulidingpandect.do", "UTF8", "JSESSIONID=E5B4DECBA8B5BF59B98AE967E51A9B3D"));
+//		System.out.println(new PageImpl().getHtmlCode("http://127.0.0.1:8080/sjws_soa_product/bulidingpandect/CdeBuildingInfoController/toBulidingpandect.do", "UTF8", "JSESSIONID=E5B4DECBA8B5BF59B98AE967E51A9B3D"));
 	}
 	@Override
 	public String getHtmlCode(String httpUrl,String charsetName,String cookie) {

@@ -4,10 +4,10 @@ public class Test {
 	public static void main(String[] args) {
 		long start=System.currentTimeMillis();
 		testtotal();
-		System.out.println(System.currentTimeMillis()-start);
+//		System.out.println(System.currentTimeMillis()-start);
 		long start1=System.currentTimeMillis();
 		testother();
-		System.out.println(System.currentTimeMillis()-start1);
+//		System.out.println(System.currentTimeMillis()-start1);
 	}
 
 	private static void testother() {

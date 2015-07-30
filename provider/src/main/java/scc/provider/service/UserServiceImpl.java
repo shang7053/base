@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService{
 	private IUserDao userDao;
 
 	public void insert(User user) {
-		System.out.println(RpcContext.getContext().getAttachment("index"));
+//		System.out.println(RpcContext.getContext().getAttachment("index"));
 		userDao.insert(user);
 	}
 

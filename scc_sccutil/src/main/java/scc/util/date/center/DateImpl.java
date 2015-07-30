@@ -42,7 +42,7 @@ public final class DateImpl implements IDate {
 	private static final String defaultSDFStr = "yyyy-MM-dd HH:mm:ss.SSS";
 	// 格式：年－月－日
 	public static final String LONG_DATE_FORMAT = "yyyy-MM-dd";
-	private static final SimpleDateFormat DefaultSDF = new SimpleDateFormat(defaultSDFStr);
+	private  final SimpleDateFormat DefaultSDF = new SimpleDateFormat(defaultSDFStr);
 
 	/* (non-Javadoc)
 	 * @see scc.util.date.center.Sss#getMonthStartTime()
@@ -724,7 +724,7 @@ public final class DateImpl implements IDate {
 	}
 
 	@Override
-	public Date MonthLastDay(Date date) {
+	public Date monthLastDay(Date date) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 	  int MaxDay=c.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -738,6 +738,6 @@ public final class DateImpl implements IDate {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.set(Calendar.MONTH, Calendar.MONTH-1);
-		return MonthLastDay(c.getTime());
+		return monthLastDay(c.getTime());
 	}
 }

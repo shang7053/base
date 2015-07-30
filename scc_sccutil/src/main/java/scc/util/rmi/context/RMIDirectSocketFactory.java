@@ -21,16 +21,16 @@ import java.rmi.server.RMISocketFactory;
  */
 public class RMIDirectSocketFactory extends RMISocketFactory {
 
-	private final static int responseTimeout=30 * 60 * 1000;
-	private final static int connectTimeout=60000;
+	private final static int RESPONSETIMEOUT=30 * 60 * 1000;
+	private final static int CONNECTTIMEOUT=60000;
 
 	public Socket createSocket(String host, int port) throws IOException {
 		Socket socket = new Socket();
 		SocketAddress endpoint = host != null ? new InetSocketAddress(host,
 				port)
 				: new InetSocketAddress(InetAddress.getByName(null), port);
-		socket.setSoTimeout(responseTimeout);
-		socket.connect(endpoint, connectTimeout);
+		socket.setSoTimeout(RESPONSETIMEOUT);
+		socket.connect(endpoint, CONNECTTIMEOUT);
 
 		return socket;
 	}

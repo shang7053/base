@@ -19,17 +19,17 @@ import scc.util.log.service.ILog;
  * 
  */
 public class SccLogImpl implements ILog {
-	private Logger logger=Logger.getLogger(SccLogImpl.class);
+	private static final Logger LOGGER=Logger.getLogger(SccLogImpl.class);
 	public static Properties p = new Properties();
-	private static boolean ISLOGERRORINFO;
-	private static boolean DETAILLOG;
-	private static String PATH;
+	private static boolean iSLOGERRORINFO;
+	private static boolean dETAILLOG;
+	private static String pATH;
 	static {
 		try {
 			p.load(SccLogImpl.class.getClassLoader().getResourceAsStream("sjwslog.properties"));
-			ISLOGERRORINFO = null == p.getProperty("IsLogErrorInfo") ? false : Boolean.valueOf(p.getProperty("IsLogErrorInfo"));
-			DETAILLOG = null == p.getProperty("detailLog") ? false : Boolean.valueOf(p.getProperty("detailLog"));
-			PATH = p.getProperty("LogPath");
+			iSLOGERRORINFO = null == p.getProperty("IsLogErrorInfo") ? false : Boolean.valueOf(p.getProperty("IsLogErrorInfo"));
+			dETAILLOG = null == p.getProperty("detailLog") ? false : Boolean.valueOf(p.getProperty("detailLog"));
+			pATH = p.getProperty("LogPath");
 		} catch (IOException e) {
 			new SccLogImpl().autoDealException(e);
 		}
@@ -40,29 +40,29 @@ public class SccLogImpl implements ILog {
 	 */
 	@Override
 	public void autoDealException(Exception e) {
-		if (ISLOGERRORINFO) {
+		if (iSLOGERRORINFO) {
 
-			if (null == PATH)
+			if (null == pATH)
 				try {
 					throw new LogException("日志文件目录未指定");
 				} catch (LogException e1) {
-					logger.error(e1);
+					LOGGER.error(e1);
 				}
 			try {
-				writeLog(e, PATH);
+				writeLog(e, pATH);
 			} catch (IOException e1) {
-				logger.error(e1);
+				LOGGER.error(e1);
 			}
 		} else {
 
-			logger.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	private void writeLog(Exception e, String path) throws IOException {
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		File f = new File(path + "\\sjws_log_" + date + ".txt");
-		File file=new File(PATH); 
+		File file=new File(pATH); 
 		if (!file.exists()) {
 			file.mkdirs();
         }
@@ -85,24 +85,24 @@ public class SccLogImpl implements ILog {
 	 */
 	@Override
 	public void autoWritelog(String log) {
-		if (DETAILLOG) {
-			if (null == PATH)
+		if (dETAILLOG) {
+			if (null == pATH)
 				try {
 					throw new LogException("日志文件目录未指定");
 				} catch (LogException e1) {
-					logger.error(e1);
+					LOGGER.error(e1);
 				}
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-			File file=new File(PATH); 
+			File file=new File(pATH); 
 			if (!file.exists()) {
 				file.mkdirs();
 	        }
-			File f = new File(PATH + "\\sjws_log_" + date + ".txt");
+			File f = new File(pATH + "\\sjws_log_" + date + ".txt");
 			if (!f.exists())
 				try {
 					f.createNewFile();
 				} catch (IOException e) {
-					logger.error(e);
+					LOGGER.error(e);
 				}
 			BufferedWriter bw = null;
 			try {
@@ -111,13 +111,13 @@ public class SccLogImpl implements ILog {
 				bw.append(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()) + "=>  " + log);
 				bw.flush();
 			} catch (IOException e) {
-				logger.error(e);
+				LOGGER.error(e);
 			} finally {
 				if (null != bw)
 					try {
 						bw.close();
 					} catch (IOException e) {
-						logger.error(e);
+						LOGGER.error(e);
 					}
 			}
 		}

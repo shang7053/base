@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 public final class RmiUtils {
-	static final List<String> errorIp = new ArrayList<String>();
+	//static final List<String> errorIp = new ArrayList<String>();
 	/**
 	 * 获取RMI客户端主机
 	 * @return

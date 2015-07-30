@@ -38,46 +38,46 @@ public class SccUtilFactory {
 	public static void main(String[] args) throws IOException {
 		ICache cache=SccUtilFactory.instanceCache();
 		cache.addCacheData("aaa", new CacheData("bbb"));
-		System.out.println(cache.getCacheData("aaa"));
+//		System.out.println(cache.getCacheData("aaa"));
 	}
 
 	private final static class CacheImpl implements ICache {
 
-		private static Logger logger = Logger.getLogger(CacheImpl.class);
+		private static final Logger LOGGER = Logger.getLogger(CacheImpl.class);
 		// private static Map<String, CacheData> datas = new Hashtable<String,
 		// CacheData>();
-		private static final ConcurrentHashMap<String, CacheData> datas = new ConcurrentHashMap<String, CacheData>();
-		private static final Integer setTime;// 缓存时间
+		private static final ConcurrentHashMap<String, CacheData> DATAS = new ConcurrentHashMap<String, CacheData>();
+		private static final Integer SETTIME;// 缓存时间
 		private static boolean isStartCache;// 是否开启缓存
 		private static boolean isStartTimer;// 是否开始定时器
-		private static final Integer delay;// 定时器延迟启动时间
-		private static final Integer period;// 定时器启动间隔
+		private static final Integer DELAY;// 定时器延迟启动时间
+		private static final Integer PERIOD;// 定时器启动间隔
 
 		static {
-			logger.info("初始化缓存器");
+			LOGGER.info("初始化缓存器");
 			String temp = Dom4jUtil.getAttribute("data", "time");
-			setTime = ("").equals(temp) ? 0 : Integer.valueOf(temp);
-			logger.debug("设置缓存时长" + setTime);
+			SETTIME = ("").equals(temp) ? 0 : Integer.valueOf(temp);
+			LOGGER.debug("设置缓存时长" + SETTIME);
 			isStartCache = ("").equals(temp) || ("0").equals(temp) ? false
 					: true;
-			logger.debug("是否启动缓存器" + isStartCache);
+			LOGGER.debug("是否启动缓存器" + isStartCache);
 			String delaystr = Dom4jUtil.getAttribute("clearOverdueCacheTimer",
 					"delay");
-			logger.debug("设置缓存器垃圾清理器启动延迟" + delaystr);
+			LOGGER.debug("设置缓存器垃圾清理器启动延迟" + delaystr);
 			String periodstr = Dom4jUtil.getAttribute("clearOverdueCacheTimer",
 					"period");
-			logger.debug("设置缓存器垃圾清理器任务间隔" + periodstr);
+			LOGGER.debug("设置缓存器垃圾清理器任务间隔" + periodstr);
 			if (null != periodstr && !"".equals(periodstr.trim())) {
-				delay = null == delaystr ? 0 : Integer.valueOf(delaystr);
-				period = Integer.valueOf(periodstr.trim());
+				DELAY = null == delaystr ? 0 : Integer.valueOf(delaystr);
+				PERIOD = Integer.valueOf(periodstr.trim());
 				isStartTimer = true;
 			} else {
 				isStartTimer = false;
-				delay = 0;
-				period = 12;
+				DELAY = 0;
+				PERIOD = 12;
 			}
-			logger.info("初始化缓存器完毕，是否开启缓存：" + isStartCache + "是否启动垃圾清理器"
-					+ isStartTimer + "垃圾清理其启动延迟" + delay + "，任务间隔" + period);
+			LOGGER.info("初始化缓存器完毕，是否开启缓存：" + isStartCache + "是否启动垃圾清理器"
+					+ isStartTimer + "垃圾清理其启动延迟" + DELAY + "，任务间隔" + PERIOD);
 		}
 
 		public CacheImpl() {
@@ -100,10 +100,10 @@ public class SccUtilFactory {
 		@SuppressWarnings("deprecation")
 		@Override
 		public void addOrUpdate(Date loadDate, String queryArgs, Object data) {
-			logger.info("当前缓存数量"+datas.size()+"添加缓存，loadDate" + loadDate.toLocaleString() + "参数"
+			LOGGER.info("当前缓存数量"+DATAS.size()+"添加缓存，loadDate" + loadDate.toLocaleString() + "参数"
 					+ queryArgs + "数据" + data);
 			if (isStartCache && validateArgs(loadDate, queryArgs, data)) {
-				datas.putIfAbsent(queryArgs, new CacheData(loadDate, data));
+				DATAS.putIfAbsent(queryArgs, new CacheData(loadDate, data));
 			}
 		}
 
@@ -115,10 +115,10 @@ public class SccUtilFactory {
 		@SuppressWarnings("deprecation")
 		@Override
 		public void updateCacheData(Date loadDate, String queryArgs, Object data) {
-			logger.info("当前缓存数量"+datas.size()+"修改缓存，loadDate" + loadDate.toLocaleString() + "参数"
+			LOGGER.info("当前缓存数量"+DATAS.size()+"修改缓存，loadDate" + loadDate.toLocaleString() + "参数"
 					+ queryArgs + "数据" + data);
 			if (isStartCache && validateArgs(loadDate, queryArgs, data)) {
-				datas.put(queryArgs, new CacheData(loadDate, data));
+				DATAS.put(queryArgs, new CacheData(loadDate, data));
 			}
 		}
 
@@ -129,9 +129,9 @@ public class SccUtilFactory {
 
 		@Override
 		public Object getCacheData(String queryArgs) {
-			logger.info("当前缓存数量"+datas.size()+"获取缓存，参数" + queryArgs);
+			LOGGER.info("当前缓存数量"+DATAS.size()+"获取缓存，参数" + queryArgs);
 			if (isStartCache) {
-				return datas.get(queryArgs) == null ? null : datas.get(
+				return DATAS.get(queryArgs) == null ? null : DATAS.get(
 						queryArgs).getData();
 			}
 			return null;
@@ -140,13 +140,13 @@ public class SccUtilFactory {
 		@Override
 		@Deprecated
 		public boolean hasCacheData(String queryArgs) {
-			logger.info("当前缓存数量"+datas.size()+"验证是否包换缓存，参数" + queryArgs);
+			LOGGER.info("当前缓存数量"+DATAS.size()+"验证是否包换缓存，参数" + queryArgs);
 			if (isStartCache) {
-				CacheData cacheData = datas.get(queryArgs);
+				CacheData cacheData = DATAS.get(queryArgs);
 				if (null != cacheData) {
 					Date loadDate = cacheData.getLoadDate();
 					long time = (new Date().getTime() - loadDate.getTime());
-					if (time > Long.valueOf(setTime)) {
+					if (time > Long.valueOf(SETTIME)) {
 						return false;
 					}
 					return true;
@@ -177,39 +177,39 @@ public class SccUtilFactory {
 		}
 
 		private void startTimer() {
-			logger.debug("垃圾清理器启动");
+			LOGGER.debug("垃圾清理器启动");
 			ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
 			ses.scheduleAtFixedRate(new Runnable() {
 
 				@Override
 				public void run() {
-					logger.debug("垃圾清理器开始清理");
+					LOGGER.debug("垃圾清理器开始清理");
 					clearOverdueCache();
-					logger.debug("垃圾清理器结束清理");
+					LOGGER.debug("垃圾清理器结束清理");
 				}
-			}, delay, period, TimeUnit.HOURS);
-			logger.debug("垃圾清理器结束");
+			}, DELAY, PERIOD, TimeUnit.HOURS);
+			LOGGER.debug("垃圾清理器结束");
 		}
 
 		@Override
 		public void clearOverdueCache() {
-			logger.info(Thread.currentThread().getName() + "正在收集缓存脏数据");
+			LOGGER.info(Thread.currentThread().getName() + "正在收集缓存脏数据");
 			List<String> temp = new ArrayList<String>();
-			for (Entry<String, CacheData> cachedata : datas.entrySet()) {
+			for (Entry<String, CacheData> cachedata : DATAS.entrySet()) {
 				long time = new Date().getTime()
 						- cachedata.getValue().getLoadDate().getTime();
-				if (time > Long.valueOf(setTime)) {
+				if (time > Long.valueOf(SETTIME)) {
 					temp.add(cachedata.getKey());
 				}
 			}
-			logger.debug(Thread.currentThread().getName() + "收集缓存脏数据完毕，收集到"
+			LOGGER.debug(Thread.currentThread().getName() + "收集缓存脏数据完毕，收集到"
 					+ temp.size() + "条数据:"
 					+ Arrays.toString(temp.toArray(new String[temp.size()]))
 					+ "");
 			for (String s : temp) {
-				logger.debug(Thread.currentThread().getName() + "开始清除：" + s);
-				datas.remove(s);
-				logger.debug(Thread.currentThread().getName() + "清除" + s
+				LOGGER.debug(Thread.currentThread().getName() + "开始清除：" + s);
+				DATAS.remove(s);
+				LOGGER.debug(Thread.currentThread().getName() + "清除" + s
 						+ "完毕！");
 			}
 		}

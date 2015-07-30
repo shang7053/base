@@ -29,7 +29,7 @@ public class Test {
 		//条件查询
 		DBCursor cursor=collection.find(new BasicDBObject("age", new BasicDBObject("$lte", 105)));
 		while (cursor.hasNext()) {
-			System.out.println(cursor.next());
+//			System.out.println(cursor.next());
 		}
 	}
 	@org.junit.Test

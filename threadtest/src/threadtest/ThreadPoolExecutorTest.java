@@ -1,25 +1,20 @@
 package threadtest;
 
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolExecutorTest {
 	public static void main(String[] args) {
 		 BlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(10);
-		ThreadPoolExecutor tpe=new ThreadPoolExecutor(1, 10, 2000, TimeUnit.SECONDS, queue);
+		final ThreadPoolExecutor tpe=new ThreadPoolExecutor(1, 10, 2000, TimeUnit.SECONDS, queue);
 		tpe.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
 		for (int i = 0; i < 200; i++) {
 			tpe.execute(new A());
 		}
 //		while (tpe.getActiveCount()!=0||tpe.getQueue().size()!=0) {
-//			System.out.println("µ±Ç°Ö´ÐÐÊý"+tpe.getActiveCount()+"Î´´¦ÀíÊý"+tpe.getQueue().size()+"ÒÑÍê³ÉÈÎÎñÊý"+tpe.getCompletedTaskCount());
+//			System.out.println("ï¿½ï¿½Ç°Ö´ï¿½ï¿½ï¿½ï¿½"+tpe.getActiveCount()+"Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+tpe.getQueue().size()+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+tpe.getCompletedTaskCount());
 //		}
 	}
 }
@@ -28,12 +23,12 @@ class A implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		String aString="a";
-		String aString1="a";
-		String aString2="a";
-		String aString3="a";
-		String aString4="a";
-		System.out.println(Thread.currentThread().getId());
+//		String aString="a";
+//		String aString1="a";
+//		String aString2="a";
+//		String aString3="a";
+//		String aString4="a";
+//		System.out.println(Thread.currentThread().getId());
 	}
 	
 }

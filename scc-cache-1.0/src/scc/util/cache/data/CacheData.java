@@ -9,7 +9,7 @@ import scc.util.cache.exception.ArgsNullException;
 
 
 public final class CacheData {
-	private Logger logger=Logger.getLogger(CacheData.class);
+	private static final Logger LOGGER=Logger.getLogger(CacheData.class);
 	public CacheData(Date loadDate, Object data) {
 		setData(data);
 		setLoadDate(loadDate);
@@ -28,7 +28,7 @@ public final class CacheData {
 			try {
 				throw new ArgsNullException("参数:loadDate不可为空");
 			} catch (ArgsNullException e) {
-				logger.error(e);
+				LOGGER.error(e);
 			}
 		this.loadDate = loadDate;
 	}
@@ -40,7 +40,7 @@ public final class CacheData {
 			try {
 				throw new ArgsNullException("参数:data不可为空");
 			} catch (ArgsNullException e) {
-				logger.error(e);
+				LOGGER.error(e);
 			}
 		this.data = data;
 	}

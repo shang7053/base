@@ -10,18 +10,18 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void insert() {
-		System.out.println("²åÈë");
+//		System.out.println("ï¿½ï¿½ï¿½ï¿½");
 	}
 
 	@Override
 	public User getUserById(Integer id) {
-		System.out.println("²éÑ¯£¬id="+id);
+//		System.out.println("ï¿½ï¿½Ñ¯ï¿½ï¿½id="+id);
 		return null;
 	}
 
 	@Override
 	public List<User> getUsers() {
-		System.out.println("»ñÈ¡ÓÃ»§");
+//		System.out.println("ï¿½ï¿½È¡ï¿½Ã»ï¿½");
 		return null;
 	}
 	

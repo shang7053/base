@@ -1,10 +1,8 @@
 package scc.util.cache.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -15,36 +13,35 @@ import redis.clients.jedis.ShardedJedisPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 import scc.util.cache.ICache;
 import scc.util.cache.data.CacheData;
+import scc.util.cache.util.RedisConfig;
+import scc.util.cache.util.RedisConfigVo;
 import scc.util.cache.util.SerializeUtil;
+import scc.util.cache.util.Shared;
 
 public class RedisCacheImpl implements ICache{
+	private static final Logger LOGGER=Logger.getLogger(RedisCacheImpl.class);
+	private static final RedisConfigVo rcv=RedisConfig.getRegisters();
+	private static final int keepAliveTime=rcv.getKeepAliveTime();
+	private static Boolean ISCACHEON =rcv.isCacheOn();
     private static ShardedJedisPool shardedJedisPool;//切片额客户端连接
-    private static Properties p=new Properties();
-    private static int keepAliveTime;
-    private static final Logger LOGGER=Logger.getLogger(RedisCacheImpl.class);
-    private static Boolean ISCACHEON;
     static{
-    	try {
-			p.load(RedisCacheImpl.class.getClassLoader().getResourceAsStream("redisconfig.properties"));
-			keepAliveTime=null==p.get("keepAliveTime")?600:Integer.valueOf((String) p.get("keepAliveTime"));
-			ISCACHEON=null==p.get("isCacheOn")?true:Boolean.valueOf((String) p.get("keepAliveTime"));
-			 // 池基本配置 
-			JedisPoolConfig config = new JedisPoolConfig(); 
-			config.setMaxActive(null==p.get("MaxActive")?20:Integer.valueOf(p.getProperty("MaxActive"))); 
-	        config.setMaxIdle(null==p.get("MaxIdle")?10:Integer.valueOf(p.getProperty("MaxIdle"))); 
-	        config.setMinIdle(null==p.get("MinIdle")?10:Integer.valueOf(p.getProperty("MinIdle")));
-	        config.setMaxWait(null==p.get("MaxWait")?1000l:Long.valueOf(p.getProperty("MaxWait"))); 
-	        config.setTestOnBorrow(null==p.get("TestOnBorrow")?false:Boolean.valueOf(p.getProperty("TestOnBorrow"))); 
-	        config.setTestOnReturn(null==p.get("TestOnReturn")?false:Boolean.valueOf(p.getProperty("TestOnReturn")));
-	        config.setTestWhileIdle(null==p.get("TestWhileIdle")?false:Boolean.valueOf(p.getProperty("TestWhileIdle")));
-	        // slave链接 
-	        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>(); 
-	        shards.add(new JedisShardInfo(null==p.get("redishost")?"127.0.0.1":p.getProperty("redishost"), null==p.get("redisport")?6379:Integer.valueOf(p.getProperty("redisport")), "master")); 
-	        // 构造池 
-	        shardedJedisPool = new ShardedJedisPool(config, shards);
-    	} catch (IOException e) {
-			e.printStackTrace();
+		 // 池基本配置 
+		JedisPoolConfig config = new JedisPoolConfig(); 
+		config.setMaxActive(rcv.getMaxActive()); 
+        config.setMaxIdle(rcv.getMaxIdle()); 
+        config.setMinIdle(rcv.getMinIdle());
+        config.setMaxWait(rcv.getMaxWait()); 
+        config.setTestOnBorrow(rcv.isTestOnBorrow()); 
+        config.setTestOnReturn(rcv.isTestOnReturn());
+        config.setTestWhileIdle(rcv.isTestWhileIdle());
+        List<Shared> shareds=rcv.getShareds();
+        // slave链接 
+        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>(); 
+        for (int i = 0; i < shareds.size(); i++) {
+        	shards.add(new JedisShardInfo(shareds.get(i).getIp(), shareds.get(i).getPort(), shareds.get(i).getTimeOut())); 
 		}
+        // 构造池 
+        shardedJedisPool = new ShardedJedisPool(config, shards);
     }
     private ShardedJedis getShardedJedis(){
     	ShardedJedis jedis;

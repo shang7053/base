@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import scc.util.cache.ICache;
 import scc.util.cache.data.CacheData;
-import scc.util.cache.impl.RedisCacheImpl;
+import scc.util.cache.impl.RedisCacheImpl2;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class SccUtilFactory {
 	 * @return 缓存对象
 	 */
 	public static ICache instanceCache() {
-		return new RedisCacheImpl();
+		return new RedisCacheImpl2();
 	}
 
 	public static void main(String[] args) throws IOException {

@@ -19,8 +19,13 @@
 		<!-- 是否启动缓存 -->
 		<isCacheOn value="true"/>
 		<shardses>
-			<shards ip="192.168.0.62" port="6379" timeOut="1000"/>
-			<shards ip="192.168.0.225" port="6379" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8600" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8601" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8602" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8603" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8604" timeOut="1000"/>
+			<shards ip="192.168.0.198" port="8605" timeOut="1000"/>
+			<!-- <shards ip="192.168.0.225" port="6379" timeOut="1000"/> -->
 		</shardses>
 	</redis>
 </scc>

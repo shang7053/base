@@ -45,7 +45,6 @@ public class RedisCacheImpl implements ICache{
     	ShardedJedis jedis;
     	try {
     		jedis=shardedJedisPool.getResource();
-    		System.out.println(jedis.getShardInfo("ip"));
 		} catch (JedisConnectionException e) {
 			LOGGER.debug("redis未启动");
 			return null;
@@ -215,7 +214,7 @@ public class RedisCacheImpl implements ICache{
 		return ;
 	}
 	public static void main(String[] args) throws InterruptedException {
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 1; i++) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {

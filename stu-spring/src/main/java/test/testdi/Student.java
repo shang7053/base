@@ -16,7 +16,7 @@ import java.util.Set;
  * @author scc
  * @since 创建时间：2015年11月2日 下午1:44:05
  */
-public class Student {
+public class Student extends Perple{
 	private Teacher teacher;
 	private String name;
 	private Toy toy;
@@ -40,9 +40,7 @@ public class Student {
 	public void init(){
 		System.out.println("init");
 	}
-	public void say(){
-		System.out.println((null==teacher?"":teacher.teach())+"say somthing");
-	}
+	
 	public void say2(){
 		System.out.println(toy.toy()+"========="+ name);
 	}

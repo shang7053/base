@@ -42,4 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .metadata/*
+*/.metadata/*
 *.snap
+*.classpath
+*.project
+*.jsdtscope
+*.prefs
+*/.settings/*

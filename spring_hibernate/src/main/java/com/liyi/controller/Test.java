@@ -1,5 +1,7 @@
 package com.liyi.controller;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,18 +17,18 @@ import com.liyi.util.HibernateUtil;
 @Controller
 @RequestMapping("/test")
 public class Test {
-	
+	@Resource
+	private SessionFactory sessionFactory;
   
 	
 	@SuppressWarnings("deprecation")
 	@RequestMapping("/testhh")
 	public String go(){
-        Session session = HibernateUtil.getSession();
+        Session session = sessionFactory.getCurrentSession();
 		Transaction transaction=session.beginTransaction(); 
 		TCustomer customer=new TCustomer("sss", "sss", 1);
 		session.save(customer);
 		transaction.commit();
-		session.close();
 //		TCustomer customer = (TCustomer)session.load(TCustomer.class, 201401);  
 //	    System.out.println(customer.getCustomerName());
 		return "index";

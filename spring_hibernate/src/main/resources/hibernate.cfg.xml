@@ -13,7 +13,6 @@
         <property name="myeclipse.connection.profile">com.mysql.jdbc.Driver</property>
         <property name="current_session_context_class" >thread</property>  
         <property name="hibernate.show_sql">true</property>  
-     	<mapping class="com.liyi.domain.TCustomer"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -3,14 +3,16 @@ package com.liyi.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * TCustomer entity. @author MyEclipse Persistence Tools
  */
-@Entity
+@Entity(name="tCustomer")
 @Table(name = "t_customer", catalog = "test")
 public class TCustomer implements java.io.Serializable {
 

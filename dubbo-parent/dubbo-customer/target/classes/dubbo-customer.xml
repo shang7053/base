@@ -9,7 +9,7 @@
 	<dubbo:application name="dubbo_consumer" />
 
 	<!-- 使用zookeeper注册中心暴露服务地址 -->
-	<dubbo:registry address="zookeeper://localhost:2181" />
+	<dubbo:registry address="zookeeper://172.16.60.102:2181" />
 
 	<!-- 生成远程服务代理，可以像使用本地bean一样使用demoService		xml配置时使用
 	<dubbo:reference id="userDao" interface="scc.common.user.IUserDao" /> -->

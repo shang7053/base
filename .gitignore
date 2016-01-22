@@ -50,3 +50,8 @@ Temporary Items
 *.prefs
 */.settings/*
 Servers/*
+.recommenders/*
+*/.recommenders/*
+*/.recommenders/index/*
+*.prx
+*.gen

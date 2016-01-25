@@ -51,4 +51,5 @@
 	<tx:annotation-driven/>
 	<aop:aspectj-autoproxy />
 	<import resource="dubbo_provider.xml"/>
+	<import resource="mq.xml"/>
 </beans>

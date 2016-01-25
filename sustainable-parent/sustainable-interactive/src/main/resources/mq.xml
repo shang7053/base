@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                     http://www.springframework.org/schema/context
+                     http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                     http://www.springframework.org/schema/aop
+                     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                     http://www.springframework.org/schema/tx
+                     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    <!-- 基本配置开始 -->
+    <!-- 连接工厂 -->
+	<bean id="connectinFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- 配置连接 -->
+		<property name="brokerURL" value="tcp://activeMq.sustainable.com:61616" />
+	</bean>
+	<!-- spring管理连接的工厂 -->
+	<bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="connectinFactory"></property>
+		<!-- Session缓存数量 -->
+		<property name="sessionCacheSize" value="10"></property>
+	</bean>
+	<!-- Spring JMS Template 配置JMS模版 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="cachingConnectionFactory" />
+	</bean>
+	<!-- 注册消息转换器 -->
+	<bean id="messageConverter" class="sustainable.common.util.jms.SustainableMessageConverter"/>
+	<!-- 基本配置结束 -->
+	
+	<!-- 注册队列开始 -->
+	<!-- 注册Queue队列：仅有一个订阅者会收到消息，消息一旦被处理就不会存在队列中 -->
+	<bean id="registQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<!-- 队列名称 -->
+		<constructor-arg value="regist.notify"></constructor-arg>
+	</bean>
+	<!-- 使用Spring JmsTemplate 的消息生产者 -->
+	<bean id="registQueueMessageProducer" class="sustainable.common.util.jms.QueueMessageProducer">
+		<property name="jmsTemplate" ref="jmsTemplate"></property>
+		<property name="queue" ref="registQueue"></property>
+		<property name="messageConverter" ref="messageConverter"></property>
+	</bean>
+	<!-- 注册队列结束 -->
+</beans>

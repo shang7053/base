@@ -12,6 +12,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>登录</title>
 </head>
 <body>
-
+	<form action="UserController/login.do">
+		<table>
+			<tr>
+				<td>
+					用户名				
+				</td>
+				<td>
+					<input name="uname" value="${registUser.uname }"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					密码				
+				</td>
+				<td>
+					<input type="password" name="password" value="${registUser.password }"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" value="提交"/>				
+				</td>
+				<td>
+					<a href="UserController/toRegist.do">注册</a>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

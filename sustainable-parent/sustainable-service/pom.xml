@@ -11,8 +11,8 @@
   <description>下游服务</description>
   <dependencies>
 		<dependency>
-			<groupId>scc-maven</groupId>
-			<artifactId>dubbo-common</artifactId>
+			<groupId>scc-sustainable</groupId>
+			<artifactId>sustainable-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

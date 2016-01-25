@@ -16,6 +16,11 @@
 			<artifactId>sustainable-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>scc-cache</groupId>
+			<artifactId>scc-cache</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

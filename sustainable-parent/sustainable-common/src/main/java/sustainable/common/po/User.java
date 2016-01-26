@@ -23,6 +23,7 @@ public class User implements Serializable {
      * @date 2016年1月22日 下午5:46:00
      */
     private static final long serialVersionUID = 8421883022318297623L;
+    private Integer uid;
     private String uname;
     private String password;
 
@@ -107,6 +108,25 @@ public class User implements Serializable {
      */
     @Override
     public String toString() {
-        return "User [uname=" + this.uname + ", password=" + this.password + "]";
+        return "User [uid=" + this.uid + ", uname=" + this.uname + ", password=" + this.password + "]";
     }
+
+    /**
+     * @return the uid
+     * @author A18ccms a18ccms_gmail_com
+     * @date 2016年1月26日 上午9:43:35
+     */
+    public Integer getUid() {
+        return this.uid;
+    }
+
+    /**
+     * @author A18ccms a18ccms_gmail_com
+     * @date 2016年1月26日 上午9:43:35
+     * @param uid the uid to set
+     */
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
 }

@@ -15,27 +15,10 @@
 <title>提示</title>
 <script type="text/javascript">
 	$(function() {
-		$('body').oneTime('1s', function() {
-			$.ajax({
-				type : "POST",
-				url : "UserController/validateRegist.do",
-				data : "uname=${registUser.uname}&password=${registUser.password}",
-				success : function(msg) {
-					$("p").html(msg.data);
-					$('body').oneTime('3s', function() {
-						if(msg.status=="y"){
-							document.location="UserController/toLogin.do?uname=${registUser.uname}&password=${registUser.password}";
-						}else{
-							document.location="UserController/toRegist.do?uname=${registUser.uname}&password=${registUser.password}";
-						}
-					});
-				}
-			});
-		});
 	});
 </script>
 </head>
 <body>
-	<p>${message }</p>
+	<p>${message }登录信息${registUser }</p>
 </body>
 </html>

@@ -11,10 +11,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import scc.util.SccUtilFactory;
 import scc.util.cache.ICache;
 import scc.util.cache.data.CacheData;
 import sustainable.common.po.User;
+import sustainable.common.service.DUserService;
 import sustainable.common.util.jms.PhoneNoticeInfo;
 import sustainable.common.util.jms.QueueMessageProducer;
 import sustainable.interactive.service.IUserService;
@@ -30,6 +33,8 @@ import sustainable.interactive.service.IUserService;
 public class UserServiceImpl implements IUserService {
     @Resource
     private QueueMessageProducer<User> registQueueMessageProducer;
+    @Reference
+    private DUserService dUserService;
 
     /**
      * <p>
@@ -78,9 +83,12 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public boolean validateRegist(User user) {
+        user = this.dUserService.validateRegist(user);
+        if (user == null) {
+            return false;
+        }
         ICache cache = SccUtilFactory.instanceCache();
         cache.addCacheData("login:" + user, new CacheData(user));
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -101,7 +109,11 @@ public class UserServiceImpl implements IUserService {
         if (cache.hasCacheData("login:" + user)) {
             return (User) cache.getCacheData("login:" + user);
         } else {
-            System.out.println();
+            user = this.dUserService.validateRegist(user);
+            if (null != user) {
+                cache.addCacheData("login:" + user, new CacheData(user));
+                return user;
+            }
         }
         return null;
     }

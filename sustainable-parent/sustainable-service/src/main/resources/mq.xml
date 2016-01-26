@@ -49,4 +49,33 @@
 		<property name="messageListener" ref="registQueueMessageListener"></property>
 	</bean>
 	<!-- 注册队列结束 -->
+	
+	<!-- 同步user队列开始 -->
+	<!-- 注册Queue队列：仅有一个订阅者会收到消息，消息一旦被处理就不会存在队列中 -->
+	<bean id="syncUserQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<!-- 队列名称 -->
+		<constructor-arg value="syncUser.notify"></constructor-arg>
+	</bean>
+	<!-- 使用Spring JmsTemplate 的消息生产者 -->
+	<bean id="syncUserQueueMessageProducer" class="sustainable.common.util.jms.QueueMessageProducer">
+		<property name="jmsTemplate" ref="jmsTemplate"></property>
+		<property name="queue" ref="syncUserQueue"></property>
+		<property name="messageConverter" ref="messageConverter"></property>
+	</bean>
+	<!-- 同步user队列结束 -->
+	
+	<!-- 同步user队列开始 -->
+	<!-- 消息处理 -->
+	<bean id="syncUserDealJmsMessage" class="sustainable.service.jms.SyncUserDealJmsMessage"/>
+	<!-- 异步接收消息处理类 -->
+	<bean id="syncUserQueueMessageListener" class="sustainable.common.util.jms.QueueMessageListener">
+		<property name="dealJmsMessage" ref="syncUserDealJmsMessage"></property>
+	</bean>
+	<!-- 消息监听容器 -->
+	<bean id="syncUserQueueContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectinFactory"></property>
+		<property name="destination" ref="syncUserQueue"></property>
+		<property name="messageListener" ref="syncUserQueueMessageListener"></property>
+	</bean>
+	<!-- 同步user队列结束 -->
 </beans>

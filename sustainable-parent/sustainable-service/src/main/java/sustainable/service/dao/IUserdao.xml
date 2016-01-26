@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"mybatis-3-mapper.dtd">  
+<mapper namespace="sustainable.service.dao.IUserdao">
+	<!-- 带缓存
+	<resultMap type="com.cmicroentropy.soa.vo.homemap.CdeCompanyInfoBoxVo" id="CdeCompanyInfoBoxVo">
+		<result property="compsid" column="compsid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="compname" column="compname" jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result property="parentcompid" column="parentcompid" jdbcType="VARCHAR" javaType="java.lang.String" />
+	</resultMap> -->
+	<insert id="insertUser" parameterType="sustainable.common.po.User"  useGeneratedKeys="true" keyProperty="uid">
+		INSERT INTO tab_user (uname, password) VALUES (#{uname}, #{password});
+	</insert>
+</mapper>

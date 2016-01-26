@@ -28,7 +28,6 @@ public class QueueMessageListener implements MessageListener {
     @Resource
     private MessageConverter messageConverter;
 
-    @Resource
     private IDealJmsMessage dealJmsMessage;
 
     /**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
                      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                      http://www.springframework.org/schema/context
@@ -9,16 +9,16 @@
                      http://www.springframework.org/schema/aop
                      http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
                      http://www.springframework.org/schema/tx
-                     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-                     http://www.springframework.org/schema/data/mongo  
-           			 http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
-                     ">
-
-	<!-- Default bean name is 'mongo' -->
-	<!-- 副本集群 <mongo:mongo id="mongo" replica-set="127.0.0.1:2222,127.0.0.1:3333"></mongo:mongo> -->
-	<mongo:mongo host="mongo.sustainable.com" port="27017" replica-set=""/>
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg ref="mongo" />
-		<constructor-arg name="databaseName" value="test" />
+                     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="test" />
+	<tx:annotation-driven />
+	<bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration" />
+	<bean id="redispoolConfig" class="redis.clients.jedis.JedisPoolConfig" />
+	<bean id="redisconnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="hostName" value="127.0.0.1" />
+		<property name="port" value="6379" />
+		<property name="poolConfig" ref="redispoolConfig"></property>
 	</bean>
+	<aop:aspectj-autoproxy />
 </beans>

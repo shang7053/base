@@ -1,5 +1,7 @@
 package com.voole.cdcenter.vo;
 
+import java.io.Serializable;
+
 /**
  * @ClassName: PageMessageVo
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -7,7 +9,13 @@ package com.voole.cdcenter.vo;
  * @date 2016年7月14日 上午11:44:13
  * 
  */
-public class PageMessageVo {
+public class PageMessageVo implements Serializable {
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 * @author shangchengcai@voole.com
+	 * @date 2016年7月25日 下午4:50:14
+	 */
+	private static final long serialVersionUID = -925765116060112847L;
 	private String sEcho;
 	private Integer iTotalRecords;
 	private Integer iTotalDisplayRecords;

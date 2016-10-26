@@ -50,6 +50,8 @@ Temporary Items
 *.prefs
 */.settings/*
 Servers/*
+.recommenders
+*/.recommenders
 .recommenders/*
 */.recommenders/*
 */.recommenders/index/*

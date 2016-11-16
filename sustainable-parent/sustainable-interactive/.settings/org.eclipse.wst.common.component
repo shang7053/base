@@ -7,6 +7,9 @@
         <dependent-module archiveName="sustainable-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sustainable-common/sustainable-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="scc-cache-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/scc-cache/scc-cache">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="sustainable-interactive"/>
         <property name="java-output-path" value="/sustainable-interactive/target/classes"/>
     </wb-module>

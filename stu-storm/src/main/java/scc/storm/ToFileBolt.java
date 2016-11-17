@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.storm.task.OutputCollector;
-import org.apache.storm.task.TopologyContext;
-import org.apache.storm.topology.OutputFieldsDeclarer;
-import org.apache.storm.topology.base.BaseRichBolt;
-import org.apache.storm.tuple.Tuple;
+import backtype.storm.task.OutputCollector;
+import backtype.storm.task.TopologyContext;
+import backtype.storm.topology.OutputFieldsDeclarer;
+import backtype.storm.topology.base.BaseRichBolt;
+import backtype.storm.tuple.Tuple;
 
 /**
  * @ClassName: ToFileBolt
@@ -52,7 +52,15 @@ public class ToFileBolt extends BaseRichBolt {
     public void execute(Tuple input) {
         List<Map<String, Object>> data = (List<Map<String, Object>>) input.getValueByField("data");
         String outdata = data.toString() + "\r\n";
-        File file = new File("D:\\stormtest.txt");
+        File file = new File("\\opt\\jstorm\\stormtest.txt");
+        if (!file.exists()) {
+            new File("\\opt\\jstorm").mkdirs();
+            try {
+                new File("\\opt\\jstorm\\stormtest.txt").createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(file, true);

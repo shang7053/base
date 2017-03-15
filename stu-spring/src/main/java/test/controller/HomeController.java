@@ -11,7 +11,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import test.orm.ITestDao;
 import test.spel.SpelTest;
 
 /**
@@ -32,8 +30,8 @@ import test.spel.SpelTest;
  */
 @Controller
 public class HomeController {
-    @Value("#{testDao}")
-    private ITestDao iTestDao;
+    // @Value("#{testDao}")
+    // private ITestDao iTestDao;
     @Resource
     private SpelTest spelTest;
 
@@ -48,7 +46,7 @@ public class HomeController {
         if (result.hasErrors()) {
             return "index";
         } else {
-            this.iTestDao.add(testVo);
+            // this.iTestDao.add(testVo);
             return "index";
         }
     }

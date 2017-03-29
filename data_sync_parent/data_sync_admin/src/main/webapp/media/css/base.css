@@ -1,0 +1,6 @@
+form tr td:nth-child(2){
+	width:206px;
+}
+form tr td:nth-child(1){
+	width:20%;
+}

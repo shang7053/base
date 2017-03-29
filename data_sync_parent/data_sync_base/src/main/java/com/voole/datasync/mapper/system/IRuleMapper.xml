@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voole.datasync.mapper.system.rule.IRuleMapper">
+	<!-- <cache type="org.mybatis.caches.oscache.OSCache"></cache> -->
+	<insert id="addScoreRecordEntry" parameterType="com.voole.comscore.entry.userscorerecord.UserScoreRecordEntry">
+		INSERT INTO t_user_score_record (
+			userid,
+			activitycode,
+			activityname,
+			score,
+			old_score,
+			account_type_id,
+			other_id,
+			other_desc,
+			time,
+			record_type,
+			createtime,
+			updatetime
+		)
+		VALUES
+			(
+				#{userid},
+				#{activitycode},
+				#{activityname},
+				#{score},
+				#{old_score},
+				#{account_type_id},
+				#{other_id},
+				#{other_desc},
+				#{time},
+				#{record_type},
+				now(),
+				now()
+			);
+	</insert>
+	<select id="getUserTodayCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM t_user_score_record
+		WHERE date(time) = curdate() AND userid=#{userid};
+	</select>
+	<insert id="addUserScoreRecordEntryList" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			INSERT INTO t_user_score_record (
+				userid,
+				activitycode,
+				activityname,
+				score,
+				old_score,
+				account_type_id,
+				other_id,
+				other_desc,
+				time,
+				record_type,
+				createtime,
+				updatetime
+			)
+			VALUES
+				(
+					#{item.userid},
+					#{item.activitycode},
+					#{item.activityname},
+					#{item.score},
+					#{item.old_score},
+					#{item.account_type_id},
+					#{item.other_id},
+					#{item.other_desc},
+					#{item.time},
+					#{item.record_type},
+					now(),
+					now()
+				);
+		</foreach>
+	</insert>
+	<select id="queryUserScoreRecordEntryList" parameterType="java.util.Map" resultType="com.voole.comscore.entry.userscorerecord.UserScoreRecordEntry">
+		SELECT 
+			userid,
+			activitycode,
+			activityname,
+			score,
+			old_score,
+			account_type_id,
+			other_id,
+			other_desc,
+			time,
+			record_type,
+			createtime,
+			updatetime
+		FROM t_user_score_record
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="account_type_id != null and account_type_id !='' ">
+				AND account_type_id =#{account_type_id}
+			</if>
+			<if test="userid != null and userid  !='' ">
+				AND userid  = #{userid}
+			</if>
+			<if test="activit_code != null and activit_code !='' ">
+				AND activit_code = #{activit_code}
+			</if>
+			<if test="activity_name != null and activity_name !='' ">
+				AND activity_name = #{activity_name}
+			</if>
+			<if test="record_order != null and record_order =='desc' ">
+				order by createtime desc
+			</if>
+			<if test="record_order != null and record_order =='asc' ">
+				order by createtime asc
+			</if>
+			<if test="start != null and start !=''  and limit != null and limit !='' ">
+				limit #{start},#{limit}
+			</if>
+		</trim>
+	</select>
+	<delete id="deleteScoreRecordEntry" parameterType="com.voole.comscore.entry.userscorerecord.UserScoreRecordEntry">
+    	DELETE FROM t_user_score_record 
+		where
+			userid=#{userid}
+			AND account_type_id = #{account_type_id};
+    </delete>
+    <update id="updateScoreRecordEntry" parameterType="com.voole.comscore.entry.userscorerecord.UserScoreRecordEntry">
+        UPDATE t_user_score_record
+		SET 
+			<if test="userid != null and userid !='' ">
+				 userid = #{userid},
+			</if>
+			  <if test="activitycode != null and activitycode !='' ">
+			  	activitycode = #{activitycode},
+			 </if>
+			  <if test="activityname != null and activityname !='' ">
+ 				activityname = #{activityname},
+			 </if>
+			<if test="score != null and score !='' ">
+				 score = #{score},
+			</if>
+			  <if test="old_score != null and old_score !='' ">
+			 	old_score = #{old_score},
+			 </if>
+			<if test="account_type_id != null and account_type_id !='' ">
+				 account_type_id = #{account_type_id},
+			</if>
+			  <if test="other_id != null and other_id !='' ">
+			 	other_id = #{other_id},
+			</if>
+			  <if test="other_desc != null and other_desc !='' ">
+				other_desc = #{other_desc},
+			</if>
+			<if test="time != null and time !='' ">
+				 time = #{time},
+			</if>
+			 <if test="record_type != null and record_type !='' ">
+			 	record_type = #{record_type},
+			</if>
+			<if test="createtime != null and createtime !='' ">
+				 createtime = #{createtime},
+			</if>
+			<if test="updatetime != null and updatetime !='' ">
+				 updatetime = #{updatetime},
+			</if>
+			<if test="is_on != null and is_on !='' ">
+				 is_on = #{is_on},
+			</if>
+			 updatetime = now()
+		WHERE
+			userid=#{userid}
+			AND account_type_id = #{account_type_id};
+    </update>
+    <delete id="deleteScoreRecordEntryList" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			DELETE FROM t_user_score_record 
+			where
+				userid=#{item.userid}
+				AND account_type_id = #{item.account_type_id};
+		</foreach>
+    </delete>
+    <update id="updateScoreRecordEntryList" parameterType="java.util.List">
+    	<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE t_user_score_record
+			SET 
+				<if test="item.userid != null and item.userid !='' ">
+					 userid = #{item.userid},
+				</if>
+				   <if test="item.activitycode != null and item.activitycode !='' ">
+				  	activitycode = #{item.activitycode},
+				 </if>
+				  <if test="item.activityname != null and item.activityname !='' ">
+	 				activityname = #{item.activityname},
+				 </if>
+				<if test="item.score != null and item.score !='' ">
+					 score = #{item.score},
+				</if>
+				  <if test="item.old_score != null and item.old_score !='' ">
+				 	old_score = #{item.old_score},
+				 </if>
+				<if test="item.account_type_id != null and item.account_type_id !='' ">
+					 account_type_id = #{item.account_type_id},
+				</if>
+				  <if test="item.other_id != null and item.other_id !='' ">
+				 	other_id = #{item.other_id},
+				</if>
+				  <if test="item.other_desc != null and item.other_desc !='' ">
+					other_desc = #{item.other_desc},
+				</if>
+				<if test="item.time != null and item.time !='' ">
+					 time = #{item.time},
+				</if>
+				 <if test="item.record_type != null and item.record_type !='' ">
+				 	record_type = #{item.record_type},
+				</if>
+				<if test="item.createtime != null and item.createtime !='' ">
+					 createtime = #{item.createtime},
+				</if>
+				<if test="item.updatetime != null and item.updatetime !='' ">
+					 updatetime = #{item.updatetime},
+				</if>
+				updatetime = now()
+			WHERE
+				userid=#{item.userid}
+				AND account_type_id = #{item.account_type_id};
+		</foreach>
+    </update>
+</mapper>  

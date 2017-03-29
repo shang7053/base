@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voole.datasync.mapper.system.function.IFunctionMapper">
+	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
+	<select id="queryFunctions" parameterType="com.voole.datasync.vo.system.function.FunctionVo" resultType="com.voole.datasync.vo.system.function.FunctionVo">
+		SELECT * FROM t_function
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="fid != null ">
+				AND fid =#{fid}
+			</if>
+			<if test="fname != null and fname != ''">
+				AND fname =#{fname}
+			</if>
+			<if test="furl != null and furl != ''">
+				AND furl  = #{furl}
+			</if>
+			<if test="pfid != null ">
+				AND pfid = #{pfid}
+			</if>
+			<if test="menu_type != null ">
+				AND menu_type = #{menu_type}
+			</if>
+			<if test="sort != null ">
+				AND sort = #{sort}
+			</if>
+			<if test="is_on != null ">
+				AND is_on = #{is_on}
+			</if>
+			<if test="fids != null">
+				AND fid  IN 
+				<foreach collection="fids" item="item" index="index" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			ORDER BY sort asc;
+		</trim>
+	</select>
+	<insert id="insertFunction" useGeneratedKeys="true" keyProperty="fid" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+		INSERT INTO t_function (
+			<if test="fid != null ">
+				fid,
+			</if>
+			<if test="fname != null ">
+				fname,
+			</if>
+			<if test="furl != null ">
+				furl,
+			</if>
+			<if test="pfid != null ">
+				pfid,
+			</if>
+			<if test="menu_type != null ">
+				menu_type,
+			</if>
+			<if test="sort != null ">
+				sort,
+			</if>
+			<if test="is_on != null ">
+				is_on,
+			</if>
+			<if test="create_time != null ">
+				create_time,
+			</if>
+			<if test="update_time != null ">
+				update_time,
+			</if>
+			version
+		)
+		VALUES
+			(
+			<if test="fid != null ">
+				#{fid},
+			</if>
+			<if test="fname != null ">
+				#{fname},
+			</if>
+			<if test="furl != null ">
+				#{furl},
+			</if>
+			<if test="pfid != null ">
+				#{pfid},
+			</if>
+			<if test="menu_type != null ">
+				#{menu_type},
+			</if>
+			<if test="sort != null ">
+				#{sort},
+			</if>
+			<if test="is_on != null ">
+				#{is_on},
+			</if>
+			<if test="create_time != null ">
+				#{create_time},
+			</if>
+			<if test="update_time != null ">
+				#{update_time},
+			</if>
+			0
+			);
+	</insert>
+	<delete id="deleteFunction" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+		DELETE FROM t_function WHERE fid=#{fid} AND version = #{version};
+	</delete>
+	<update id="updateFunction" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+		UPDATE t_function
+		SET 
+		 <if test="fid != null ">
+				fid=#{fid},
+			</if>
+			<if test="fname != null ">
+				fname=#{fname},
+			</if>
+			<if test="furl != null ">
+				furl=#{furl},
+			</if>
+			<if test="pfid != null ">
+				pfid=#{pfid},
+			</if>
+			<if test="menu_type != null ">
+				menu_type=#{menu_type},
+			</if>
+			<if test="sort != null ">
+				sort=#{sort},
+			</if>
+			<if test="is_on != null ">
+				is_on=#{is_on},
+			</if>
+			<if test="create_time != null ">
+				create_time=#{create_time},
+			</if>
+			<if test="update_time != null ">
+				update_time=#{update_time},
+			</if>
+			version=version+1
+		WHERE
+			fid = #{fid}
+			AND version = #{version};
+	</update>
+</mapper>  

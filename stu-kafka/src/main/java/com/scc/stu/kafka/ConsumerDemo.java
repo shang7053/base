@@ -29,7 +29,7 @@ import kafka.message.MessageAndMetadata;
  */
 public class ConsumerDemo {
 
-    private static final String topic = "test";
+    private static final String topic = "canal-t_canal";
 
     private static final Integer threads = 3;
 
@@ -53,7 +53,7 @@ public class ConsumerDemo {
 
         Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 
-        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("test");
+        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("canal-t_canal");
 
         for (final KafkaStream<byte[], byte[]> kafkaStream : streams) {
 

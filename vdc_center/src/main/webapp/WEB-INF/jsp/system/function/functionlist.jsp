@@ -67,7 +67,7 @@
 						                    	   url: "functionController/queryFunction.do",
 						                    	   data: "fid="+obj.id,
 						                    	   success: function(msg){
-						                    		   $("#pfid").val(msg.fid);
+						                    		   $("#pfid").val(null==msg.fid?"0":msg.fid);
 						                    		   $("#menu_type").val((msg.menu_type+1)>4?4:(msg.menu_type+1));
 						                    		   $("#is_on").val(1);
 						                    		   $("input[name='is_on']").each(function(){

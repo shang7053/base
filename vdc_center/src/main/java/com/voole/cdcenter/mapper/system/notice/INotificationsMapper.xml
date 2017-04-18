@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.cdcenter.mapper.system.notice.INotificationsMapper">
-	<!-- <cache type="org.mybatis.caches.oscache.OSCache"></cache> -->
+	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
 	<select id="queryNotifications" parameterType="com.voole.cdcenter.vo.system.notice.NotificationsVo" resultType="com.voole.cdcenter.vo.system.notice.NotificationsVo">
 		SELECT * FROM t_notifications
 		<trim prefix="WHERE" prefixOverrides="AND | OR">

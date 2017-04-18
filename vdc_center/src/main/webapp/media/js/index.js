@@ -1,3 +1,4 @@
+var notiescontextmap={};
 var Index = function () {
 
 
@@ -65,7 +66,9 @@ var Index = function () {
 					   		});
 					   		tips[i]=unique_id;
 				            html+="<li id=\"notice_li_"+notifications[i].nid+"\">";
-				            html+="<a href=\"javascript:;\" onclick=\"shownotices('"+notifications[i].title+"','"+notifications[i].context+"',"+notifications[i].nid+","+notifications[i].version+")\">";
+				            var key=notifications[i].nid;
+				            notiescontextmap[key]=notifications[i].context;
+				            html+="<a href=\"javascript:;\" onclick=\"shownotices('"+notifications[i].title+"',"+notifications[i].nid+","+notifications[i].version+")\">";
 				            html+="&nbsp&nbsp<span class=\"label label-warning\"><i class=\"icon-bell\"></i></span>";
 				            html+=notifications[i].title;
 			            	html+="&nbsp&nbsp&nbsp<span class=\"time\">";

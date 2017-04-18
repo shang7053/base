@@ -221,6 +221,7 @@
 	                                            						dHtml+='<vooletag:permission url="rulelist/turnmodalgetinfo.do"><li><a href="javascript:void(0)" onclick="turnmodalgetinfo(\''+ data+ '\',this);"><i class="icon-reorder"></i>&nbsp查看</a></li></vooletag:permission>';
 	                                            						dHtml+='<vooletag:permission url="rulelist/turnmodal.do"><li><a href="javascript:void(0)" onclick="turnmodal(\''+ data+ '\',this);"><i class="icon-edit"></i>&nbsp赋予</a></li></vooletag:permission>';
 	                                            						dHtml+='<vooletag:permission url="rulelist/freezerule.do"><li><a href="javascript:void(0)" onclick="freezerule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp禁用</a></li></vooletag:permission>';
+	                                            						dHtml+='<vooletag:permission url="rulelist/userule.do"><li><a href="javascript:void(0)" onclick="userule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp禁用</a></li></vooletag:permission>';
 	                                            						dHtml+='</ul>';
 	                                            						dHtml+='</div>';
 	                                            	                    return dHtml;
@@ -349,7 +350,7 @@
 		}
 	}
 	function freezerule(rid,version){
-		if(confirm("确认冻结？")){
+		if(confirm("确认禁用？")){
 			$.ajax({
 			   type: "POST",
 			   url: "ruleController/freeze.do",
@@ -357,7 +358,22 @@
 			   success: function(msg){
 				   alert(msg.info);
 				   if(msg.status){
-					   $('#sample_1').dataTable( tablesettings).fnDraw();
+					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
+				   }
+			   }
+			});
+		}
+	}
+	function userule(rid,version){
+		if(confirm("确认启用？")){
+			$.ajax({
+			   type: "POST",
+			   url: "ruleController/userule.do",
+			   data: "rid="+rid+"&version="+version,
+			   success: function(msg){
+				   alert(msg.info);
+				   if(msg.status){
+					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
 				   }
 			   }
 			});

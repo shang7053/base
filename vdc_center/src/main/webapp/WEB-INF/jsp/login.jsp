@@ -50,7 +50,7 @@
 				<label class="control-label visible-ie8 visible-ie9">用户名</label>
 				<div class="controls">
 					<div class="input-icon left">
-						<i class="icon-user"></i> <input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" />
+						<i class="icon-user"></i> <input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" value="1" />
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-lock"></i> <input class="m-wrap placeholder-no-fix" type="password" placeholder="密码"
-							name="passwordcode" />
+							name="passwordcode" value="1"/>
 					</div>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="create-account">
 				<p>
-					系统说明 ：</br> 本系统为优朋云数据中心管理中心系统。
+					系统说明 ：</br> 本系统为优朋科技基础数据同步系统服务。
 				</p>
 			</div>
 		</form>

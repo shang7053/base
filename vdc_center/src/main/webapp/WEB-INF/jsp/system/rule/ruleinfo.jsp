@@ -7,7 +7,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td width="20%">是否冻结：</td>
+		<td width="20%">是否启用：</td>
 		<td>${rule.is_on == 0 ? "否" : "是" }</td>
 		<td></td>
 	</tr>

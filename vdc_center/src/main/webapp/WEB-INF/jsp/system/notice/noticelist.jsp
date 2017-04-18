@@ -31,7 +31,7 @@
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-globe"></i>角色管理</div>
+								<div class="caption"><i class="icon-globe"></i>告警</div>
 
 								<div class="tools">
 

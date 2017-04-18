@@ -32,85 +32,100 @@ import com.voole.cdcenter.vo.system.user.UserVo;
 @RequestMapping("/noticeController/")
 @Controller
 public class NoticeController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(NoticeController.class);
-	@Resource
-	private INotificationsService notificationsService;
+    private static final Logger LOGGER = Logger.getLogger(NoticeController.class);
+    @Resource
+    private INotificationsService notificationsService;
 
-	@RequestMapping("turnnotice.do")
-	public ModelAndView turnnotice() {
-		return new ModelAndView("system/notice/noticelist");
-	}
+    @RequestMapping("turnnotice.do")
+    public ModelAndView turnnotice() {
+        return new ModelAndView("system/notice/noticelist");
+    }
 
-	@RequestMapping("queryNotice.do")
-	@ResponseBody
-	public PageMessageVo queryNotice(PageMessageVo pmv, NotificationsVo noticequerycase) {
-		try {
-			noticequerycase.setPmv(pmv);
-			List<NotificationsVo> rules = this.notificationsService.queryNotifications(noticequerycase);
-			pmv.setAaData(rules);
-			Integer totalsize = this.notificationsService.queryCountNotifications(noticequerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
-			return pmv;
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return pmv;
-	}
+    @RequestMapping("queryNotice.do")
+    @ResponseBody
+    public PageMessageVo queryNotice(PageMessageVo pmv, NotificationsVo noticequerycase) {
+        try {
+            noticequerycase.setPmv(pmv);
+            List<NotificationsVo> rules = this.notificationsService.queryNotifications(noticequerycase);
+            pmv.setAaData(rules);
+            Integer totalsize = this.notificationsService.queryCountNotifications(noticequerycase);
+            pmv.setiTotalRecords(totalsize);
+            pmv.setiTotalDisplayRecords(totalsize);
+            return pmv;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return pmv;
+    }
 
-	@RequestMapping("querynotices.do")
-	@ResponseBody
-	public AjaxNoticationsVo querynotices(Date date, HttpSession session) {
-		try {
-			AjaxNoticationsVo ajaxNoticationsVo = new AjaxNoticationsVo();
-			UserVo loginUser = (UserVo) session.getAttribute("user");
-			if (null == loginUser) {
-				return ajaxNoticationsVo;
-			}
-			List<RuleVo> rules = loginUser.getRules();
-			if (null != rules) {
-				for (RuleVo ruleVo : rules) {
-					if (ruleVo.getIs_recive_notice() == 1) {
-						NotificationsVo notificationsqc = new NotificationsVo();
-						notificationsqc.setIs_read(0);
-						notificationsqc.setQueryStart(date);
-						notificationsqc.setStart(0);
-						notificationsqc.setSize(8);
-						List<NotificationsVo> notificationsVos = this.notificationsService
-								.queryNotifications(notificationsqc);
-						ajaxNoticationsVo.setNotifications(notificationsVos);
-						ajaxNoticationsVo.setCountNotifications(
-								this.notificationsService.queryCountNotifications(notificationsqc));
-						break;
-					} else {
-						continue;
-					}
-				}
-			}
-			return ajaxNoticationsVo;
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return null;
-	}
+    @RequestMapping("querynotices.do")
+    @ResponseBody
+    public AjaxNoticationsVo querynotices(Date date, HttpSession session) {
+        try {
+            AjaxNoticationsVo ajaxNoticationsVo = new AjaxNoticationsVo();
+            UserVo loginUser = (UserVo) session.getAttribute("user");
+            if (null == loginUser) {
+                return ajaxNoticationsVo;
+            }
+            List<RuleVo> rules = loginUser.getRules();
+            if (null != rules) {
+                for (RuleVo ruleVo : rules) {
+                    if (ruleVo.getIs_recive_notice() == 1) {
+                        NotificationsVo notificationsqc = new NotificationsVo();
+                        notificationsqc.setIs_read(0);
+                        notificationsqc.setQueryStart(date);
+                        notificationsqc.setStart(0);
+                        notificationsqc.setSize(8);
+                        List<NotificationsVo> notificationsVos = this.notificationsService
+                                .queryNotifications(notificationsqc);
+                        ajaxNoticationsVo.setNotifications(notificationsVos);
+                        ajaxNoticationsVo.setCountNotifications(
+                                this.notificationsService.queryCountNotifications(notificationsqc));
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            return ajaxNoticationsVo;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return null;
+    }
 
-	@RequestMapping("setRead.do")
-	@ResponseBody
-	public AjaxRet setRead(Integer nid, Integer version) {
-		try {
-			NotificationsEntry notificationsEntry = new NotificationsEntry();
-			notificationsEntry.setNid(nid);
-			notificationsEntry.setIs_read(1);
-			notificationsEntry.setVersion(version);
-			notificationsEntry.setRead_time(new Date());
-			if (this.notificationsService.updateNotifications(notificationsEntry)) {
-				return new AjaxRet(true, "设置成功!");
-			} else {
-				return new AjaxRet(false, "设置失败,该消息已被其他人处理!");
-			}
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return new AjaxRet(false, "程序内部错误");
-	}
+    @RequestMapping("setRead.do")
+    @ResponseBody
+    public AjaxRet setRead(Integer nid, Integer version) {
+        try {
+            NotificationsEntry notificationsEntry = new NotificationsEntry();
+            notificationsEntry.setNid(nid);
+            notificationsEntry.setIs_read(1);
+            notificationsEntry.setVersion(version);
+            notificationsEntry.setRead_time(new Date());
+            if (this.notificationsService.updateNotifications(notificationsEntry)) {
+                return new AjaxRet(true, "设置成功!");
+            } else {
+                return new AjaxRet(false, "设置失败,该消息已被其他人处理!");
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return new AjaxRet(false, "程序内部错误");
+    }
+
+    @RequestMapping("turnNoticesInfo.do")
+    public String turnNoticesInfo(Integer nid, Model model) {
+        try {
+            NotificationsVo notificationsVo = new NotificationsVo();
+            notificationsVo.setNid(nid);
+            List<NotificationsVo> notificationsVos = this.notificationsService.queryNotifications(notificationsVo);
+            if (null != notificationsVos && notificationsVos.size() == 1) {
+                model.addAttribute("notifications", notificationsVos.get(0));
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return "system/notice/noticeinfo";
+    }
 }

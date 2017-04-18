@@ -32,4 +32,5 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<!-- timer -->
 	<import resource="spring-timer.xml"/>
+	<import resource="spring-queue.xml"/>
 </beans>

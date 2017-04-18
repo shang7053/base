@@ -87,6 +87,7 @@
 											<th style="width:8px;">序号</th>
 
 											<th>用户id</th>
+											<th>用户昵称</th>
 
 											<th class="hidden-480">url</th>
 
@@ -154,19 +155,24 @@
 	                                                	                "aTargets" : [ 1 ],
 	                                                	                "bSortable" : false
 	                                                	            },{
+	                                                	                "mData" : "realname",
+	                                                	                "sWidth" : "100px",
+	                                                	                "aTargets" : [ 2 ],
+	                                                	                "bSortable" : false
+	                                                	            },{
 	                                                	                "mData" : "url",
 	                                                	                "sWidth" : "50px",
-	                                                	                "aTargets" : [ 2 ],
+	                                                	                "aTargets" : [ 3 ],
 	                                                	                "bSortable" : false,
 	                                                	            },{
 	                                                	                "mData" : "param",
 	                                                	                "sWidth" : "100px",
-	                                                	                "aTargets" : [ 3 ],
+	                                                	                "aTargets" : [ 4 ],
 	                                                	                "bSortable" : false,
 	                                                	            },{
 	                                                	                "mData" : "create_time",
 	                                                	                "sWidth" : "100px",
-	                                                	                "aTargets" : [ 4 ],
+	                                                	                "aTargets" : [ 5 ],
 	                                                	                "bSortable" : false,
 	                                                	                "mRender" :function(data,type,full){
 	                                                	                    return formatDate(data,"yyyy-MM-dd HH:mm");

@@ -21,6 +21,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.alibaba.fastjson.JSON;
 import com.voole.cdcenter.entry.sytem.log.SystemLogEntry;
 import com.voole.cdcenter.service.system.log.ISystemLogService;
+import com.voole.cdcenter.util.AsyncExecutorService;
+import com.voole.cdcenter.util.BaseAsyncRunner;
 import com.voole.cdcenter.vo.system.user.UserVo;
 
 /**
@@ -32,66 +34,78 @@ import com.voole.cdcenter.vo.system.user.UserVo;
  *
  */
 public class UserLogFilter implements Filter {
-	private static Boolean isStart = null;
-	private static List<String> statisticationlist;
+    private static Boolean isStart = null;
+    private static List<String> statisticationlist;
+    private static BeanFactory beans;
 
-	@Override
-	public void destroy() {
+    @Override
+    public void destroy() {
 
-	}
+    }
 
-	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
-			throws IOException, ServletException {
-		if (isStart) {
-			HttpServletRequest request = (HttpServletRequest) arg0;
-			String servletPath = request.getServletPath();
-			String[] paths = servletPath.split("/");
-			String mappingname = paths[paths.length - 1];
-			if (StringUtils.isNotBlank(mappingname) && !servletPath.endsWith("heartbeat.do")) {
-				boolean ismatch = false;
-				for (String string : statisticationlist) {
-					if (mappingname.startsWith(string)) {
-						ismatch = true;
-						break;
-					}
-				}
-				if (!ismatch) {
-					SystemLogEntry sle = new SystemLogEntry();
-					UserVo resUserEntry = (UserVo) request.getSession().getAttribute("user");
-					if (null != resUserEntry) {
-						sle.setCreate_time(new Date());
-						sle.setUid(resUserEntry.getUid());
-						sle.setUrl(servletPath);
-						sle.setParam(JSON.toJSONString(request.getParameterMap()));
-						BeanFactory beans = WebApplicationContextUtils
-								.getWebApplicationContext(request.getSession().getServletContext());
-						ISystemLogService sysytemLogService = (ISystemLogService) beans.getBean("ISystemLogService");
-						sysytemLogService.addSystemLog(sle);
-					}
-				}
-			}
-			arg2.doFilter(arg0, arg1);
-		} else {
-			arg2.doFilter(arg0, arg1);
-		}
-	}
+    @Override
+    public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+            throws IOException, ServletException {
+        if (isStart) {
+            HttpServletRequest request = (HttpServletRequest) arg0;
+            String servletPath = request.getServletPath();
+            String[] paths = servletPath.split("/");
+            String mappingname = paths[paths.length - 1];
+            if (StringUtils.isNotBlank(mappingname) && !servletPath.endsWith("heartbeat.do")) {
+                boolean ismatch = false;
+                for (String string : statisticationlist) {
+                    if (mappingname.startsWith(string)) {
+                        ismatch = true;
+                        break;
+                    }
+                }
+                if (ismatch) {
+                    if (null == beans) {
+                        beans = WebApplicationContextUtils
+                                .getWebApplicationContext(request.getSession().getServletContext());
+                    }
+                    AsyncExecutorService asyncExecutorService = (AsyncExecutorService) beans
+                            .getBean("asyncExecutorService");
+                    asyncExecutorService.execute(new BaseAsyncRunner() {
 
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		isStart = Boolean
-				.valueOf(null == arg0.getInitParameter("isStart") || "".equals(arg0.getInitParameter("isStart"))
-						? "false" : arg0.getInitParameter("isStart"));
-		if (isStart) {
-			if (!"".equals(arg0.getInitParameter("statisticationlist"))) {
-				String[] temps = arg0.getInitParameter("statisticationlist").split(",");
-				for (int i = 0; i < temps.length; i++) {
-					temps[i] = temps[i].trim();
-				}
-				statisticationlist = Arrays.asList(temps);
-			} else {
-				statisticationlist = new ArrayList<String>();
-			}
-		}
-	}
+                        @Override
+                        public void runrunrun() {
+                            SystemLogEntry sle = new SystemLogEntry();
+                            UserVo resUserEntry = (UserVo) request.getSession().getAttribute("user");
+                            if (null != resUserEntry) {
+                                sle.setCreate_time(new Date());
+                                sle.setUid(resUserEntry.getUid());
+                                sle.setUrl(servletPath);
+                                sle.setParam(JSON.toJSONString(request.getParameterMap()));
+                                ISystemLogService sysytemLogService = (ISystemLogService) beans
+                                        .getBean("ISystemLogService");
+                                sysytemLogService.addSystemLog(sle);
+                            }
+                        }
+                    });
+                }
+            }
+            arg2.doFilter(arg0, arg1);
+        } else {
+            arg2.doFilter(arg0, arg1);
+        }
+    }
+
+    @Override
+    public void init(FilterConfig arg0) throws ServletException {
+        isStart = Boolean
+                .valueOf(null == arg0.getInitParameter("isStart") || "".equals(arg0.getInitParameter("isStart"))
+                        ? "false" : arg0.getInitParameter("isStart"));
+        if (isStart) {
+            if (!"".equals(arg0.getInitParameter("statisticationlist"))) {
+                String[] temps = arg0.getInitParameter("statisticationlist").split(",");
+                for (int i = 0; i < temps.length; i++) {
+                    temps[i] = temps[i].trim();
+                }
+                statisticationlist = Arrays.asList(temps);
+            } else {
+                statisticationlist = new ArrayList<String>();
+            }
+        }
+    }
 }

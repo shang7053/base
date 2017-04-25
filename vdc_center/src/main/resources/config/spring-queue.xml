@@ -28,7 +28,7 @@
         <constructor-arg index="4" ref="blockingQueue" type="java.util.concurrent.BlockingQueue"/>
     </bean>
     <bean id="callerRunsPolicy" class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy"></bean>
-    <bean id="asyncExecutorService" class="com.voole.datacheck.util.AsyncExecutorService" init-method="init"  destroy-method="destroy">
+    <bean id="asyncExecutorService" class="com.voole.cdcenter.util.AsyncExecutorService" init-method="init"  destroy-method="destroy">
         <property name="executorService" ref="threadPoolExecutor"/>
         <property name="blockingQueue" ref="blockingQueue"/>
         <property name="rejectionHandler" ref="callerRunsPolicy" />

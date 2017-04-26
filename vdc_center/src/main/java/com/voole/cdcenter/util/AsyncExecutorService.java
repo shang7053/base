@@ -16,75 +16,75 @@ import javax.annotation.PreDestroy;
  * 
  */
 public class AsyncExecutorService {
-    private ThreadPoolExecutor executorService;
-    private RejectedExecutionHandler rejectionHandler;
-    private BlockingQueue<Runnable> blockingQueue;
-    private int defaultCoreSize;
-    private int defaultMaxSize;
-    private long defaultKeepAliveTime;
+	private ThreadPoolExecutor executorService;
+	private RejectedExecutionHandler rejectionHandler;
+	private BlockingQueue<Runnable> blockingQueue;
+	private int defaultCoreSize;
+	private int defaultMaxSize;
+	private long defaultKeepAliveTime;
 
-    public RejectedExecutionHandler getRejectionHandler() {
-        return this.rejectionHandler;
-    }
+	public RejectedExecutionHandler getRejectionHandler() {
+		return this.rejectionHandler;
+	}
 
-    public void setRejectionHandler(RejectedExecutionHandler rejectionHandler) {
-        this.rejectionHandler = rejectionHandler;
-        this.executorService.setRejectedExecutionHandler(rejectionHandler);
-    }
+	public void setRejectionHandler(RejectedExecutionHandler rejectionHandler) {
+		this.rejectionHandler = rejectionHandler;
+		this.executorService.setRejectedExecutionHandler(rejectionHandler);
+	}
 
-    public BlockingQueue<Runnable> getBlockingQueue() {
-        return this.blockingQueue;
-    }
+	public BlockingQueue<Runnable> getBlockingQueue() {
+		return this.blockingQueue;
+	}
 
-    public void setBlockingQueue(BlockingQueue<Runnable> blockingQueue) {
-        this.blockingQueue = blockingQueue;
-    }
+	public void setBlockingQueue(BlockingQueue<Runnable> blockingQueue) {
+		this.blockingQueue = blockingQueue;
+	}
 
-    public ThreadPoolExecutor getExecutorService() {
-        return this.executorService;
-    }
+	public ThreadPoolExecutor getExecutorService() {
+		return this.executorService;
+	}
 
-    public void setExecutorService(ThreadPoolExecutor executorService) {
-        this.executorService = executorService;
-        this.defaultCoreSize = this.executorService.getCorePoolSize();
-        this.defaultMaxSize = this.executorService.getMaximumPoolSize();
-        this.defaultKeepAliveTime = this.executorService.getKeepAliveTime(TimeUnit.SECONDS);
-    }
+	public void setExecutorService(ThreadPoolExecutor executorService) {
+		this.executorService = executorService;
+		this.defaultCoreSize = this.executorService.getCorePoolSize();
+		this.defaultMaxSize = this.executorService.getMaximumPoolSize();
+		this.defaultKeepAliveTime = this.executorService.getKeepAliveTime(TimeUnit.SECONDS);
+	}
 
-    public void execute(BaseAsyncRunner baseRunner) {
-        this.executorService.execute(baseRunner);
-    }
+	public void execute(Runnable runnable) {
+		this.executorService.execute(runnable);
+	}
 
-    public void resizePoolMaxSize(int maxSize) {
-        this.executorService.setMaximumPoolSize(maxSize);
-    }
+	public void resizePoolMaxSize(int maxSize) {
+		this.executorService.setMaximumPoolSize(maxSize);
+	}
 
-    public void resizePoolCoreSize(int coreSize) {
-        this.executorService.setMaximumPoolSize(coreSize);
-    }
+	public void resizePoolCoreSize(int coreSize) {
+		this.executorService.setMaximumPoolSize(coreSize);
+	}
 
-    public void resetPoolAliveTime(long aliveTime) {
-        this.executorService.setKeepAliveTime(aliveTime, TimeUnit.SECONDS);
-    }
+	public void resetPoolAliveTime(long aliveTime) {
+		this.executorService.setKeepAliveTime(aliveTime, TimeUnit.SECONDS);
+	}
 
-    public void resetDefault() {
-        this.executorService.setCorePoolSize(this.defaultCoreSize);
-        this.executorService.setMaximumPoolSize(this.defaultMaxSize);
-        this.executorService.setKeepAliveTime(this.defaultKeepAliveTime, TimeUnit.SECONDS);
-    }
+	public void resetDefault() {
+		this.executorService.setCorePoolSize(this.defaultCoreSize);
+		this.executorService.setMaximumPoolSize(this.defaultMaxSize);
+		this.executorService.setKeepAliveTime(this.defaultKeepAliveTime, TimeUnit.SECONDS);
+	}
 
-    @PostConstruct
-    public void init() {
-        // asyncExecutorService will be init !!!
-    }
+	@PostConstruct
+	public void init() {
+		// asyncExecutorService will be init !!!
+	}
 
-    @PreDestroy
-    public void destroy() {
-        // asyncExecutorService will be destroyed !!!
-        this.executorService.shutdown();
-    }
+	@PreDestroy
+	public void destroy() {
+		// asyncExecutorService will be destroyed !!!
+		this.executorService.shutdown();
+	}
 
-    public Integer getPoolMaxSize() {
-        return this.executorService.getMaximumPoolSize();
-    }
+	public Integer getPoolMaxSize() {
+		return this.executorService.getMaximumPoolSize();
+	}
 }

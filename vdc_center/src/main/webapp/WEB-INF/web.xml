@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="vdc_center" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="vdc_center" version="3.0">
+	<display-name>vdc_center</display-name>
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://tag.voole.com/</taglib-uri>
@@ -11,62 +13,27 @@
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:config/spring-core.xml</param-value>
-	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>net.bull.javamelody.SessionListener</listener-class>
-	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:config/spring-core.xml</param-value>
+	</context-param>
 	<filter>
 		<filter-name>monitoring</filter-name>
 		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>monitoring</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
 	<filter>
-		<filter-name>UserValidateFilter</filter-name>
-		<filter-class>com.voole.cdcenter.util.filter.UserValidateFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>UserValidateFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter>
-		<filter-name>UserLogFilter</filter-name>
-		<filter-class>com.voole.cdcenter.util.filter.UserLogFilter</filter-class>
-		<init-param>
-			<!-- 是否启动日志记录 -->
-			<param-name>isStart</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<!-- 统计url列表 -->
-			<param-name>statisticationlist</param-name>
-			<param-value>
-				query,
-				get,
-				search,
-				turn,
-				login
-			</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>UserLogFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter>
-		<filter-name>encodingFilter</filter-name>
+		<filter-name>characterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
@@ -76,9 +43,10 @@
 			<param-name>forceEncoding</param-name>
 			<param-value>true</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
+		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter>
@@ -104,10 +72,45 @@
 			<param-name>sessionStatMaxCount</param-name>
 			<param-value>1000</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>DruidWebStatFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>UserValidateFilter</filter-name>
+		<filter-class>com.voole.cdcenter.util.filter.UserValidateFilter</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>UserValidateFilter</filter-name>
+		<url-pattern>*.ds</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>UserLogFilter</filter-name>
+		<filter-class>com.voole.cdcenter.util.filter.UserLogFilter</filter-class>
+		<init-param>
+			<!-- 是否启动日志记录 -->
+			<param-name>isStart</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<!-- 统计url列表 -->
+			<param-name>statisticationlist</param-name>
+			<param-value>
+				query,
+				get,
+				search,
+				turn,
+				login
+			</param-value>
+		</init-param>
+		<async-supported>true</async-supported>
+	</filter>
+	<filter-mapping>
+		<filter-name>UserLogFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
@@ -180,6 +183,7 @@
 			<param-name>loginPassword</param-name>
 			<param-value>scc123</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DruidStatView</servlet-name>
@@ -193,6 +197,7 @@
 			<param-value>classpath:config/spring-mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>

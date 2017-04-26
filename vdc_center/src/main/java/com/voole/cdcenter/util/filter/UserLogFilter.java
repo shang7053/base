@@ -40,7 +40,7 @@ public class UserLogFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        System.out.println("UserLogFilter.destroy()");
     }
 
     @Override
@@ -66,17 +66,18 @@ public class UserLogFilter implements Filter {
                     }
                     AsyncExecutorService asyncExecutorService = (AsyncExecutorService) beans
                             .getBean("asyncExecutorService");
+                    UserVo resUserEntry = (UserVo) request.getSession().getAttribute("user");
                     asyncExecutorService.execute(new BaseAsyncRunner() {
+                        String param = JSON.toJSONString(request.getParameterMap());
 
                         @Override
                         public void runrunrun() {
                             SystemLogEntry sle = new SystemLogEntry();
-                            UserVo resUserEntry = (UserVo) request.getSession().getAttribute("user");
                             if (null != resUserEntry) {
                                 sle.setCreate_time(new Date());
                                 sle.setUid(resUserEntry.getUid());
                                 sle.setUrl(servletPath);
-                                sle.setParam(JSON.toJSONString(request.getParameterMap()));
+                                sle.setParam(this.param);
                                 ISystemLogService sysytemLogService = (ISystemLogService) beans
                                         .getBean("ISystemLogService");
                                 sysytemLogService.addSystemLog(sle);

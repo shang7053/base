@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.WebAsyncTask;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.voole.cdcenter.controller.BaseController;
@@ -25,28 +25,29 @@ import com.voole.cdcenter.vo.system.log.SysytemLogVo;
 @RequestMapping("/systemLogsController/")
 @Controller
 public class SystemLogsController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(SystemLogsController.class);
-	@Resource
-	private ISystemLogService systemLogService;
+    @Resource
+    private ISystemLogService systemLogService;
 
-	@RequestMapping("turnSystemLogs.do")
-	public ModelAndView turnSystemLogs() {
-		return new ModelAndView("system/log/loglist");
-	}
+    @RequestMapping("turnSystemLogs.do")
+    public ModelAndView turnSystemLogs() {
+        return new ModelAndView("system/log/loglist");
+    }
 
-	@RequestMapping("querySystemLogs.do")
-	@ResponseBody
-	public PageMessageVo querySystemLogs(PageMessageVo pmv, SysytemLogVo sysytemLogqc) {
-		try {
-			sysytemLogqc.setPmv(pmv);
-			List<SysytemLogVo> rules = this.systemLogService.querySystemLogs(sysytemLogqc);
-			pmv.setAaData(rules);
-			Integer totalsize = this.systemLogService.querySystemLogsCount(sysytemLogqc);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return pmv;
-	}
+    @RequestMapping("querySystemLogs.do")
+    @ResponseBody
+    public WebAsyncTask<PageMessageVo> querySystemLogs(PageMessageVo pmv, SysytemLogVo sysytemLogqc) {
+        return new WebAsyncTask<>(() -> {
+            try {
+                sysytemLogqc.setPmv(pmv);
+                List<SysytemLogVo> rules = this.systemLogService.querySystemLogs(sysytemLogqc);
+                pmv.setAaData(rules);
+                Integer totalsize = this.systemLogService.querySystemLogsCount(sysytemLogqc);
+                pmv.setiTotalRecords(totalsize);
+                pmv.setiTotalDisplayRecords(totalsize);
+            } catch (Exception e) {
+                this.LOGGER.error(e.getMessage(), e);
+            }
+            return pmv;
+        });
+    }
 }

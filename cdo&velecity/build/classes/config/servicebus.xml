@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--服务总线配置文件-->
-<ServiceBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/ServiceBus.xsd">
-	<LocalNode Id="SupCCCenter" />
-	<NodeList Resource="config/NodeList.xml" Encoding="utf-8"/>
-</ServiceBus>

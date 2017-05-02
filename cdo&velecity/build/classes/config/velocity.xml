@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<toolbox>
-	<tool>
-		<key>testController</key>
-		<scope>application</scope>
-		<request-path>/*</request-path>
-		<class>com.dafy.supccbusiness.web.controller.TestController</class>
-	</tool>
-</toolbox>

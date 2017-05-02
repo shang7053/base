@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--访问授权文件-->
-<TransFilter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/TransFilter.xsd">
-	<Trans ServiceName="UserService" TransName="register" Permission="allowed"/>
-	<Trans ServiceName="UserService" TransName="login" Permission="allowed"/>
-	<DefaultPermission>refused</DefaultPermission>
-</TransFilter>

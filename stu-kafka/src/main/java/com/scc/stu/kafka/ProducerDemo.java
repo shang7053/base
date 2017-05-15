@@ -28,25 +28,23 @@ public class ProducerDemo {
 
 	private static final Logger LOG = Logger.getLogger(ProducerDemo.class);
 
-	private static Properties properties = null;
+	private static Properties properties = new Properties();
 
 	static {
-		properties = new Properties();
 		properties.put("bootstrap.servers", "172.16.41.151:9092");
-		properties.put("producer.type", "sync");
-		properties.put("request.required.acks", "1");
-		properties.put("serializer.class", "kafka.serializer.DefaultEncoder");
-		properties.put("partitioner.class", "kafka.producer.DefaultPartitioner");
+		properties.put("acks", "all");
+		properties.put("retries", 0);
+		properties.put("batch.size", 16384);
+		properties.put("linger.ms", 1);
+		properties.put("buffer.memory", 33554432);
 		properties.put("key.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
-		// properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		properties.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
-		// properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 	}
 
 	public void produce() {
 		KafkaProducer<byte[], byte[]> kafkaProducer = new KafkaProducer<byte[], byte[]>(properties);
-		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("test", "kkk".getBytes(),
-				"ssss".getBytes());
+		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("canal-t_canal",
+				"kkk".getBytes(), "ssss".getBytes());
 		kafkaProducer.send(kafkaRecord, new Callback() {
 			public void onCompletion(RecordMetadata metadata, Exception e) {
 				if (null != e) {

@@ -41,7 +41,9 @@ public class ConsumerDemo {
 
 		props.put("group.id", "1111");
 
-		props.put("auto.offset.reset", "smallest");
+		props.put("zookeeper.session.timeout.ms", "40000");
+		props.put("zookeeper.sync.time.ms", "200");
+		props.put("auto.commit.interval.ms", "1000");
 
 		ConsumerConfig config = new ConsumerConfig(props);
 

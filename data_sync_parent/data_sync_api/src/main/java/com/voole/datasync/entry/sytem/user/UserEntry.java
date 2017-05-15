@@ -3,6 +3,8 @@ package com.voole.datasync.entry.sytem.user;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.datasync.entry.BaseEntry;
+
 /**
  * @ClassName: User
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午1:45:42
  * 
  */
-public class UserEntry implements Serializable {
+public class UserEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -24,12 +26,8 @@ public class UserEntry implements Serializable {
 	protected String realname; // 真实姓名
 	protected String email; // 邮箱
 	protected String tel;// 手机号
-	protected Integer is_on; // 是否冻结，0否1是
 	protected Integer error_pw_count; // 密码错误重试次数
-	protected Date create_time; // 创建时间
-	protected Date update_time;// 更新时间
 	protected Date login_time;// 登录时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the uid

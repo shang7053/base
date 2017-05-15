@@ -3,6 +3,8 @@ package com.voole.cdcenter.entry.sytem.function;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.cdcenter.entry.BaseEntry;
+
 /**
  * @ClassName: Function
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午1:46:12
  * 
  */
-public class FunctionEntry implements Serializable {
+public class FunctionEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -24,10 +26,6 @@ public class FunctionEntry implements Serializable {
 	protected Integer pfid;// 父链接id
 	protected Integer menu_type;// 是否菜单0否1是
 	protected Integer sort;// 排序
-	protected Integer is_on;// 是否冻结0否1是
-	protected Date create_time;// 创建时间
-	protected Date update_time;// 修改时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the fid
@@ -106,6 +104,7 @@ public class FunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:12:52
 	 */
+	@Override
 	public Integer getIs_on() {
 		return this.is_on;
 	}
@@ -115,6 +114,7 @@ public class FunctionEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:12:52
 	 * @param is_on the is_on to set
 	 */
+	@Override
 	public void setIs_on(Integer is_on) {
 		this.is_on = is_on;
 	}
@@ -124,6 +124,7 @@ public class FunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:12:52
 	 */
+	@Override
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -133,6 +134,7 @@ public class FunctionEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:12:52
 	 * @param create_time the create_time to set
 	 */
+	@Override
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
@@ -142,6 +144,7 @@ public class FunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:12:52
 	 */
+	@Override
 	public Date getUpdate_time() {
 		return this.update_time;
 	}
@@ -151,6 +154,7 @@ public class FunctionEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:12:52
 	 * @param update_time the update_time to set
 	 */
+	@Override
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
@@ -160,6 +164,7 @@ public class FunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:12:52
 	 */
+	@Override
 	public Integer getVersion() {
 		return this.version;
 	}
@@ -169,6 +174,7 @@ public class FunctionEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:12:52
 	 * @param version the version to set
 	 */
+	@Override
 	public void setVersion(Integer version) {
 		this.version = version;
 	}

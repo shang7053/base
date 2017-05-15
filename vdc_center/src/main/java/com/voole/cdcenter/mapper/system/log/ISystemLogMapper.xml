@@ -3,6 +3,37 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.cdcenter.mapper.system.log.ISystemLogMapper">
 	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
+	<sql id="wherecondition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="lid != null">
+				AND l.lid =#{lid}
+			</if>
+			<if test="uid != null">
+				AND l.uid =#{uid}
+			</if>
+			<if test="url != null and url  !='' ">
+				AND l.url  like '%${url}%'
+			</if>
+			<if test="param != null and param !='' ">
+				AND l.param like '%${param}%'
+			</if>
+			<if test="queryStart!=null">
+				AND l.create_time &gt;= #{queryStart}
+			</if>
+			<if test="queryEnd!=null">
+				AND l.create_time &lt;= #{queryEnd}
+			</if>
+			<if test="username!=null and  username !='' ">
+				AND u.username like '%${username}%'
+			</if>
+			<if test="realname!=null and realname  !='' ">
+				AND u.realname like '%${realname}%'
+			</if>
+			<if test="tel!=null and tel  !='' ">
+				AND u.tel like '%${tel}%'
+			</if>
+		</trim>
+	</sql>
 	<insert id="addSystemLog" parameterType="com.voole.cdcenter.entry.sytem.log.SystemLogEntry">
 		INSERT INTO l_sysytem_log (
 			<if test="lid != null ">
@@ -43,35 +74,7 @@
 	<select id="querySystemLogs" parameterType="com.voole.cdcenter.vo.system.log.SysytemLogVo" resultType="com.voole.cdcenter.vo.system.log.SysytemLogVo">
 		SELECT * FROM l_sysytem_log l
 		LEFT JOIN t_user u ON l.uid=u.uid
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="lid != null">
-				AND l.lid =#{lid}
-			</if>
-			<if test="uid != null">
-				AND l.uid =#{uid}
-			</if>
-			<if test="url != null and url  !='' ">
-				AND l.url  like '%${url}%'
-			</if>
-			<if test="param != null and param !='' ">
-				AND l.param like '%${param}%'
-			</if>
-			<if test="queryStart!=null">
-				AND l.create_time &gt;= #{queryStart}
-			</if>
-			<if test="queryEnd!=null">
-				AND l.create_time &lt;= #{queryEnd}
-			</if>
-			<if test="username!=null and  username !='' ">
-				AND u.username like '%${username}%'
-			</if>
-			<if test="realname!=null and realname  !='' ">
-				AND u.realname like '%${realname}%'
-			</if>
-			<if test="tel!=null and tel  !='' ">
-				AND u.tel like '%${tel}%'
-			</if>
-		</trim>
+		<include refid="wherecondition"></include>
 			ORDER BY l.create_time desc
 		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
 				limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
@@ -80,38 +83,6 @@
 	<select id="querySystemLogsCount" parameterType="com.voole.cdcenter.vo.system.log.SysytemLogVo" resultType="java.lang.Integer">
 		SELECT count(*) FROM l_sysytem_log l
 		LEFT JOIN t_user u ON l.uid=u.uid
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="lid != null">
-				AND l.lid =#{lid}
-			</if>
-			<if test="uid != null">
-				AND l.uid =#{uid}
-			</if>
-			<if test="url != null and url  !='' ">
-				AND l.url  like '%${url}%'
-			</if>
-			<if test="param != null and param !='' ">
-				AND l.param like '%${param}%'
-			</if>
-			<if test="queryStart!=null">
-				AND l.create_time &gt;= #{queryStart}
-			</if>
-			<if test="queryEnd!=null">
-				AND l.create_time &lt;= #{queryEnd}
-			</if>
-			<if test="username!=null and  username !='' ">
-				AND u.username like '%${username}%'
-			</if>
-			<if test="realname!=null and realname  !='' ">
-				AND u.realname like '%${realname}%'
-			</if>
-			<if test="tel!=null and tel  !='' ">
-				AND u.tel like '%${tel}%'
-			</if>
-		</trim>
-			ORDER BY l.create_time desc
-		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
-				limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
-			</if>
+		<include refid="wherecondition"></include>
 	</select>
 </mapper>  

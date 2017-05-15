@@ -31,7 +31,7 @@
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-globe"></i>角色管理</div>
+								<div class="caption"><i class="icon-globe"></i>异常审计</div>
 
 								<div class="tools">
 
@@ -123,7 +123,29 @@
 		<!-- END PAGE -->
 
 	</div>
-
+<!-- 按钮触发模态框 -->
+			<div class="modal fade" id="notice_model" tabindex="-1" role="dialog" 
+												   aria-labelledby="notice_model_ModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				 <div class="modal-header">
+					<button type="button" class="close" 
+					   data-dismiss="modal" aria-hidden="true">
+					</button>
+					<h4 class="modal-title" id="notice_model_ModalLabel">
+						数据审计
+					</h4>
+				 </div>
+				 <div class="modal-body">
+				 </div>
+				 <div class="modal-footer">
+					<button type="button" class="btn btn-default" 
+					   data-dismiss="modal">关闭
+					</button>
+			  </div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+			</div>
+			</div>
 	<!-- END CONTAINER -->
 	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
@@ -198,8 +220,17 @@
 	                                                	                "aTargets" : [ 5 ],
 	                                                	                "bSortable" : false,
 	                                                	               	"mRender" : function(data, type,full) {
-	                                                	               		var dHtml = '<vooletag:permission url="noticelist/setread.do"><a href="javascript:void(0)" onclick="setread(\''+data+'\',\''+full.version+"\',"+full.is_read+');" class="btn mini purple"><i class="icon-edit"></i> 设为已读</a></vooletag:permission>';
-	                                                	                    return dHtml;
+	                                                	                    var dHtml = "";
+		                                            	          			dHtml+='<div class="btn-group">';
+		                                                      				dHtml+='<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;">';
+		                                                   					dHtml+='工具 <i class="icon-angle-down"></i>';
+		                                               						dHtml+='</a>';
+		                                            						dHtml+='<ul class="dropdown-menu">';
+		                                            						dHtml+='<vooletag:permission url="noticeController/turnNoticesInfo.do"><li><a href="javascript:void(0)" onclick="turnmodalgetinfo(\''+ data+ '\',this);"><i class="icon-reorder"></i>&nbsp查看</a></li></vooletag:permission>';
+		                                            						dHtml+='<vooletag:permission url="noticelist/setread.do"><li><a href="javascript:void(0)" onclick="setread(\''+data+'\',\''+full.version+"\',"+full.is_read+');"><i class="icon-ban-circle"></i>&nbsp设为已读</a></li></vooletag:permission>';
+		                                            						dHtml+='</ul>';
+		                                            						dHtml+='</div>';
+		                                            	                    return dHtml;
 	                                                	                }
 	                                                	            },{
 	                                                	            	"mData" : "version",
@@ -240,7 +271,12 @@
 			$('#sample_1').dataTable( ruletablesettings).fnDraw();
 		});
 		TableManaged.init(ruletablesettings);
-
+		function turnmodalgetinfo(nid,dom){
+			$("#notice_model .modal-body").html("正在加载数据，请稍等……");
+			$("#notice_model .modal-body").load("noticeController/turnNoticesInfo.do",{"nid":nid},function(){
+				$("#notice_model").modal("show");
+			});
+		}
 	</script>
 </body>
 <!-- END BODY -->

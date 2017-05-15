@@ -3,8 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.cdcenter.mapper.system.function.IRuleFunctionMapper">
 	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<select id="queryRuleFunction" parameterType="com.voole.cdcenter.vo.system.function.RuleFunctionVo" resultType="com.voole.cdcenter.vo.system.function.RuleFunctionVo">
-		SELECT * FROM r_rule_function
+	<sql id="wherecondition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="id != null ">
 				AND id =#{id}
@@ -25,6 +24,10 @@
 				</foreach>
 			</if>
 		</trim>
+	</sql>
+	<select id="queryRuleFunction" parameterType="com.voole.cdcenter.vo.system.function.RuleFunctionVo" resultType="com.voole.cdcenter.vo.system.function.RuleFunctionVo">
+		SELECT * FROM r_rule_function
+		<include refid="wherecondition"></include>
 	</select>
 	<insert id="insertRuleFunction" parameterType="com.voole.cdcenter.entry.sytem.function.RuleFunctionEntry" >
 		INSERT INTO r_rule_function (

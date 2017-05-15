@@ -3,35 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.notice.INotificationsMapper">
 	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<select id="queryNotifications" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo" resultType="com.voole.datasync.vo.system.notice.NotificationsVo">
-		SELECT * FROM t_notifications
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="nid != null">
-				AND nid =#{nid}
-			</if>
-			<if test="title != null and title  !='' ">
-				AND title  like '%${title}%'
-			</if>
-			<if test="context != null and context !='' ">
-				AND context like '%${context}%'
-			</if>
-			<if test="is_read != null ">
-				AND is_read = #{is_read}
-			</if>
-			<if test="queryStart!=null">
-				AND create_time &gt;= #{queryStart}
-			</if>
-			<if test="queryEnd!=null">
-				AND create_time &lt;= #{queryEnd}
-			</if>
-		</trim>
-			ORDER BY is_read asc,create_time desc
-		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
-				limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
-			</if>
-	</select>
-	<select id="queryCountNotifications" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo" resultType="java.lang.Integer">
-		SELECT count(*) FROM t_notifications
+	<sql id="wherecondition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="nid != null">
 				AND nid =#{nid}
@@ -52,31 +24,44 @@
 				AND create_time &lt;= #{queryEnd}
 			</if>
 		</trim>
+	</sql>
+	<select id="queryNotifications" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo" resultType="com.voole.datasync.vo.system.notice.NotificationsVo">
+		SELECT * FROM t_notifications
+		<include refid="wherecondition"></include>
+		ORDER BY is_read asc,create_time desc
+		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
+			limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
+		</if>
+	</select>
+	<select id="queryCountNotifications" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM t_notifications
+		<include refid="wherecondition"></include>
 	</select>
 	<update id="updateNotifications" parameterType="com.voole.datasync.entry.sytem.notice.NotificationsEntry">
 		UPDATE t_notifications
-		SET 
-		 <if test="nid != null">
-		 	nid = #{nid},
-		 </if>
-		 <if test="title != null">
-		 	title = #{title},
-		 </if>
-		 <if test="context != null">
-		 	context = #{context},
-		 </if>
-		 <if test="is_read != null">
-		 	is_read = #{is_read},
-		 </if>
-		 <if test="create_time != null">
-		 	create_time =#{create_time},
-		 </if>
-		 <if test="read_time != null">
-		 	read_time = #{read_time},
-		 </if>
-		 version=version+1
+		SET
+		<if test="nid != null">
+			nid = #{nid},
+		</if>
+		<if test="title != null">
+			title = #{title},
+		</if>
+		<if test="context != null">
+			context = #{context},
+		</if>
+		<if test="is_read != null">
+			is_read = #{is_read},
+		</if>
+		<if test="create_time != null">
+			create_time =#{create_time},
+		</if>
+		<if test="read_time != null">
+			read_time = #{read_time},
+		</if>
+		version=version+1
 		WHERE
-			nid = #{nid}
-			AND version=#{version}
+		nid = #{nid}
+		AND version=#{version}
 	</update>
 </mapper>  

@@ -3,6 +3,8 @@ package com.voole.cdcenter.entry.sytem.log;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.cdcenter.entry.BaseEntry;
+
 /**
  * @ClassName: SysytemLog
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午2:01:57
  * 
  */
-public class SystemLogEntry implements Serializable {
+public class SystemLogEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -22,7 +24,6 @@ public class SystemLogEntry implements Serializable {
 	protected Integer uid;// 用户id
 	protected String url;// url
 	protected String param;// 参数
-	protected Date create_time;// 创建时间
 
 	/**
 	 * @return the lid
@@ -101,6 +102,7 @@ public class SystemLogEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:23:18
 	 */
+	@Override
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -110,6 +112,7 @@ public class SystemLogEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:23:18
 	 * @param create_time the create_time to set
 	 */
+	@Override
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}

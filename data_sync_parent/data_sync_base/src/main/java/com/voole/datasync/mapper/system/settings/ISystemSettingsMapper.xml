@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.voole.cdcenter.mapper.system.settings.ISystemSettingsMapper">
+<mapper namespace="com.voole.datasync.mapper.system.settings.ISystemSettingsMapper">
 	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
 	<sql id="wherecondition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -22,8 +22,8 @@
 			</if>
 		</trim>
 	</sql>
-	<select id="querySystenSettings" resultType="com.voole.cdcenter.vo.system.settings.SystemSettingsVo"
-		parameterType="com.voole.cdcenter.vo.system.settings.SystemSettingsVo">
+	<select id="querySystenSettings" resultType="com.voole.datasync.vo.system.settings.SystemSettingsVo"
+		parameterType="com.voole.datasync.vo.system.settings.SystemSettingsVo">
 		SELECT
 		*
 		FROM s_system_settings
@@ -32,13 +32,13 @@
 			limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
 		</if>
 	</select>
-	<select id="querySystenSettingsCount" resultType="java.lang.Integer" parameterType="com.voole.cdcenter.vo.system.settings.SystemSettingsVo">
+	<select id="querySystenSettingsCount" resultType="java.lang.Integer" parameterType="com.voole.datasync.vo.system.settings.SystemSettingsVo">
 		SELECT
 		count(*)
 		FROM s_system_settings
 		<include refid="wherecondition"></include>
 	</select>
-	<update id="updateSystemSettings" parameterType="com.voole.cdcenter.entry.sytem.settings.SystemSettingsEntry">
+	<update id="updateSystemSettings" parameterType="com.voole.datasync.entry.sytem.settings.SystemSettingsEntry">
 		UPDATE s_system_settings
 		SET
 		<if test="id != null ">
@@ -67,7 +67,7 @@
 		id =#{id}
 		AND version=#{version}
 	</update>
-	<insert id="insertSettings" parameterType="com.voole.cdcenter.entry.sytem.settings.SystemSettingsEntry">
+	<insert id="insertSettings" parameterType="com.voole.datasync.entry.sytem.settings.SystemSettingsEntry">
 		INSERT INTO s_system_settings (
 		<if test="id != null ">
 			id,

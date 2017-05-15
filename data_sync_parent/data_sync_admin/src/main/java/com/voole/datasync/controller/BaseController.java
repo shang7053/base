@@ -9,8 +9,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -25,10 +26,12 @@ import com.voole.datasync.vo.system.settings.SystemSettingsVo;
  * @date 2016年7月12日 上午11:40:06
  * 
  */
-@Controller
 public class BaseController {
+	protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	@Resource
-	protected ServletContext servletContext;
+	private ServletContext servletContext;
+	@Resource
+	private ISystemSettingsService systemSettingsService;
 
 	/**
 	 * 
@@ -50,8 +53,7 @@ public class BaseController {
 	 * @author shangchengcai@voole.com
 	 * @date 2016年7月18日 下午5:46:14
 	 */
-	protected void refreshCacheConfig(ISystemSettingsService settingsService, SystemSettingsEntry sse,
-			HttpSession session) {
+	protected void refreshCacheConfig(SystemSettingsEntry sse, HttpSession session) {
 		if (sse.getIs_on() == 0) {
 			session.getServletContext().removeAttribute(sse.getConfig_name());
 			return;
@@ -59,7 +61,7 @@ public class BaseController {
 		if (null != sse.getId()) {
 			SystemSettingsVo settingsquerycase = new SystemSettingsVo();
 			settingsquerycase.setId(sse.getId());
-			List<SystemSettingsVo> settingsVos = settingsService.querySystenSettings(settingsquerycase);
+			List<SystemSettingsVo> settingsVos = this.systemSettingsService.querySystenSettings(settingsquerycase);
 			if (null != settingsVos && settingsVos.size() == 1) {
 				session.getServletContext().setAttribute(settingsVos.get(0).getConfig_name(),
 						settingsVos.get(0).getConfig_value());

@@ -45,8 +45,12 @@ Temporary Items
 */.metadata/*
 .settings\*
 *\.settings/*
+*/.settings/*
 *.snap
 *.classpath
+*/.target
+.target/*
+*/.target/*
 *.project
 *.jsdtscope
 *.prefs
@@ -107,3 +111,4 @@ sustainable-parent/sustainable-interactive/.settings/org.eclipse.wst.jsdt.ui.sup
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.common.component
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.common.project.facet.core.xml
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.jsdt.ui.superType.container
+*.MF

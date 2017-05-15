@@ -3,6 +3,8 @@ package com.voole.cdcenter.entry.sytem.function;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.cdcenter.entry.BaseEntry;
+
 /**
  * @ClassName: RuleFunctionEntry
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月8日 上午10:57:56
  * 
  */
-public class RuleFunctionEntry implements Serializable {
+public class RuleFunctionEntry extends BaseEntry implements Serializable {
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 * @author shangchengcai@voole.com
@@ -20,10 +22,6 @@ public class RuleFunctionEntry implements Serializable {
 	protected Integer id;// id
 	protected Integer rid;// 角色id
 	protected Integer fid;// 链接id
-	protected Integer is_on;// 是否启用
-	protected Date create_time;// 创建时间
-	protected Date update_time;// 更新时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the id
@@ -84,6 +82,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月8日 上午11:01:56
 	 */
+	@Override
 	public Integer getIs_on() {
 		return this.is_on;
 	}
@@ -93,6 +92,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @date 2016年7月8日 上午11:01:56
 	 * @param is_on the is_on to set
 	 */
+	@Override
 	public void setIs_on(Integer is_on) {
 		this.is_on = is_on;
 	}
@@ -102,6 +102,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月8日 上午11:01:56
 	 */
+	@Override
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -111,6 +112,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @date 2016年7月8日 上午11:01:56
 	 * @param create_time the create_time to set
 	 */
+	@Override
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
@@ -120,6 +122,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月8日 上午11:01:56
 	 */
+	@Override
 	public Date getUpdate_time() {
 		return this.update_time;
 	}
@@ -129,6 +132,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @date 2016年7月8日 上午11:01:56
 	 * @param update_time the update_time to set
 	 */
+	@Override
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
@@ -138,6 +142,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月8日 上午11:01:56
 	 */
+	@Override
 	public Integer getVersion() {
 		return this.version;
 	}
@@ -147,6 +152,7 @@ public class RuleFunctionEntry implements Serializable {
 	 * @date 2016年7月8日 上午11:01:56
 	 * @param version the version to set
 	 */
+	@Override
 	public void setVersion(Integer version) {
 		this.version = version;
 	}

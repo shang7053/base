@@ -3,8 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.function.IFunctionMapper">
 	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<select id="queryFunctions" parameterType="com.voole.datasync.vo.system.function.FunctionVo" resultType="com.voole.datasync.vo.system.function.FunctionVo">
-		SELECT * FROM t_function
+	<sql id="wherecondition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="fid != null ">
 				AND fid =#{fid}
@@ -35,6 +34,10 @@
 			</if>
 			ORDER BY sort asc;
 		</trim>
+	</sql>
+	<select id="queryFunctions" parameterType="com.voole.datasync.vo.system.function.FunctionVo" resultType="com.voole.datasync.vo.system.function.FunctionVo">
+		SELECT * FROM t_function
+		<include refid="wherecondition"></include>
 	</select>
 	<insert id="insertFunction" useGeneratedKeys="true" keyProperty="fid" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
 		INSERT INTO t_function (

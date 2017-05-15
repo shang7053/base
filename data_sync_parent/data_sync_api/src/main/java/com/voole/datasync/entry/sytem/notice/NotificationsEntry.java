@@ -3,6 +3,8 @@ package com.voole.datasync.entry.sytem.notice;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.datasync.entry.BaseEntry;
+
 /**
  * @ClassName: Notifications
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午2:02:07
  * 
  */
-public class NotificationsEntry implements Serializable {
+public class NotificationsEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -22,9 +24,7 @@ public class NotificationsEntry implements Serializable {
 	protected String title;// 标题
 	protected String context;// 正文
 	protected Integer is_read;// 是否已读
-	protected Date create_time;// 创建时间
 	protected Date read_time;// 已读时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the nid

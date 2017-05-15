@@ -84,9 +84,9 @@
 			<version>3.2.7</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mybatis.caches</groupId>
+			<groupId>com.scc</groupId>
 			<artifactId>mybatis-redis</artifactId>
-			<version>1.0.0-beta2</version>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

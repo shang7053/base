@@ -3,6 +3,8 @@ package com.voole.datasync.entry.sytem.rule;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.datasync.entry.BaseEntry;
+
 /**
  * @ClassName: Rule
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午1:46:02
  * 
  */
-public class RuleEntry implements Serializable {
+public class RuleEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -20,11 +22,7 @@ public class RuleEntry implements Serializable {
 	protected static final long serialVersionUID = -794898690234647548L;
 	protected Integer rid;// 主键
 	protected String rname;// 角色名称
-	protected Integer is_on;// 是否冻结0否1是
 	protected Integer is_recive_notice;// 是否接收消息0否1是
-	protected Date create_time;// 创建时间
-	protected Date update_time;// 更新时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the rid

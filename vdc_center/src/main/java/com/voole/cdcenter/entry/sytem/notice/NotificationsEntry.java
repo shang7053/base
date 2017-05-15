@@ -3,6 +3,8 @@ package com.voole.cdcenter.entry.sytem.notice;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.voole.cdcenter.entry.BaseEntry;
+
 /**
  * @ClassName: Notifications
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -10,7 +12,7 @@ import java.util.Date;
  * @date 2016年7月7日 下午2:02:07
  * 
  */
-public class NotificationsEntry implements Serializable {
+public class NotificationsEntry extends BaseEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -22,9 +24,7 @@ public class NotificationsEntry implements Serializable {
 	protected String title;// 标题
 	protected String context;// 正文
 	protected Integer is_read;// 是否已读
-	protected Date create_time;// 创建时间
 	protected Date read_time;// 已读时间
-	protected Integer version;// 版本号
 
 	/**
 	 * @return the nid
@@ -103,6 +103,7 @@ public class NotificationsEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:21:05
 	 */
+	@Override
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -112,6 +113,7 @@ public class NotificationsEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:21:05
 	 * @param create_time the create_time to set
 	 */
+	@Override
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
@@ -139,6 +141,7 @@ public class NotificationsEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:21:05
 	 */
+	@Override
 	public Integer getVersion() {
 		return this.version;
 	}
@@ -148,6 +151,7 @@ public class NotificationsEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:21:05
 	 * @param version the version to set
 	 */
+	@Override
 	public void setVersion(Integer version) {
 		this.version = version;
 	}

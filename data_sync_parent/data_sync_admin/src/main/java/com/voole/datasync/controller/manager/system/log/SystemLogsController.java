@@ -2,7 +2,6 @@ package com.voole.datasync.controller.manager.system.log;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +23,6 @@ import com.voole.datasync.vo.system.log.SysytemLogVo;
 @RequestMapping("/systemLogsController/")
 @Controller
 public class SystemLogsController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(SystemLogsController.class);
 	@Reference
 	private ISystemLogService systemLogService;
 
@@ -44,7 +42,7 @@ public class SystemLogsController extends BaseController {
 			pmv.setiTotalRecords(totalsize);
 			pmv.setiTotalDisplayRecords(totalsize);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return pmv;
 	}

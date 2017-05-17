@@ -24,7 +24,7 @@ import com.voole.cdcenter.vo.system.user.UserVo;
 public class UserValidateFilter implements Filter {
 	@Override
 	public void destroy() {
-
+		System.out.println("UserValidateFilter.destroy()");
 	}
 
 	@Override
@@ -49,6 +49,7 @@ public class UserValidateFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
+		System.out.println("UserValidateFilter.init()");
 	}
 
 }

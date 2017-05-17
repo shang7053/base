@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +35,6 @@ import com.voole.datasync.vo.system.user.UserVo;
 @RequestMapping("/functionController/")
 @Controller
 public class FunctionController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(FunctionController.class);
 	@Reference
 	private IFunctionService functionService;
 	@Reference
@@ -70,7 +68,7 @@ public class FunctionController extends BaseController {
 			data.add(new JstreeData("0", "#", "链接"));
 			return data;
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new ArrayList<>();
 	}
@@ -89,7 +87,7 @@ public class FunctionController extends BaseController {
 				return functionVos.get(0);
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new FunctionVo();
 	}
@@ -109,7 +107,7 @@ public class FunctionController extends BaseController {
 				return functionVos;
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new ArrayList<>();
 	}
@@ -141,7 +139,7 @@ public class FunctionController extends BaseController {
 				return new AjaxRet(false, "添加失败");
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -160,7 +158,7 @@ public class FunctionController extends BaseController {
 				return new AjaxRet(false, "修改失败,数据已被他人操作");
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -182,7 +180,7 @@ public class FunctionController extends BaseController {
 			}
 
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}

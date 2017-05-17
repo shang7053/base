@@ -22,7 +22,7 @@ public class UTF8StringHttpMessageConverter extends StringHttpMessageConverter {
 
 	@Override
 	protected List<Charset> getAcceptedCharsets() {
-		return Arrays.asList(utf8.getCharSet());
+		return Arrays.asList(utf8.getCharset());
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class UTF8StringHttpMessageConverter extends StringHttpMessageConverter {
 		if (this.writeAcceptCharset) {
 			outputMessage.getHeaders().setAcceptCharset(this.getAcceptedCharsets());
 		}
-		Charset charset = utf8.getCharSet();
+		Charset charset = utf8.getCharset();
 		FileCopyUtils.copy(s, new OutputStreamWriter(outputMessage.getBody(), charset));
 	}
 

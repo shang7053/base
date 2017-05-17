@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,6 @@ import com.voole.datasync.vo.system.user.UserVo;
 @Controller
 @RequestMapping("/userController/")
 public class UserController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(UserController.class);
 	@Reference
 	private IUserService userService;
 	@Reference
@@ -65,7 +63,7 @@ public class UserController extends BaseController {
 			pmv.setiTotalRecords(totalsize);
 			pmv.setiTotalDisplayRecords(totalsize);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return pmv;
 	}
@@ -83,7 +81,7 @@ public class UserController extends BaseController {
 				model.addAttribute("userinfo", users.get(0));
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return "system/user/userinfo";
 	}
@@ -115,7 +113,7 @@ public class UserController extends BaseController {
 			}
 			return new AjaxRet(true, "赋权成功");
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -139,7 +137,7 @@ public class UserController extends BaseController {
 				return rules;
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new ArrayList<>();
 	}
@@ -160,7 +158,7 @@ public class UserController extends BaseController {
 			}
 			return new AjaxRet(false, "操作失败，数据已被他人操作！");
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -201,7 +199,7 @@ public class UserController extends BaseController {
 				return new AjaxRet(true, "创建成功");
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}

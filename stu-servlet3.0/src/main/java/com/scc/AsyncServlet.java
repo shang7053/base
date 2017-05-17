@@ -29,23 +29,26 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(asyncSupported = true, urlPatterns = "/asyncServlet")
 public class AsyncServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        long startTime = System.currentTimeMillis();
-        System.out.println("AsyncLongRunningServlet Start::Name=" + Thread.currentThread().getName() + "::ID="
-                + Thread.currentThread().getId());
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月17日 上午11:05:43
+	 */
+	private static final long serialVersionUID = 6635834762668312189L;
 
-        request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
-        int secs = 10000;
-        AsyncContext asyncCtx = request.startAsync();
-        asyncCtx.addListener(new AppAsyncListener());
-        asyncCtx.setTimeout(2000000);
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) request.getServletContext().getAttribute("executor");
-        executor.execute(new AsyncRequestProcessor(asyncCtx, secs));
-        long endTime = System.currentTimeMillis();
-        System.out.println("AsyncLongRunningServlet End::Name=" + Thread.currentThread().getName() + "::ID="
-                + Thread.currentThread().getId() + "::Time Taken=" + (endTime - startTime) + " ms.");
-    }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
+		int secs = 10000;
+
+		// ***********************************************************************************************
+		AsyncContext asyncCtx = request.startAsync();
+		asyncCtx.addListener(new AppAsyncListener());
+		asyncCtx.setTimeout(2000000);
+		ThreadPoolExecutor executor = (ThreadPoolExecutor) request.getServletContext().getAttribute("executor");
+		executor.execute(new AsyncRequestProcessor(asyncCtx, secs));
+		// ***********************************************************************************************
+	}
 
 }

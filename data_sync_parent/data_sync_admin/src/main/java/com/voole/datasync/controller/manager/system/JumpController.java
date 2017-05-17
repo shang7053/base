@@ -2,7 +2,6 @@ package com.voole.datasync.controller.manager.system;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +20,6 @@ import com.voole.datasync.vo.AjaxRet;
 @Controller
 @RequestMapping
 public class JumpController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(JumpController.class);
 
 	@RequestMapping("/extra_lock.do")
 	public ModelAndView lock(HttpSession session) {

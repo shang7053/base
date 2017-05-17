@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +15,6 @@ import com.voole.cdcenter.vo.system.settings.SystemSettingsVo;
 
 @Repository
 public class SystemInit implements ApplicationContextAware {
-	private static final Logger LOGGER = Logger.getLogger(SystemInit.class);
 	@Resource
 	private ServletContext servletContext;
 	@Resource

@@ -37,7 +37,7 @@ public class UserLogFilter implements Filter {
 
 	@Override
 	public void destroy() {
-
+		System.out.println("UserLogFilter.destroy()");
 	}
 
 	@Override

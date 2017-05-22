@@ -41,10 +41,9 @@ public class ProducerDemo {
 		properties.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
 	}
 
-	public void produce() {
+	public void produce(byte[] data) {
 		KafkaProducer<byte[], byte[]> kafkaProducer = new KafkaProducer<byte[], byte[]>(properties);
-		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("canal-t_canal",
-				"kkk".getBytes(), "ssss".getBytes());
+		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("test-stop", data);
 		kafkaProducer.send(kafkaRecord, new Callback() {
 			public void onCompletion(RecordMetadata metadata, Exception e) {
 				if (null != e) {
@@ -59,8 +58,15 @@ public class ProducerDemo {
 
 	public static void main(String[] args) {
 		ProducerDemo kafkaProducerTest = new ProducerDemo();
-		for (int i = 0; i < 10; i++) {
-			kafkaProducerTest.produce();
+		int i = 0;
+		while (true) {
+			kafkaProducerTest.produce(String.valueOf(i).getBytes());
+			i++;
+			try {
+				Thread.currentThread().sleep(1000l);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

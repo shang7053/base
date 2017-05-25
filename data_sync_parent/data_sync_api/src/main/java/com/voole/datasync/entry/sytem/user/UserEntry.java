@@ -3,8 +3,6 @@ package com.voole.datasync.entry.sytem.user;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.voole.datasync.entry.BaseEntry;
-
 /**
  * @ClassName: User
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -12,7 +10,7 @@ import com.voole.datasync.entry.BaseEntry;
  * @date 2016年7月7日 下午1:45:42
  * 
  */
-public class UserEntry extends BaseEntry implements Serializable {
+public class UserEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -28,6 +26,10 @@ public class UserEntry extends BaseEntry implements Serializable {
 	protected String tel;// 手机号
 	protected Integer error_pw_count; // 密码错误重试次数
 	protected Date login_time;// 登录时间
+	protected Integer is_on;// 是否启用
+	protected Date create_time;// 创建时间
+	protected Date update_time;// 更新时间
+	protected Integer version;// 版本号
 
 	/**
 	 * @return the uid
@@ -142,6 +144,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:08:05
 	 */
+
 	public Integer getIs_on() {
 		return this.is_on;
 	}
@@ -151,6 +154,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:08:05
 	 * @param is_on the is_on to set
 	 */
+
 	public void setIs_on(Integer is_on) {
 		this.is_on = is_on;
 	}
@@ -178,6 +182,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:08:05
 	 */
+
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -187,6 +192,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:08:05
 	 * @param create_time the create_time to set
 	 */
+
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
@@ -196,6 +202,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:08:05
 	 */
+
 	public Date getUpdate_time() {
 		return this.update_time;
 	}
@@ -205,6 +212,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:08:05
 	 * @param update_time the update_time to set
 	 */
+
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
@@ -214,6 +222,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:08:05
 	 */
+
 	public Integer getVersion() {
 		return this.version;
 	}
@@ -223,6 +232,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:08:05
 	 * @param version the version to set
 	 */
+
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
@@ -252,6 +262,7 @@ public class UserEntry extends BaseEntry implements Serializable {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+
 	@Override
 	public String toString() {
 		return "UserEntry [uid=" + this.uid + ", username=" + this.username + ", passwordcode=" + this.passwordcode

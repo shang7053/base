@@ -92,7 +92,10 @@ public class RuleServiceImpl implements IRuleService {
 	 */
 	@Override
 	public Integer insertRule(RuleEntry re) {
-		return this.ruleMapper.insertRule(re);
+		if (this.ruleMapper.insertRule(re) > 0) {
+			return re.getRid();
+		}
+		return null;
 	}
 
 	/*

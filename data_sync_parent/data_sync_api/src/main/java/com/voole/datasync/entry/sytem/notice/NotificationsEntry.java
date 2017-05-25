@@ -3,8 +3,6 @@ package com.voole.datasync.entry.sytem.notice;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.voole.datasync.entry.BaseEntry;
-
 /**
  * @ClassName: Notifications
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -12,7 +10,7 @@ import com.voole.datasync.entry.BaseEntry;
  * @date 2016年7月7日 下午2:02:07
  * 
  */
-public class NotificationsEntry extends BaseEntry implements Serializable {
+public class NotificationsEntry implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
@@ -25,6 +23,50 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	protected String context;// 正文
 	protected Integer is_read;// 是否已读
 	protected Date read_time;// 已读时间
+	protected Integer is_on;// 是否启用
+	protected Date create_time;// 创建时间
+	protected Date update_time;// 更新时间
+	protected Integer version;// 版本号
+
+	/**
+	 * @return the is_on
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月15日 下午1:29:55
+	 */
+
+	public Integer getIs_on() {
+		return this.is_on;
+	}
+
+	/**
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月15日 下午1:29:55
+	 * @param is_on the is_on to set
+	 */
+
+	public void setIs_on(Integer is_on) {
+		this.is_on = is_on;
+	}
+
+	/**
+	 * @return the update_time
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月15日 下午1:29:55
+	 */
+
+	public Date getUpdate_time() {
+		return this.update_time;
+	}
+
+	/**
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月15日 下午1:29:55
+	 * @param update_time the update_time to set
+	 */
+
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
+	}
 
 	/**
 	 * @return the nid
@@ -103,6 +145,7 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:21:05
 	 */
+
 	public Date getCreate_time() {
 		return this.create_time;
 	}
@@ -112,6 +155,7 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:21:05
 	 * @param create_time the create_time to set
 	 */
+
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
@@ -139,6 +183,7 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:21:05
 	 */
+
 	public Integer getVersion() {
 		return this.version;
 	}
@@ -148,6 +193,7 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	 * @date 2016年7月7日 下午2:21:05
 	 * @param version the version to set
 	 */
+
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
@@ -159,6 +205,7 @@ public class NotificationsEntry extends BaseEntry implements Serializable {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+
 	@Override
 	public String toString() {
 		return "NotificationsEntry [nid=" + this.nid + ", title=" + this.title + ", context=" + this.context

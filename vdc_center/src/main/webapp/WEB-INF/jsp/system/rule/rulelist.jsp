@@ -220,8 +220,11 @@
 	                                            						dHtml+='<ul class="dropdown-menu">';
 	                                            						dHtml+='<vooletag:permission url="rulelist/turnmodalgetinfo.do"><li><a href="javascript:void(0)" onclick="turnmodalgetinfo(\''+ data+ '\',this);"><i class="icon-reorder"></i>&nbsp查看</a></li></vooletag:permission>';
 	                                            						dHtml+='<vooletag:permission url="rulelist/turnmodal.do"><li><a href="javascript:void(0)" onclick="turnmodal(\''+ data+ '\',this);"><i class="icon-edit"></i>&nbsp赋予</a></li></vooletag:permission>';
-	                                            						dHtml+='<vooletag:permission url="rulelist/freezerule.do"><li><a href="javascript:void(0)" onclick="freezerule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp禁用</a></li></vooletag:permission>';
-	                                            						dHtml+='<vooletag:permission url="rulelist/userule.do"><li><a href="javascript:void(0)" onclick="userule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp禁用</a></li></vooletag:permission>';
+	                                            						if(full.is_on=="0"){
+		                                            						dHtml+='<vooletag:permission url="rulelist/userule.do"><li><a href="javascript:void(0)" onclick="userule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp启用</a></li></vooletag:permission>';
+                                                                        }else{
+		                                            						dHtml+='<vooletag:permission url="rulelist/freezerule.do"><li><a href="javascript:void(0)" onclick="freezerule(\''+ data+ '\',\''+full.version+'\');"><i class="icon-ban-circle"></i>&nbsp禁用</a></li></vooletag:permission>';
+                                                                        }
 	                                            						dHtml+='</ul>';
 	                                            						dHtml+='</div>';
 	                                            	                    return dHtml;
@@ -346,7 +349,7 @@
 		if(node.id==0){
 			return "";
 		}else{
-			return node.id+","+getnodeids($.jstree.reference('#'+nodeid).get_node(node.parent));
+			return node.id+","+getnodeids($('#'+nodeid).jstree(true).get_node(node.parent));
 		}
 	}
 	function freezerule(rid,version){

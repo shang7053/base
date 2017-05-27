@@ -52,8 +52,12 @@ public final class RedisCache implements Cache {
 		if (id == null) {
 			throw new IllegalArgumentException("Cache instances require an ID");
 		}
-		this.id = id;
 		RedisConfig redisConfig = RedisConfigurationBuilder.getInstance().parseConfiguration();
+		String sysCode = redisConfig.getSysCode();
+		if (sysCode == null || "".equals(sysCode)) {
+			throw new IllegalArgumentException("sysCode is required");
+		}
+		this.id = sysCode + "_" + id;
 		this.deployType = redisConfig.getDeployType();
 		switch (redisConfig.getDeployType()) {
 		case 0:

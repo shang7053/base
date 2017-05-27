@@ -24,6 +24,7 @@ public class RedisConfig extends JedisPoolConfig {
 	private int port = Protocol.DEFAULT_PORT;
 	private String address = "localhost:6379";
 	private int deployType = 0;
+	private String sysCode;
 	private int connectionTimeout = Protocol.DEFAULT_TIMEOUT;
 	private int soTimeout = Protocol.DEFAULT_TIMEOUT;
 	private String password;
@@ -129,6 +130,24 @@ public class RedisConfig extends JedisPoolConfig {
 	 */
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	/**
+	 * @return the sysCode
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月27日 下午1:37:03
+	 */
+	public String getSysCode() {
+		return this.sysCode;
+	}
+
+	/**
+	 * @author shangchengcai@voole.com
+	 * @date 2017年5月27日 下午1:37:03
+	 * @param sysCode the sysCode to set
+	 */
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
 	}
 
 }

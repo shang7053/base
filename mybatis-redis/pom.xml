@@ -44,14 +44,14 @@
 			<id>nexus-releases</id>
 			<name>nexus-releases</name>
 			<url>
-				http://172.16.10.71:8081/nexus/content/repositories/releases/
+				http://172.16.42.152:8081/nexus/content/repositories/releases/
 			</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>nexus-snapshots</name>
 			<url>
-				http://172.16.10.71:8081/nexus/content/repositories/snapshots
+				http://172.16.42.152:8081/nexus/content/repositories/snapshots
 			</url>
 		</snapshotRepository>
 	</distributionManagement>

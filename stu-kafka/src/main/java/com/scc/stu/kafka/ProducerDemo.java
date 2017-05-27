@@ -32,7 +32,7 @@ public class ProducerDemo {
 
 	static {
 		properties.put("bootstrap.servers", "172.16.41.151:9092");
-		properties.put("acks", "all");
+		properties.put("acks", "1");
 		properties.put("retries", 0);
 		properties.put("batch.size", 16384);
 		properties.put("linger.ms", 1);
@@ -45,10 +45,11 @@ public class ProducerDemo {
 		KafkaProducer<byte[], byte[]> kafkaProducer = new KafkaProducer<byte[], byte[]>(properties);
 		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("test-stop", data);
 		kafkaProducer.send(kafkaRecord, new Callback() {
+			@Override
 			public void onCompletion(RecordMetadata metadata, Exception e) {
 				if (null != e) {
-					LOG.info("the offset of the send record is {" + metadata.offset() + "}");
 					LOG.error(e.getMessage(), e);
+					e.printStackTrace();
 				}
 				LOG.info("complete!");
 			}
@@ -57,16 +58,14 @@ public class ProducerDemo {
 	}
 
 	public static void main(String[] args) {
-		ProducerDemo kafkaProducerTest = new ProducerDemo();
-		int i = 0;
-		while (true) {
-			kafkaProducerTest.produce(String.valueOf(i).getBytes());
-			i++;
-			try {
-				Thread.currentThread().sleep(1000l);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		for (int j = 0; j < 100; j++) {
+			new Thread(() -> {
+				while (true) {
+					final ProducerDemo kafkaProducerTest = new ProducerDemo();
+					kafkaProducerTest.produce(String.valueOf(Math.random()).getBytes());
+				}
+
+			}).start();
 		}
 	}
 

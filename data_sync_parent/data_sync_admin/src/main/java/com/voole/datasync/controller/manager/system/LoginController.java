@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ import com.voole.datasync.vo.system.user.UserVo;
 @Controller
 @RequestMapping(("/loginController/"))
 public class LoginController extends BaseController {
+	private static final Logger LOGGER = Logger.getLogger(LoginController.class);
 	@Reference
 	private IUserService userService;
 	@Reference
@@ -117,7 +119,7 @@ public class LoginController extends BaseController {
 					}
 					loginUser.setError_pw_count(loginUser.getError_pw_count() - 1);
 					this.userService.updateUser(loginUser);
-					session.setAttribute("user", loginUser);
+					// session.setAttribute("user", loginUser);
 					mpdel.addAttribute("msg", "登录失败！还有" + (loginUser.getError_pw_count() - 1) + "次尝试机会！");
 					return "login";
 				}
@@ -127,7 +129,7 @@ public class LoginController extends BaseController {
 			}
 		} catch (Exception e) {
 			mpdel.addAttribute("msg", "登录失败！系统内部错误！");
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return "login";
 	}
@@ -170,7 +172,7 @@ public class LoginController extends BaseController {
 				return new AjaxRet(false, "解锁失败，密码错误，还剩下" + (loginUser.getError_pw_count()) + "次尝试机会");
 			}
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}

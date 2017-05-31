@@ -349,7 +349,7 @@
 		if(node.id==0){
 			return "";
 		}else{
-			return node.id+","+getnodeids($('#'+nodeid).jstree(true).get_node(node.parent));
+			return node.id+","+getnodeids($('#'+nodeid).jstree(true).get_node(node.parent),nodeid);
 		}
 	}
 	function freezerule(rid,version){

@@ -62,6 +62,7 @@ public class ConsumerDemo {
 
 			new Thread(new Runnable() {
 
+				@Override
 				public void run() {
 
 					for (MessageAndMetadata<byte[], byte[]> mm : kafkaStream) {

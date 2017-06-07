@@ -58,11 +58,17 @@ public class ProducerDemo {
 	}
 
 	public static void main(String[] args) {
-		for (int j = 0; j < 100; j++) {
+		for (int j = 0; j < 10; j++) {
 			new Thread(() -> {
 				while (true) {
 					final ProducerDemo kafkaProducerTest = new ProducerDemo();
 					kafkaProducerTest.produce(String.valueOf(Math.random()).getBytes());
+					try {
+						Thread.currentThread().sleep(1000l);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 			}).start();

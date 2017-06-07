@@ -16,7 +16,7 @@
 
 	<meta charset="utf-8" />
 <jsp:include page="${basePath }/pub/head.jsp"></jsp:include>
-	<title>云数据管理中心系统</title>
+	<title>数据同步系统</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -74,6 +74,10 @@
 	<script src="media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
 
 	<script src="media/js/jquery.sparkline.min.js" type="text/javascript"></script>  
+	<script src="media/js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="media/js/highcharts/highcharts-zh_CN.js" type="text/javascript"></script>
+<script src="media/js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="media/js/highcharts/hightchartsutil.js" type="text/javascript"></script>
 
 	<!-- END PAGE LEVEL PLUGINS -->
 
@@ -87,6 +91,15 @@
 	<script type="text/javascript">
 		var is_lock=${lockstatus};
 		function lock(){
+			if(null!=hourtimer){
+				window.clearTimeout(hourtimer); 
+			}
+			if(null!=daytimer){
+				window.clearTimeout(daytimer); 
+			}
+			if(null!=hometimer){
+				window.clearTimeout(hometimer); 
+			}
 			$("#extra_lock_div").load("extra_lock.do",function(){
 				$("#extra_lock_div").show();
 				is_lock=true;
@@ -94,14 +107,27 @@
 		}
 		var locktimer=null;
 		function jumppage(furl){
+			if(null!=hourtimer){
+				window.clearTimeout(hourtimer); 
+			}
+			if(null!=daytimer){
+				window.clearTimeout(daytimer); 
+			}
+			if(null!=hometimer){
+				window.clearTimeout(hometimer); 
+			}
 			if("javascript:;"!=furl&&"javascript:void(0);"!=furl){
-				$("#dashboard").load(furl,function(responseTxt,statusTxt,xhr){
-					if(statusTxt=="success"){
-				    return;
-				   }else{
-					   window.location="extra_404_option3.jsp";
-				   }
-				  });
+				if(furl.indexOf("https://")>-1||furl.indexOf("http://")>-1){
+					$("#dashboard").html('<iframe src="'+furl+'" style="width: 100%;height: 100%;min-height:600px;"/>');
+				}else{
+					$("#dashboard").load(furl,function(responseTxt,statusTxt,xhr){
+						if(statusTxt=="success"){
+					    return;
+					   }else{
+						   window.location="extra_404_option3.jsp";
+					   }
+					  });
+				}
 				if(null!=locktimer){
 					clearInterval(locktimer);
 				}
@@ -113,9 +139,9 @@
 				 
 			}
 		}
-		function shownotices(title,context,nid,version){
+		function shownotices(title,nid,version){
 			$("#notice_model_ModalLabel").html(title);
-			$("#notice_model .modal-body").html(context);
+			$("#notice_model .modal-body").html(notiescontextmap[nid]);
 			$("#notice_model .modal-footer button:gt(0)").unbind("click");
 			$("#notice_model .modal-footer button:gt(0)").click(function(){
 				$.ajax({
@@ -150,6 +176,7 @@
 			$("#extra_lock").click(function(){
 				lock();
 			});
+			$("#dashboard").load("tohome.do");
 			setInterval(function(){
 				$.ajax({
 				   type: "POST",
@@ -234,7 +261,7 @@
 
 						</a>
 
-						<ul class="dropdown-menu extended notification">
+						<ul class="dropdown-menu extended notification" style="word-wrap:break-word; ">
 
 							<li id="notice_count" >
 								<p>暂无未读系统消息</p>
@@ -260,9 +287,9 @@
 
 						<ul class="dropdown-menu">
 
-							<li><a href="extra_profile.html"><i class="icon-user"></i> 个人信息</a></li>
+							<!-- <li><a href="extra_profile.html"><i class="icon-user"></i> 个人信息</a></li>
 
-							<li class="divider"></li>
+							<li class="divider"></li> -->
 
 							<li><a href="javascript:void(0)" id="extra_lock"><i class="icon-lock"></i> 锁屏</a></li>
 
@@ -410,7 +437,7 @@
 
 				<!-- END PAGE HEADER-->
 
-				<div id="dashboard">
+				<div id="dashboard"></div>
 						
 
 

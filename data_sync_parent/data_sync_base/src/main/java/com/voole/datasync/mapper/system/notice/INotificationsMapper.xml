@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.notice.INotificationsMapper">
-	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
 	<sql id="wherecondition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="nid != null">
@@ -11,11 +11,17 @@
 			<if test="title != null and title  !='' ">
 				AND title like '%${title}%'
 			</if>
+			<if test="sync_code != null and sync_code  !='' ">
+				AND sync_code = #{sync_code}
+			</if>
 			<if test="context != null and context !='' ">
 				AND context like '%${context}%'
 			</if>
 			<if test="is_read != null ">
 				AND is_read = #{is_read}
+			</if>
+			<if test="is_email != null ">
+				AND is_email = #{is_email}
 			</if>
 			<if test="queryStart!=null">
 				AND create_time &gt;= #{queryStart}
@@ -33,25 +39,49 @@
 			limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
 		</if>
 	</select>
+	<select id="queryUnRUnE" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo" resultType="com.voole.datasync.vo.system.notice.NotificationsVo">
+		SELECT
+		a.*, s.recive_email
+		FROM
+		(
+		SELECT
+		count(*) size,
+		sync_code
+		FROM
+		t_notifications
+		<include refid="wherecondition"></include>
+		GROUP BY
+		sync_code
+		) a
+		LEFT JOIN t_sync s ON a.sync_code = s.sync_code
+		WHERE 
+		s.is_on = 1
+	</select>
 	<select id="queryCountNotifications" parameterType="com.voole.datasync.vo.system.notice.NotificationsVo"
 		resultType="java.lang.Integer">
 		SELECT count(*) FROM t_notifications
 		<include refid="wherecondition"></include>
 	</select>
-	<update id="updateNotifications" parameterType="com.voole.datasync.entry.sytem.notice.NotificationsEntry">
+	<update id="updateNotifications" flushCache="true" parameterType="com.voole.datasync.entry.sytem.notice.NotificationsEntry">
 		UPDATE t_notifications
 		SET
 		<if test="nid != null">
-			nid = #{nid},
+			nid =#{nid},
 		</if>
-		<if test="title != null">
+		<if test="title != null and title  !='' ">
 			title = #{title},
 		</if>
-		<if test="context != null">
+		<if test="sync_code != null and sync_code  !='' ">
+			sync_code = #{sync_code},
+		</if>
+		<if test="context != null and context !='' ">
 			context = #{context},
 		</if>
-		<if test="is_read != null">
+		<if test="is_read != null ">
 			is_read = #{is_read},
+		</if>
+		<if test="is_email != null ">
+			is_email = #{is_email},
 		</if>
 		<if test="create_time != null">
 			create_time =#{create_time},
@@ -63,5 +93,97 @@
 		WHERE
 		nid = #{nid}
 		AND version=#{version}
+	</update>
+	<update id="updateNotificationsforemail" flushCache="true" parameterType="com.voole.datasync.entry.sytem.notice.NotificationsEntry">
+		UPDATE t_notifications
+		SET
+		<if test="nid != null">
+			nid =#{nid},
+		</if>
+		<if test="title != null and title  !='' ">
+			title = #{title},
+		</if>
+		<if test="sync_code != null and sync_code  !='' ">
+			sync_code = #{sync_code},
+		</if>
+		<if test="context != null and context !='' ">
+			context = #{context},
+		</if>
+		<if test="is_read != null ">
+			is_read = #{is_read},
+		</if>
+		<if test="is_email != null ">
+			is_email = #{is_email},
+		</if>
+		<if test="create_time != null">
+			create_time =#{create_time},
+		</if>
+		<if test="read_time != null">
+			read_time = #{read_time},
+		</if>
+		version=version+1
+		WHERE
+			is_email = 0
+			AND sync_code = #{sync_code}
+	</update>
+	<insert id="insertNotifications" flushCache="true" parameterType="com.voole.datasync.entry.sytem.notice.NotificationsEntry">
+		INSERT INTO t_notifications (
+		<if test="nid != null">
+			nid ,
+		</if>
+		<if test="title != null and title  !='' ">
+			title ,
+		</if>
+		<if test="sync_code != null and sync_code  !='' ">
+			sync_code ,
+		</if>
+		<if test="context != null and context !='' ">
+			context ,
+		</if>
+		<if test="is_read != null ">
+			is_read ,
+		</if>
+		<if test="is_email != null ">
+			is_email,
+		</if>
+		<if test="create_time != null">
+			create_time ,
+		</if>
+		<if test="read_time != null">
+			read_time ,
+		</if>
+		version
+		)
+		VALUES
+		(
+		<if test="nid != null">
+			#{nid},
+		</if>
+		<if test="title != null and title  !='' ">
+			#{title},
+		</if>
+		<if test="sync_code != null and sync_code  !='' ">
+			#{sync_code},
+		</if>
+		<if test="context != null and context !='' ">
+			#{context},
+		</if>
+		<if test="is_read != null ">
+			#{is_read},
+		</if>
+		<if test="is_email != null ">
+			#{is_email},
+		</if>
+		<if test="create_time != null">
+			#{create_time},
+		</if>
+		<if test="read_time != null">
+			#{read_time},
+		</if>
+		'0'
+		);
+	</insert>
+	<update id="flushDbCache" flushCache="true">
+		SELECT 1 FROM DUAL;
 	</update>
 </mapper>  

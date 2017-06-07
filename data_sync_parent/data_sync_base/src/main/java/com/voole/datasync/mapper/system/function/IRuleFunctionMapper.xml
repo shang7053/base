@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.function.IRuleFunctionMapper">
-	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<sql id="wherecondition">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryRuleFunction" parameterType="com.voole.datasync.vo.system.function.RuleFunctionVo" resultType="com.voole.datasync.vo.system.function.RuleFunctionVo">
+		SELECT * FROM r_rule_function
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="id != null ">
 				AND id =#{id}
@@ -24,12 +25,8 @@
 				</foreach>
 			</if>
 		</trim>
-	</sql>
-	<select id="queryRuleFunction" parameterType="com.voole.datasync.vo.system.function.RuleFunctionVo" resultType="com.voole.datasync.vo.system.function.RuleFunctionVo">
-		SELECT * FROM r_rule_function
-		<include refid="wherecondition"></include>
 	</select>
-	<insert id="insertRuleFunction" parameterType="com.voole.datasync.entry.sytem.function.RuleFunctionEntry" >
+	<insert id="insertRuleFunction" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.function.RuleFunctionEntry" >
 		INSERT INTO r_rule_function (
 			<if test="id != null ">
 				id,
@@ -74,7 +71,7 @@
 				'0'
 			);
 	</insert>
-	<delete id="deleteRuleFunction" parameterType="com.voole.datasync.vo.system.function.RuleFunctionVo">
+	<delete id="deleteRuleFunction" flushCache="true"  parameterType="com.voole.datasync.vo.system.function.RuleFunctionVo">
 		DELETE FROM r_rule_function
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="id != null ">

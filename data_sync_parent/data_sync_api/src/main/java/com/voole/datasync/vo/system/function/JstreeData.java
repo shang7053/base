@@ -2,6 +2,8 @@ package com.voole.datasync.vo.system.function;
 
 import java.io.Serializable;
 
+import com.voole.datasync.vo.PageMessageVo;
+
 /**
  * @ClassName: JstreeData
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -19,6 +21,25 @@ public class JstreeData implements Serializable {
 	private String id;
 	private String parent;
 	private String text;
+	private PageMessageVo pmv;
+
+	/**
+	 * @return the pmv
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 */
+	public PageMessageVo getPmv() {
+		return this.pmv;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 * @param pmv the pmv to set
+	 */
+	public void setPmv(PageMessageVo pmv) {
+		this.pmv = pmv;
+	}
 
 	/**
 	 * <p>

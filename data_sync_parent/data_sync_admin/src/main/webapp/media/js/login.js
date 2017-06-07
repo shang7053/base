@@ -57,7 +57,7 @@ var Login = function () {
 	            }*/
 	        });
 
-	       /* $('.login-form input').keypress(function (e) {
+	       $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	            	alert(form.username.value);
 	                if ($('.login-form').validate().form()) {
@@ -65,7 +65,7 @@ var Login = function () {
 	                }
 	                return false;
 	            }
-	        });*/
+	        });
         }    };
 
 }();

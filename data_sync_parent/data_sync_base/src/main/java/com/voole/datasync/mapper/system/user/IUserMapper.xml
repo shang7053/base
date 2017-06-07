@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.user.IUserMapper">
-	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<sql id="wherecondition">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryUserCount" parameterType="com.voole.datasync.vo.system.user.UserVo" resultType="java.lang.Integer">
+		SELECT count(*) FROM t_user
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="uid != null and uid !='' ">
 				AND uid =#{uid}
@@ -39,112 +40,142 @@
 				AND version = #{version}
 			</if>
 		</trim>
-	</sql>
-	<select id="queryUserCount" parameterType="com.voole.datasync.vo.system.user.UserVo" resultType="java.lang.Integer">
-		SELECT count(*) FROM t_user
-		<include refid="wherecondition"></include>
 	</select>
 	<select id="queryUser" parameterType="com.voole.datasync.vo.system.user.UserVo" resultType="com.voole.datasync.vo.system.user.UserVo">
 		SELECT * FROM t_user
-		<include refid="wherecondition"></include>
-		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
-			limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
-		</if>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="uid != null and uid !='' ">
+				AND uid =#{uid}
+			</if>
+			<if test="username != null and username  !='' ">
+				AND username  = #{username}
+			</if>
+			<if test="passwordcode != null and passwordcode !='' ">
+				AND passwordcode = #{passwordcode}
+			</if>
+			<if test="realname != null and realname !='' ">
+				AND realname like '%${realname}%'
+			</if>
+			<if test="email != null and email !='' ">
+				AND email like '%${email}%'
+			</if>
+			<if test="tel != null and tel !='' ">
+				AND tel like '%${tel}%'
+			</if>
+			<if test="is_on != null and is_on !='' ">
+				AND is_on = #{is_on}
+			</if>
+			<if test="error_pw_count != null and error_pw_count !='' ">
+				AND error_pw_count = #{error_pw_count}
+			</if>
+			<if test="create_time != null and create_time !='' ">
+				AND create_time = #{create_time}
+			</if>
+			<if test="update_time != null and update_time !='' ">
+				AND update_time = #{update_time}
+			</if>
+			<if test="version != null and version !='' ">
+				AND version = #{version}
+			</if>
+		</trim>
+			<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
+				limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
+			</if>
 	</select>
-	<update id="updateUser" parameterType="com.voole.datasync.vo.system.user.UserVo">
-		UPDATE t_user
-		SET
-		<if test="uid != null">
-			uid = #{uid},
-		</if>
-		<if test="username != null and username !='' ">
-			username = #{username},
-		</if>
-		<if test="passwordcode != null and passwordcode !='' ">
-			passwordcode = #{passwordcode},
-		</if>
-		<if test="realname != null and realname !='' ">
-			realname = #{realname},
-		</if>
-		<if test="email != null and email !='' ">
-			email = #{email},
-		</if>
-		<if test="tel != null and tel !='' ">
-			tel = #{tel},
-		</if>
-		<if test="is_on != null">
-			is_on = #{is_on},
-		</if>
-		<if test="error_pw_count != null">
-			error_pw_count = #{error_pw_count},
-		</if>
-		<if test="create_time != null ">
-			create_time = #{create_time},
-		</if>
-		<if test="login_time != null ">
-			login_time = #{login_time},
-		</if>
-		version = version+1,
-		update_time = now()
+    <update id="updateUser" flushCache="true"  parameterType="com.voole.datasync.vo.system.user.UserVo">
+        UPDATE t_user
+		SET 
+			<if test="uid != null">
+				 uid = #{uid},
+			</if>
+			  <if test="username != null and username !='' ">
+			  	username = #{username},
+			 </if>
+			  <if test="passwordcode != null and passwordcode !='' ">
+ 				passwordcode = #{passwordcode},
+			 </if>
+			<if test="realname != null and realname !='' ">
+				 realname = #{realname},
+			</if>
+			  <if test="email != null and email !='' ">
+			 	email = #{email},
+			 </if>
+			<if test="tel != null and tel !='' ">
+				 tel = #{tel},
+			</if>
+			  <if test="is_on != null">
+			 	is_on = #{is_on},
+			</if>
+			  <if test="error_pw_count != null">
+				error_pw_count = #{error_pw_count},
+			</if>
+			<if test="create_time != null ">
+				 create_time = #{create_time},
+			</if>
+			<if test="login_time != null ">
+				 login_time = #{login_time},
+			</if>
+		 	 version = version+1,
+			 update_time = now()
 		WHERE
-		uid=#{uid}
-		AND version=#{version}
-	</update>
-	<insert id="insertUser" parameterType="com.voole.datasync.entry.sytem.user.UserEntry">
-		INSERT INTO t_user (
-		<if test="uid != null">
-			uid,
-		</if>
-		<if test="username != null and username !='' ">
-			username,
-		</if>
-		<if test="passwordcode != null and passwordcode !='' ">
-			passwordcode,
-		</if>
-		<if test="realname != null and realname !='' ">
-			realname,
-		</if>
-		<if test="email != null and email !='' ">
-			email,
-		</if>
-		<if test="tel != null and tel !='' ">
-			tel ,
-		</if>
-		<if test="is_on != null">
-			is_on ,
-		</if>
-		<if test="create_time != null ">
-			create_time ,
-		</if>
-		version
+			uid=#{uid}
+			AND version=#{version}
+    </update>
+    <insert id="insertUser" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.user.UserEntry">
+    	INSERT INTO t_user (
+			<if test="uid != null">
+				 uid,
+			</if>
+			  <if test="username != null and username !='' ">
+			  	username,
+			 </if>
+			 <if test="passwordcode != null and passwordcode !='' ">
+				passwordcode,
+			</if>
+			<if test="realname != null and realname !='' ">
+				 realname,
+			</if>
+			  <if test="email != null and email !='' ">
+			 	email,
+			 </if>
+			<if test="tel != null and tel !='' ">
+				 tel ,
+			</if>
+			  <if test="is_on != null">
+			 	is_on ,
+			</if>
+			<if test="create_time != null ">
+				 create_time ,
+			</if>
+		 	 version
 		)
 		VALUES
-		(
-		<if test="uid != null">
-			#{uid},
-		</if>
-		<if test="username != null and username !='' ">
-			#{username},
-		</if>
-		<if test="passwordcode != null and passwordcode !='' ">
-			#{passwordcode},
-		</if>
-		<if test="realname != null and realname !='' ">
-			#{realname},
-		</if>
-		<if test="email != null and email !='' ">
-			#{email},
-		</if>
-		<if test="tel != null and tel !='' ">
-			#{tel} ,
-		</if>
-		<if test="is_on != null">
-			#{is_on} ,
-		</if>
-		<if test="create_time != null ">
-			#{create_time},
-		</if>
-		'0'
-		);
-	</insert>
+			(
+				<if test="uid != null">
+					 #{uid},
+				</if>
+				  <if test="username != null and username !='' ">
+				  	#{username},
+				 </if>
+				 <if test="passwordcode != null and passwordcode !='' ">
+					#{passwordcode},
+				</if>
+				<if test="realname != null and realname !='' ">
+					 #{realname},
+				</if>
+				  <if test="email != null and email !='' ">
+				 	#{email},
+				 </if>
+				<if test="tel != null and tel !='' ">
+					 #{tel} ,
+				</if>
+				  <if test="is_on != null">
+				 	#{is_on} ,
+				</if>
+				<if test="create_time != null ">
+					#{create_time},
+				</if>
+			 	 '0'
+			);
+    </insert>
 </mapper>  

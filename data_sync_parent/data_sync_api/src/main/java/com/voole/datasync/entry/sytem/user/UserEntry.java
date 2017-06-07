@@ -26,10 +26,52 @@ public class UserEntry implements Serializable {
 	protected String tel;// 手机号
 	protected Integer error_pw_count; // 密码错误重试次数
 	protected Date login_time;// 登录时间
-	protected Integer is_on;// 是否启用
+	protected Integer is_on;// 是否冻结0否1是
 	protected Date create_time;// 创建时间
-	protected Date update_time;// 更新时间
+	protected Date update_time;// 修改时间
 	protected Integer version;// 版本号
+	protected Date create_time_start;// 创建时间开始
+	protected Date create_time_end;// 创建时间结束
+
+	/**
+	 * @return the create_time_start
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:32
+	 */
+
+	public Date getCreate_time_start() {
+		return this.create_time_start;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:32
+	 * @param create_time_start the create_time_start to set
+	 */
+
+	public void setCreate_time_start(Date create_time_start) {
+		this.create_time_start = create_time_start;
+	}
+
+	/**
+	 * @return the create_time_end
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:32
+	 */
+
+	public Date getCreate_time_end() {
+		return this.create_time_end;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:32
+	 * @param create_time_end the create_time_end to set
+	 */
+
+	public void setCreate_time_end(Date create_time_end) {
+		this.create_time_end = create_time_end;
+	}
 
 	/**
 	 * @return the uid

@@ -15,6 +15,7 @@
 ">
 	<!-- 采用注释的方式配置bean -->
 	<context:annotation-config />
+	<context:property-placeholder location="classpath:config/*.properties" />
 	<!-- 定时器开关 开始 <task:annotation-driven /> 定时器开关 结束 <bean id="V3Timer" class="com.test.soa.timer.V3Timer"></bean> <task:scheduled-tasks> 
 		每天早上六点，中午十二点，下午八点清除一次缓存内脏数据 0 0 0,6,12,18 * * ? <task:scheduled ref="V3Timer" method="clearOverdueCache" cron="0/30 * * * 
 		* ?" /> </task:scheduled-tasks> -->
@@ -22,4 +23,5 @@
 	<context:component-scan base-package="com.voole.datasync"></context:component-scan>
 	<!-- 激活自动代理功能 -->
 	<!-- timer -->
+	
 </beans>

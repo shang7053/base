@@ -19,8 +19,8 @@
 	<!-- 定时器开关 开始 -->
 	<task:annotation-driven />
 	<!-- 定时器开关 结束 -->
-	<!-- <bean id="timer" class="com.voole.comscore.timer.Timer"></bean>
 	<task:scheduled-tasks>
-		<task:scheduled ref="timer" method="readDayLimit" cron="1 * * * * ?" />
-	</task:scheduled-tasks> -->
+		<!-- <task:scheduled ref="syncLogStatisticsTimer" method="statisticsH" cron="0 0 0/1 * * ?" />
+		<task:scheduled ref="syncLogStatisticsTimer" method="statisticsD" cron="0 0 1 * * ?" /> -->
+	</task:scheduled-tasks>
 </beans>

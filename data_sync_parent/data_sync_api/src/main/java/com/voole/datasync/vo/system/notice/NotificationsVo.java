@@ -25,6 +25,7 @@ public class NotificationsVo extends NotificationsEntry implements Serializable 
 	private Integer start;
 	private Integer size;
 	private PageMessageVo pmv;
+	private String recive_email;
 
 	/**
 	 * @return the start
@@ -116,6 +117,24 @@ public class NotificationsVo extends NotificationsEntry implements Serializable 
 		this.pmv = pmv;
 	}
 
+	/**
+	 * @return the recive_email
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年3月31日 下午4:12:40
+	 */
+	public String getRecive_email() {
+		return this.recive_email;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年3月31日 下午4:12:40
+	 * @param recive_email the recive_email to set
+	 */
+	public void setRecive_email(String recive_email) {
+		this.recive_email = recive_email;
+	}
+
 	/*
 	 * (非 Javadoc) <p>Title: toString</p> <p>Description: </p>
 	 * 
@@ -126,9 +145,12 @@ public class NotificationsVo extends NotificationsEntry implements Serializable 
 	@Override
 	public String toString() {
 		return "NotificationsVo [queryStart=" + this.queryStart + ", queryEnd=" + this.queryEnd + ", start="
-				+ this.start + ", size=" + this.size + ", pmv=" + this.pmv + ", nid=" + this.nid + ", title="
-				+ this.title + ", context=" + this.context + ", is_read=" + this.is_read + ", create_time="
-				+ this.create_time + ", read_time=" + this.read_time + ", version=" + this.version + "]";
+				+ this.start + ", size=" + this.size + ", pmv=" + this.pmv + ", recive_email=" + this.recive_email
+				+ ", nid=" + this.nid + ", title=" + this.title + ", sync_code=" + this.sync_code + ", context="
+				+ this.context + ", is_read=" + this.is_read + ", is_email=" + this.is_email + ", read_time="
+				+ this.read_time + ", is_on=" + this.is_on + ", create_time=" + this.create_time + ", update_time="
+				+ this.update_time + ", version=" + this.version + ", create_time_start=" + this.create_time_start
+				+ ", create_time_end=" + this.create_time_end + "]";
 	}
 
 }

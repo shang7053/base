@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.voole.datasync.controller.BaseController;
+import com.voole.datasync.controller.manager.BaseController;
 import com.voole.datasync.service.system.function.IFunctionService;
 import com.voole.datasync.service.system.rule.IRuleService;
 import com.voole.datasync.service.system.settings.ISystemSettingsService;

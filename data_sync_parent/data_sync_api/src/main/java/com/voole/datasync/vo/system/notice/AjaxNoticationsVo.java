@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.voole.datasync.vo.PageMessageVo;
+
 /**
  * @ClassName: AjaxNoticationsVo
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -20,6 +22,25 @@ public class AjaxNoticationsVo implements Serializable {
 	private static final long serialVersionUID = 7789413027465451101L;
 	private List<NotificationsVo> notifications = new ArrayList<>();
 	private Integer countNotifications = 0;
+	private PageMessageVo pmv;
+
+	/**
+	 * @return the pmv
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 */
+	public PageMessageVo getPmv() {
+		return this.pmv;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 * @param pmv the pmv to set
+	 */
+	public void setPmv(PageMessageVo pmv) {
+		this.pmv = pmv;
+	}
 
 	/**
 	 * @return the notifications

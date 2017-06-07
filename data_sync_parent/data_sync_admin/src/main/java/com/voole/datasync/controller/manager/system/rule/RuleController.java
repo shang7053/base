@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.voole.datasync.controller.BaseController;
+import com.voole.datasync.controller.manager.BaseController;
 import com.voole.datasync.entry.sytem.function.RuleFunctionEntry;
 import com.voole.datasync.entry.sytem.rule.RuleEntry;
 import com.voole.datasync.service.system.function.IRuleFunctionService;
@@ -33,6 +34,7 @@ import com.voole.datasync.vo.system.rule.RuleVo;
 @RequestMapping("/ruleController/")
 @Controller
 public class RuleController extends BaseController {
+	private static final Logger LOGGER = Logger.getLogger(RuleController.class);
 	@Reference
 	private IRuleService ruleService;
 	@Reference
@@ -54,7 +56,7 @@ public class RuleController extends BaseController {
 			pmv.setiTotalRecords(totalsize);
 			pmv.setiTotalDisplayRecords(totalsize);
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return pmv;
 	}
@@ -86,7 +88,7 @@ public class RuleController extends BaseController {
 			}
 			return new AjaxRet(true, "赋权成功");
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -117,7 +119,7 @@ public class RuleController extends BaseController {
 			}
 			return new AjaxRet(true, "创建成功");
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -135,7 +137,7 @@ public class RuleController extends BaseController {
 				return new AjaxRet(true, "冻结成功");
 			}
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -153,7 +155,7 @@ public class RuleController extends BaseController {
 				return new AjaxRet(true, "启用成功");
 			}
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return new AjaxRet(false, "程序内部错误");
 	}
@@ -168,7 +170,7 @@ public class RuleController extends BaseController {
 				model.addAttribute("rule", ruleVos.get(0));
 			}
 		} catch (Exception e) {
-			this.LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		return "system/rule/ruleinfo";
 	}

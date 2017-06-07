@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.function.IFunctionMapper">
-	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<sql id="wherecondition">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryFunctions" parameterType="com.voole.datasync.vo.system.function.FunctionVo" resultType="com.voole.datasync.vo.system.function.FunctionVo">
+		SELECT * FROM t_function
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="fid != null ">
 				AND fid =#{fid}
@@ -34,12 +35,8 @@
 			</if>
 			ORDER BY sort asc;
 		</trim>
-	</sql>
-	<select id="queryFunctions" parameterType="com.voole.datasync.vo.system.function.FunctionVo" resultType="com.voole.datasync.vo.system.function.FunctionVo">
-		SELECT * FROM t_function
-		<include refid="wherecondition"></include>
 	</select>
-	<insert id="insertFunction" useGeneratedKeys="true" keyProperty="fid" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+	<insert id="insertFunction" flushCache="true"  useGeneratedKeys="true" keyProperty="fid" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
 		INSERT INTO t_function (
 			<if test="fid != null ">
 				fid,
@@ -102,10 +99,10 @@
 			0
 			);
 	</insert>
-	<delete id="deleteFunction" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+	<delete id="deleteFunction" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
 		DELETE FROM t_function WHERE fid=#{fid} AND version = #{version};
 	</delete>
-	<update id="updateFunction" parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
+	<update id="updateFunction" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.function.FunctionEntry">
 		UPDATE t_function
 		SET 
 		 <if test="fid != null ">

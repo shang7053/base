@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
-
+import com.alibaba.dubbo.config.annotation.Service;
 import com.voole.datasync.entry.sytem.rule.RuleEntry;
 import com.voole.datasync.mapper.system.rule.IRuleMapper;
 import com.voole.datasync.mapper.system.rule.IUserRuleMapper;
@@ -21,7 +20,7 @@ import com.voole.datasync.vo.system.rule.UserRuleVo;
  * @date 2016年7月7日 下午2:38:53
  * 
  */
-@Service
+@Service(timeout = 1200000)
 public class RuleServiceImpl implements IRuleService {
 	@Resource
 	private IRuleMapper ruleMapper;

@@ -71,4 +71,64 @@ public class NotificationsServiceImpl implements INotificationsService {
 		return this.notificationsMapper.updateNotifications(notificationsEntry) > 0;
 	}
 
+	/*
+	 * (非 Javadoc) <p>Title: InsertNotifications</p> <p>Description: </p>
+	 * 
+	 * @param notificationsEntry
+	 * 
+	 * @return
+	 * 
+	 * @see
+	 * com.voole.datasync.service.system.notice.INotificationsService#InsertNotifications(com.voole.datasync.entry.sytem
+	 * .notice.NotificationsEntry)
+	 */
+	@Override
+	public boolean insertNotifications(NotificationsEntry notificationsEntry) {
+		return this.notificationsMapper.insertNotifications(notificationsEntry) > 0;
+	}
+
+	/*
+	 * (非 Javadoc) <p>Title: queryUnRUnE</p> <p>Description: </p>
+	 * 
+	 * @param qc
+	 * 
+	 * @return
+	 * 
+	 * @see
+	 * com.voole.datasync.service.system.notice.INotificationsService#queryUnRUnE(com.voole.datasync.vo.system.notice.
+	 * NotificationsVo)
+	 */
+	@Override
+	public List<NotificationsVo> queryUnRUnE(NotificationsVo qc) {
+		return this.notificationsMapper.queryUnRUnE(qc);
+	}
+
+	/*
+	 * (非 Javadoc) <p>Title: updateNotificationsforemail</p> <p>Description: </p>
+	 * 
+	 * @param qc
+	 * 
+	 * @return
+	 * 
+	 * @see
+	 * com.voole.datasync.service.system.notice.INotificationsService#updateNotificationsforemail(com.voole.datasync.vo.
+	 * system.notice.NotificationsVo)
+	 */
+	@Override
+	public Integer updateNotificationsforemail(NotificationsVo qc) {
+		return this.notificationsMapper.updateNotificationsforemail(qc);
+	}
+
+	/*
+	 * (非 Javadoc) <p>Title: flushDbCache</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see com.voole.datasync.service.IBaseService#flushDbCache()
+	 */
+	@Override
+	public Integer flushDbCache() {
+		return this.notificationsMapper.flushDbCache();
+	}
+
 }

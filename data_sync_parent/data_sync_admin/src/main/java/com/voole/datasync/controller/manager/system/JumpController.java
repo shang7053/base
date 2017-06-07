@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.voole.datasync.controller.BaseController;
+import com.voole.datasync.controller.manager.BaseController;
 import com.voole.datasync.vo.AjaxRet;
 
 /**
@@ -37,5 +37,11 @@ public class JumpController extends BaseController {
 	public ModelAndView tologin(HttpSession session) {
 		session.setAttribute("lockstatus", false);
 		return new ModelAndView("login");
+	}
+
+	@RequestMapping("/tohome.do")
+	public ModelAndView tohome() {
+		ModelAndView mav = new ModelAndView("analysis/home");
+		return mav;
 	}
 }

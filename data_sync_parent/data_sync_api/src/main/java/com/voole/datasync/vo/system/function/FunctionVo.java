@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.voole.datasync.entry.sytem.function.FunctionEntry;
+import com.voole.datasync.vo.PageMessageVo;
 
 /**
  * @ClassName: Function
@@ -23,6 +24,25 @@ public class FunctionVo extends FunctionEntry implements Serializable {
 	private Integer[] rids;
 	private Integer[] fids;
 	private List<FunctionVo> childFuncs;
+	private PageMessageVo pmv;
+
+	/**
+	 * @return the pmv
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 */
+	public PageMessageVo getPmv() {
+		return this.pmv;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:11:26
+	 * @param pmv the pmv to set
+	 */
+	public void setPmv(PageMessageVo pmv) {
+		this.pmv = pmv;
+	}
 
 	/**
 	 * @return the rids

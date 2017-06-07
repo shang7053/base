@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voole.datasync.mapper.system.rule.IRuleMapper">
-	<!-- <cache type="org.mybatis.caches.redis.RedisCache"></cache> -->
-	<sql id="wherecondition">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryRule" parameterType="com.voole.datasync.vo.system.rule.RuleVo" resultType="com.voole.datasync.vo.system.rule.RuleVo">
+		SELECT * FROM t_rule
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="rid != null ">
 				AND rid =#{rid}
@@ -12,101 +13,115 @@
 				AND rname like '%${rname}%'
 			</if>
 			<if test="is_on != null ">
-				AND is_on = #{is_on}
+				AND is_on  = #{is_on}
 			</if>
 			<if test="is_recive_notice != null ">
 				AND is_recive_notice = #{is_recive_notice}
 			</if>
 			<if test="rids != null">
-				AND rid IN
+				AND rid  IN 
 				<foreach collection="rids" item="item" index="index" open="(" close=")" separator=",">
 					#{item}
 				</foreach>
 			</if>
 		</trim>
-	</sql>
-	<select id="queryRule" parameterType="com.voole.datasync.vo.system.rule.RuleVo" resultType="com.voole.datasync.vo.system.rule.RuleVo">
-		SELECT * FROM t_rule
-		<include refid="wherecondition"></include>
-		ORDER BY is_on desc,create_time desc
-		<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
-			limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
-		</if>
+			ORDER BY is_on desc,create_time desc
+			<if test="pmv!=null and pmv.iDisplayStart!=null and pmv.iDisplayLength!=null">
+				limit #{pmv.iDisplayStart},#{pmv.iDisplayLength}
+			</if>
 	</select>
-	<select id="queryUserRulesCount" parameterType="com.voole.datasync.vo.system.rule.RuleVo" resultType="java.lang.Integer">
+	<select id="queryUserRulesCount" flushCache="true"  parameterType="com.voole.datasync.vo.system.rule.RuleVo" resultType="java.lang.Integer">
 		SELECT count(*) FROM t_rule
-		<include refid="wherecondition"></include>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="rid != null ">
+				AND rid =#{rid}
+			</if>
+			<if test="rname != null and rname != ''">
+				AND rname like '%${rname}%'
+			</if>
+			<if test="is_on != null ">
+				AND is_on  = #{is_on}
+			</if>
+			<if test="is_recive_notice != null ">
+				AND is_recive_notice = #{is_recive_notice}
+			</if>
+			<if test="rids != null">
+				AND rid  IN 
+				<foreach collection="rids" item="item" index="index" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+		</trim>
 	</select>
-	<update id="updateRule" parameterType="com.voole.datasync.entry.sytem.rule.RuleEntry">
+	<update id="updateRule" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.rule.RuleEntry" >
 		UPDATE t_rule
-		SET
-		<if test="rid != null ">
-			rid=#{rid},
-		</if>
-		<if test="rname != null ">
-			rname=#{rname},
-		</if>
-		<if test="is_on != null ">
-			is_on=#{is_on},
-		</if>
-		<if test="is_recive_notice != null ">
-			is_recive_notice=#{is_recive_notice},
-		</if>
-		<if test="create_time != null ">
-			create_time=#{create_time},
-		</if>
-		<if test="update_time != null ">
-			update_time=#{update_time},
-		</if>
-		version=version+1
+		SET 
+			 <if test="rid != null ">
+				rid=#{rid},
+			</if>
+			<if test="rname != null ">
+				rname=#{rname},
+			</if>
+			<if test="is_on != null ">
+				is_on=#{is_on},
+			</if>
+			<if test="is_recive_notice != null ">
+				is_recive_notice=#{is_recive_notice},
+			</if>
+			<if test="create_time != null ">
+				create_time=#{create_time},
+			</if>
+			<if test="update_time != null ">
+				update_time=#{update_time},
+			</if>
+				version=version+1
 		WHERE
-		rid = #{rid}
-		AND version =#{version}
+			rid = #{rid}
+			AND version =#{version}
 	</update>
-	<insert id="insertRule" parameterType="com.voole.datasync.entry.sytem.rule.RuleEntry" useGeneratedKeys="true"
-		keyProperty="rid">
+	<insert id="insertRule" flushCache="true"  parameterType="com.voole.datasync.entry.sytem.rule.RuleEntry" useGeneratedKeys="true" keyProperty="rid">
 		INSERT INTO t_rule (
-		<if test="rid != null ">
-			rid,
-		</if>
-		<if test="rname != null ">
-			rname,
-		</if>
-		<if test="is_on != null ">
-			is_on,
-		</if>
-		<if test="is_recive_notice != null ">
-			is_recive_notice,
-		</if>
-		<if test="create_time != null ">
-			create_time,
-		</if>
-		<if test="update_time != null ">
-			update_time,
-		</if>
-		version
+			<if test="rid != null ">
+				rid,
+			</if>
+			<if test="rname != null ">
+				rname,
+			</if>
+			<if test="is_on != null ">
+				is_on,
+			</if>
+			<if test="is_recive_notice != null ">
+				is_recive_notice,
+			</if>
+			<if test="create_time != null ">
+				create_time,
+			</if>
+			<if test="update_time != null ">
+				update_time,
+			</if>
+			version
 		)
 		VALUES
-		(
-		<if test="rid != null ">
-			#{rid},
-		</if>
-		<if test="rname != null ">
-			#{rname},
-		</if>
-		<if test="is_on != null ">
-			#{is_on},
-		</if>
-		<if test="is_recive_notice != null ">
-			#{is_recive_notice},
-		</if>
-		<if test="create_time != null ">
-			#{create_time},
-		</if>
-		<if test="update_time != null ">
-			#{update_time},
-		</if>
-		'0'
-		);
+			(
+			<if test="rid != null ">
+				#{rid},
+			</if>
+			<if test="rname != null ">
+				#{rname},
+			</if>
+			<if test="is_on != null ">
+				#{is_on},
+			</if>
+			<if test="is_recive_notice != null ">
+				#{is_recive_notice},
+			</if>
+			<if test="create_time != null ">
+				#{create_time},
+			</if>
+			<if test="update_time != null ">
+				#{update_time},
+			</if>
+				'0'
+			);
 	</insert>
 </mapper>  

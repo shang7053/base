@@ -53,5 +53,4 @@ public interface IFunctionMapper {
 	 * @return
 	 */
 	Integer updateFunction(FunctionEntry entry);
-
 }

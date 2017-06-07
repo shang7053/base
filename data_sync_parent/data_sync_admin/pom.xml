@@ -12,6 +12,16 @@
   		<groupId>com.voole</groupId>
   		<artifactId>data_sync_api</artifactId>
   		<version>${project.version}</version>
+  		<exclusions>
+				<exclusion>
+					<groupId>org.mybatis.caches</groupId>
+					<artifactId>mybatis-redis</artifactId>
+				</exclusion>			
+				<exclusion>
+					<groupId>com.voole</groupId>
+					<artifactId>error_code</artifactId>
+				</exclusion>			
+			</exclusions>
   	</dependency>
   </dependencies>
 </project>

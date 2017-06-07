@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
 ">
 	<!-- 数据库配置文件位置 -->
-	<context:property-placeholder location="classpath:config\jdbc.properties" />
+	<context:property-placeholder location="classpath:config/*.properties" />
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc_url}" />
 		<property name="username">

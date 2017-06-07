@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>云数据管理中心系统</title>
+<title>数据同步管理系统</title>
 </head>
 <body>
 <%response.setHeader("Refresh","0;URL=tologin.do");%>

@@ -20,10 +20,52 @@ public class UserRuleEntry implements Serializable {
 	protected Integer id;// 主键id
 	protected Integer uid;// 用户id
 	protected Integer rid;// 角色id
-	protected Integer is_on;// 是否启用
+	protected Integer is_on;// 是否冻结0否1是
 	protected Date create_time;// 创建时间
-	protected Date update_time;// 更新时间
+	protected Date update_time;// 修改时间
 	protected Integer version;// 版本号
+	protected Date create_time_start;// 创建时间开始
+	protected Date create_time_end;// 创建时间结束
+
+	/**
+	 * @return the create_time_start
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:14
+	 */
+
+	public Date getCreate_time_start() {
+		return this.create_time_start;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:14
+	 * @param create_time_start the create_time_start to set
+	 */
+
+	public void setCreate_time_start(Date create_time_start) {
+		this.create_time_start = create_time_start;
+	}
+
+	/**
+	 * @return the create_time_end
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:14
+	 */
+
+	public Date getCreate_time_end() {
+		return this.create_time_end;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:14
+	 * @param create_time_end the create_time_end to set
+	 */
+
+	public void setCreate_time_end(Date create_time_end) {
+		this.create_time_end = create_time_end;
+	}
 
 	/**
 	 * @return the id
@@ -166,7 +208,6 @@ public class UserRuleEntry implements Serializable {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
-
 	@Override
 	public String toString() {
 		return "UserRuleEntry [id=" + this.id + ", uid=" + this.uid + ", rid=" + this.rid + ", is_on=" + this.is_on

@@ -22,86 +22,56 @@ public class SystemSettingsEntry implements Serializable {
 	protected String config_name;// 名
 	protected String config_value;// 值
 	protected String rmark;// 说明
-	protected Integer is_on;// 是否启用
+	protected Integer is_on;// 是否冻结0否1是
 	protected Date create_time;// 创建时间
-	protected Date update_time;// 更新时间
+	protected Date update_time;// 修改时间
 	protected Integer version;// 版本号
+	protected Date create_time_start;// 创建时间开始
+	protected Date create_time_end;// 创建时间结束
 
 	/**
-	 * @return the is_on
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
+	 * @return the create_time_start
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:23
 	 */
-	public Integer getIs_on() {
-		return this.is_on;
+
+	public Date getCreate_time_start() {
+		return this.create_time_start;
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 * @param is_on the is_on to set
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:23
+	 * @param create_time_start the create_time_start to set
 	 */
-	public void setIs_on(Integer is_on) {
-		this.is_on = is_on;
+
+	public void setCreate_time_start(Date create_time_start) {
+		this.create_time_start = create_time_start;
 	}
 
 	/**
-	 * @return the create_time
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
+	 * @return the create_time_end
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:23
 	 */
-	public Date getCreate_time() {
-		return this.create_time;
+
+	public Date getCreate_time_end() {
+		return this.create_time_end;
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 * @param create_time the create_time to set
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2017年5月24日 下午4:19:23
+	 * @param create_time_end the create_time_end to set
 	 */
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
-	}
 
-	/**
-	 * @return the update_time
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 */
-	public Date getUpdate_time() {
-		return this.update_time;
-	}
-
-	/**
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 * @param update_time the update_time to set
-	 */
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
-	}
-
-	/**
-	 * @return the version
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 */
-	public Integer getVersion() {
-		return this.version;
-	}
-
-	/**
-	 * @author shangchengcai@voole.com
-	 * @date 2017年5月25日 下午2:15:11
-	 * @param version the version to set
-	 */
-	public void setVersion(Integer version) {
-		this.version = version;
+	public void setCreate_time_end(Date create_time_end) {
+		this.create_time_end = create_time_end;
 	}
 
 	/**
 	 * @return the id
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 */
 	public Integer getId() {
@@ -109,7 +79,7 @@ public class SystemSettingsEntry implements Serializable {
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 * @param id the id to set
 	 */
@@ -119,7 +89,7 @@ public class SystemSettingsEntry implements Serializable {
 
 	/**
 	 * @return the config_name
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 */
 	public String getConfig_name() {
@@ -127,7 +97,7 @@ public class SystemSettingsEntry implements Serializable {
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 * @param config_name the config_name to set
 	 */
@@ -137,7 +107,7 @@ public class SystemSettingsEntry implements Serializable {
 
 	/**
 	 * @return the config_value
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 */
 	public String getConfig_value() {
@@ -145,7 +115,7 @@ public class SystemSettingsEntry implements Serializable {
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月7日 下午2:15:10
 	 * @param config_value the config_value to set
 	 */
@@ -154,8 +124,88 @@ public class SystemSettingsEntry implements Serializable {
 	}
 
 	/**
+	 * @return the is_on
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 */
+
+	public Integer getIs_on() {
+		return this.is_on;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 * @param is_on the is_on to set
+	 */
+
+	public void setIs_on(Integer is_on) {
+		this.is_on = is_on;
+	}
+
+	/**
+	 * @return the create_time
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 */
+
+	public Date getCreate_time() {
+		return this.create_time;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 * @param create_time the create_time to set
+	 */
+
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+
+	/**
+	 * @return the update_time
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 */
+
+	public Date getUpdate_time() {
+		return this.update_time;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 * @param update_time the update_time to set
+	 */
+
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
+	}
+
+	/**
+	 * @return the version
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 */
+
+	public Integer getVersion() {
+		return this.version;
+	}
+
+	/**
+	 * @author A18ccms a18ccms_gmail_com
+	 * @date 2016年7月7日 下午2:15:10
+	 * @param version the version to set
+	 */
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	/**
 	 * @return the rmark
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月14日 下午4:35:11
 	 */
 	public String getRmark() {
@@ -163,7 +213,7 @@ public class SystemSettingsEntry implements Serializable {
 	}
 
 	/**
-	 * @author shangchengcai@voole.com
+	 * @author A18ccms a18ccms_gmail_com
 	 * @date 2016年7月14日 下午4:35:11
 	 * @param rmark the rmark to set
 	 */
@@ -171,4 +221,18 @@ public class SystemSettingsEntry implements Serializable {
 		this.rmark = rmark;
 	}
 
+	/*
+	 * (非 Javadoc) <p>Title: toString</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+
+	@Override
+	public String toString() {
+		return "SystemSettingsEntry [id=" + this.id + ", config_name=" + this.config_name + ", config_value="
+				+ this.config_value + ", rmark=" + this.rmark + ", is_on=" + this.is_on + ", create_time="
+				+ this.create_time + ", update_time=" + this.update_time + ", version=" + this.version + "]";
+	}
 }

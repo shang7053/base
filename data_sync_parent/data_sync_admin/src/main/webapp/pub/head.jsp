@@ -42,3 +42,7 @@
 <script src="media/js/moment.js"></script>     
 <script src="media/js/datautil.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+<!-- highcharts相关js begin -->
+<script src="media/js/jquery-1.8.3.min.js" type="text/javascript"></script>   
+<script src="media/js/jquery.pulsate.min.js" type="text/javascript"></script>
+<!-- highcharts相关js end -->

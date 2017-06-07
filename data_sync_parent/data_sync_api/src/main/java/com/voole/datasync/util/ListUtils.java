@@ -38,6 +38,30 @@ public class ListUtils {
 		return ret.toArray(new Integer[ret.size()]);
 	}
 
+	public static <T> String[] getTargetForStringArray(List<T> list, String propertyName) {
+		if (null == list || StringUtils.isBlank(propertyName)) {
+			return new String[] {};
+		}
+		List<String> ret = new ArrayList<>();
+		for (T t : list) {
+			Class<T> c = (Class<T>) t.getClass();
+			try {
+				Field f = getFiled(c, propertyName);
+				if (f.getType().isAssignableFrom(String.class)) {
+					f.setAccessible(true);
+					ret.add((String) f.get(t));
+				}
+			} catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+				continue;
+			}
+		}
+		if (ret.size() == 0) {
+			return new String[] {};
+		}
+		return ret.toArray(new String[ret.size()]);
+	}
+
 	/**
 	 * @Title: getFiled
 	 * @Description: TODO(这里用一句话描述这个方法的作用)
@@ -62,5 +86,27 @@ public class ListUtils {
 			// e.printStackTrace();
 			return getFiled(c.getSuperclass(), propertyName);
 		}
+	}
+
+	/**
+	 * @Title: str2list
+	 * @Description: TODO(这里用一句话描述这个方法的作用)
+	 * @author shangchengcai@voole.com
+	 * @param <T>
+	 * @date 2017年4月5日 下午2:27:09
+	 * @param reg_col_ids
+	 * @param string
+	 * @param class1
+	 * @return
+	 */
+	public static List<Integer> str2list(String str, String split) {
+		List<Integer> ret = new ArrayList<>();
+		if (StringUtils.isNotBlank(str)) {
+			String[] strsplit = str.split(split);
+			for (String string : strsplit) {
+				ret.add(Integer.valueOf(string.trim()));
+			}
+		}
+		return ret;
 	}
 }

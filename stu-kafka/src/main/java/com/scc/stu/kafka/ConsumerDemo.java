@@ -31,15 +31,13 @@ public class ConsumerDemo {
 
 	private static final String topic = "test-stop";
 
-	private static final Integer threads = 3;
-
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
 
-		props.put("zookeeper.connect", "172.16.41.151:2181");
+		props.put("zookeeper.connect", "172.16.41.76:2181,172.16.41.76:2182,172.16.41.76:2183");
 
-		props.put("group.id", "1111");
+		props.put("group.id", "test-kafka2");
 
 		props.put("zookeeper.session.timeout.ms", "40000");
 		props.put("zookeeper.sync.time.ms", "200");

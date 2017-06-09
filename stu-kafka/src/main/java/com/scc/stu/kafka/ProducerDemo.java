@@ -31,7 +31,7 @@ public class ProducerDemo {
 	private static Properties properties = new Properties();
 
 	static {
-		properties.put("bootstrap.servers", "172.16.41.151:9092");
+		properties.put("bootstrap.servers", "172.16.41.11:9092");
 		properties.put("acks", "1");
 		properties.put("retries", 0);
 		properties.put("batch.size", 16384);
@@ -58,13 +58,13 @@ public class ProducerDemo {
 	}
 
 	public static void main(String[] args) {
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < 1; j++) {
 			new Thread(() -> {
 				while (true) {
 					final ProducerDemo kafkaProducerTest = new ProducerDemo();
 					kafkaProducerTest.produce(String.valueOf(Math.random()).getBytes());
 					try {
-						Thread.currentThread().sleep(1000l);
+						Thread.currentThread().sleep(100l);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

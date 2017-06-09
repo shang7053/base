@@ -17,14 +17,14 @@ import com.alibaba.otter.canal.protocol.Message;
 public class CanalClientTest {
 	// canal多客户端会平分所有事件
 	public static void main(String[] args) throws InterruptedException {
-		CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("172.16.41.152", 11111),
-				"db_172_16_41_152_3306", "", "");
+		CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("172.16.41.156", 11111),
+				"db_172_16_41_11_3306_voole_global_res_resourceinfo", "", "");
 		connector.connect();
-		connector.subscribe("canal.t_canal");
+		connector.subscribe("voole_global.res_resourceinfo");
 		while (true) {
 			Message message = connector.get(1);
 			if (message.getEntries().size() > 0) {
-				System.out.println("bb-" + message.getEntries().size());
+				System.out.println(message.getEntries().size());
 			}
 			for (Entry e : message.getEntries()) {
 				// System.out.println(e);

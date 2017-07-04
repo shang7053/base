@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 /**
  * @ClassName: ThreadTest
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -43,6 +47,8 @@ public class ThreadTest {
 	}
 
 	public static void main(String[] args) {
-		new ThreadTest();
+		// new ThreadTest();
+		DateTimeFormatter format = DateTimeFormat.forPattern("yyyyMMddHHmmss");
+		System.out.println(DateTime.parse("20170621185337", format).getMillis());
 	}
 }

@@ -31,7 +31,7 @@ public class ProducerDemo {
 	private static Properties properties = new Properties();
 
 	static {
-		properties.put("bootstrap.servers", "172.16.41.11:9092");
+		properties.put("bootstrap.servers", "172.16.40.4:9092");
 		properties.put("acks", "1");
 		properties.put("retries", 0);
 		properties.put("batch.size", 16384);
@@ -54,7 +54,7 @@ public class ProducerDemo {
 				LOG.info("complete!");
 			}
 		});
-		kafkaProducer.close();
+		// kafkaProducer.close();
 	}
 
 	public static void main(String[] args) {

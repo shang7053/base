@@ -100,8 +100,6 @@
 	<script src="media/js/jquery.backstretch.min.js" type="text/javascript"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
 
-	<script src="media/js/app.js"></script>
-
 	<script src="media/js/lock.js"></script>
 
 	<script>
@@ -141,8 +139,6 @@
 			}
 		}
 		jQuery(document).ready(function() {    
-
-		   App.init();
 
 		   Lock.init();
 

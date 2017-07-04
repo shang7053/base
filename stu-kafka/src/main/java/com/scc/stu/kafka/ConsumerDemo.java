@@ -35,7 +35,7 @@ public class ConsumerDemo {
 
 		Properties props = new Properties();
 
-		props.put("zookeeper.connect", "172.16.41.76:2181,172.16.41.76:2182,172.16.41.76:2183");
+		props.put("zookeeper.connect", "172.16.40.4:2181,172.16.40.5:2182");
 
 		props.put("group.id", "test-kafka2");
 

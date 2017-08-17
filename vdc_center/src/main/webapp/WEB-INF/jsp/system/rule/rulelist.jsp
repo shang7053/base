@@ -333,11 +333,13 @@
 						   url: "ruleController/addRuleFunction.do",
 						   data:"rid="+rid+"&fids="+ids,
 						   success: function(msg){
-							   alert(msg.info);
             				   if(msg.status){
+								   toastr.success(msg.info);
             					   $("#rule_model").modal("hide");
             					   $("#rule_model .modal-footer button:last").unbind("click");
-            				   }
+            				   }else{
+   	                        	toastr.error(msg.info);
+                               }
 						   }
 					   });
 				   });
@@ -359,10 +361,12 @@
 			   url: "ruleController/freeze.do",
 			   data: "rid="+rid+"&version="+version,
 			   success: function(msg){
-				   alert(msg.info);
 				   if(msg.status){
+					   toastr.success(msg.info);
 					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-				   }
+				   }else{
+                   	toastr.error(msg.info);
+                   }
 			   }
 			});
 		}
@@ -374,10 +378,12 @@
 			   url: "ruleController/userule.do",
 			   data: "rid="+rid+"&version="+version,
 			   success: function(msg){
-				   alert(msg.info);
 				   if(msg.status){
+					   toastr.success(msg.info);
 					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-				   }
+				   }else{
+                   	toastr.error(msg.info);
+                   }
 			   }
 			});
 		}
@@ -424,12 +430,14 @@
 								   url: "ruleController/addRuleAndFunction.do",
 								   data:$("#create_rule_form").serialize()+"&fids="+ids,
 								   success: function(msg){
-									   alert(msg.info);
 		            				   if(msg.status){
+										   toastr.success(msg.info);
 		            					   $("#create_rule_model").modal("hide");
 		            					   $("#create_rule_model .modal-footer button:last").unbind("click");
 		            					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-		            				   }
+		            				   }else{
+		   	                        	toastr.error(msg.info);
+		                               }
 								   }
 							   });
 							   }

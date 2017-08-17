@@ -3,6 +3,7 @@ package com.voole.datasync.service.system.settings;
 import java.util.List;
 
 import com.voole.datasync.entry.sytem.rule.UserRuleEntry;
+import com.voole.datasync.service.IBaseService;
 import com.voole.datasync.vo.system.rule.UserRuleVo;
 
 /**
@@ -12,7 +13,7 @@ import com.voole.datasync.vo.system.rule.UserRuleVo;
  * @date 2016年7月18日 上午11:17:37
  * 
  */
-public interface IUserRuleService {
+public interface IUserRuleService extends IBaseService {
 	/**
 	 * @Title: queryUserRule
 	 * @Description: TODO(这里用一句话描述这个方法的作用)

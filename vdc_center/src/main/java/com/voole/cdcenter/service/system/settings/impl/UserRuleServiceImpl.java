@@ -71,4 +71,15 @@ public class UserRuleServiceImpl implements IUserRuleService {
 		return this.userRuleMapper.queryUserRule(userRulequerycase);
 	}
 
+	/*
+	 * (非 Javadoc) <p>Title: flushDbCache</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see com.voole.datasync.service.IBaseService#flushDbCache()
+	 */
+	@Override
+	public Integer flushDbCache() {
+		return this.userRuleMapper.flushDbCache();
+	}
 }

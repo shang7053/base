@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.voole.datasync.entry.sytem.rule.UserRuleEntry;
 import com.voole.datasync.mapper.system.rule.IUserRuleMapper;
@@ -18,6 +20,7 @@ import com.voole.datasync.vo.system.rule.UserRuleVo;
  * 
  */
 @Service(timeout = 1200000)
+@Repository
 public class UserRuleServiceImpl implements IUserRuleService {
 	@Resource
 	private IUserRuleMapper userRuleMapper;
@@ -67,5 +70,17 @@ public class UserRuleServiceImpl implements IUserRuleService {
 	@Override
 	public List<UserRuleVo> queryUserRule(UserRuleVo userRulequerycase) {
 		return this.userRuleMapper.queryUserRule(userRulequerycase);
+	}
+
+	/*
+	 * (非 Javadoc) <p>Title: flushDbCache</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see com.voole.datasync.service.IBaseService#flushDbCache()
+	 */
+	@Override
+	public Integer flushDbCache() {
+		return this.userRuleMapper.flushDbCache();
 	}
 }

@@ -3,6 +3,7 @@ package com.voole.datasync.mapper.system.rule;
 import java.util.List;
 
 import com.voole.datasync.entry.sytem.rule.UserRuleEntry;
+import com.voole.datasync.mapper.IBaseMapper;
 import com.voole.datasync.vo.system.rule.UserRuleVo;
 
 /**
@@ -12,7 +13,7 @@ import com.voole.datasync.vo.system.rule.UserRuleVo;
  * @date 2016年7月8日 上午9:58:47
  * 
  */
-public interface IUserRuleMapper {
+public interface IUserRuleMapper extends IBaseMapper {
 
 	/**
 	 * @Title: queryUserRule

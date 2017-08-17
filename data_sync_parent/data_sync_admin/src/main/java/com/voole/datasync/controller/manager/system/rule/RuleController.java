@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -17,12 +19,15 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.voole.datasync.controller.manager.BaseController;
 import com.voole.datasync.entry.sytem.function.RuleFunctionEntry;
 import com.voole.datasync.entry.sytem.rule.RuleEntry;
+import com.voole.datasync.entry.sytem.rule.UserRuleEntry;
 import com.voole.datasync.service.system.function.IRuleFunctionService;
 import com.voole.datasync.service.system.rule.IRuleService;
+import com.voole.datasync.service.system.settings.IUserRuleService;
 import com.voole.datasync.vo.AjaxRet;
 import com.voole.datasync.vo.PageMessageVo;
 import com.voole.datasync.vo.system.function.RuleFunctionVo;
 import com.voole.datasync.vo.system.rule.RuleVo;
+import com.voole.datasync.vo.system.user.UserVo;
 
 /**
  * @ClassName: RuleController
@@ -37,6 +42,8 @@ public class RuleController extends BaseController {
 	private static final Logger LOGGER = Logger.getLogger(RuleController.class);
 	@Reference
 	private IRuleService ruleService;
+	@Reference
+	private IUserRuleService userRuleService;
 	@Reference
 	private IRuleFunctionService ruleFunctionService;
 
@@ -95,7 +102,7 @@ public class RuleController extends BaseController {
 
 	@RequestMapping("addRuleAndFunction.do")
 	@ResponseBody
-	public AjaxRet addRuleAndFunction(RuleEntry re, String fids) {
+	public AjaxRet addRuleAndFunction(RuleEntry re, String fids, HttpServletRequest request) {
 		if (null == re) {
 			return new AjaxRet(false, "创建失败");
 		}
@@ -117,6 +124,13 @@ public class RuleController extends BaseController {
 				rfe.setRid(rid);
 				this.ruleFunctionService.insertRuleFunction(rfe);
 			}
+			UserRuleEntry ure = new UserRuleEntry();
+			ure.setCreate_time(new Date());
+			ure.setRid(rid);
+			ure.setIs_on(1);
+			UserVo loginUser = (UserVo) request.getSession().getAttribute("user");
+			ure.setUid(loginUser.getUid());
+			this.userRuleService.insertUserRule(ure);
 			return new AjaxRet(true, "创建成功");
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);

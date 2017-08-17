@@ -27,11 +27,11 @@
 
 						<!-- BEGIN EXAMPLE TABLE PORTLET-->
 
-						<div class="portlet box light-grey">
+						<div class="portlet box light-grey" style="min-height: 550px;">
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-globe"></i>异常审计</div>
+								<div class="caption"><i class="icon-globe"></i>告警</div>
 
 								<div class="tools">
 
@@ -133,7 +133,7 @@
 					   data-dismiss="modal" aria-hidden="true">
 					</button>
 					<h4 class="modal-title" id="notice_model_ModalLabel">
-						数据审计
+						告警
 					</h4>
 				 </div>
 				 <div class="modal-body">
@@ -219,7 +219,7 @@
 	                                                	                "sWidth" : "40px",
 	                                                	                "aTargets" : [ 5 ],
 	                                                	                "bSortable" : false,
-	                                                	               	"mRender" : function(data, type,full) {
+	                                                	                "mRender" : function(data, type,full) {
 	                                                	                    var dHtml = "";
 		                                            	          			dHtml+='<div class="btn-group">';
 		                                                      				dHtml+='<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;">';
@@ -252,7 +252,7 @@
 	                                                		        },'${tablesize == null ? 10 : tablesize}');
 		function setread(nid,version,is_read){
 			if(is_read==1){
-				alert("已读消息无法重复设置为已读");
+				toastr.info("已读消息无法重复设置为已读");
 				return ;
 			}
 			$.ajax({
@@ -260,10 +260,12 @@
 			   url: "noticeController/setRead.do",
 			   data: "nid="+nid+"&version="+version,
 			   success: function(msg){
-				   alert(msg.info);
 				   if(msg.status){
+					   toastr.success(msg.info);
 					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-				   }
+				   }else{
+                   	toastr.error(msg.info);
+                   }
 			   }
 			});
 		}

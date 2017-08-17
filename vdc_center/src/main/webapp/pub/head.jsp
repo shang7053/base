@@ -42,3 +42,11 @@
 <script src="media/js/moment.js"></script>     
 <script src="media/js/datautil.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+<script src="media/js/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="media/js/toastr/toastr.min.js"></script>
+<script>
+    toastr.options.escapeHtml = true;
+    toastr.options.closeButton = true;
+    toastr.options.positionClass = 'toast-top-center';
+    toastr.options.preventDuplicates=true;
+</script>

@@ -252,7 +252,7 @@
 	                                                		        },'${tablesize == null ? 10 : tablesize}');
 		function setread(nid,version,is_read){
 			if(is_read==1){
-				alert("已读消息无法重复设置为已读");
+				toastr.info("已读消息无法重复设置为已读");
 				return ;
 			}
 			$.ajax({
@@ -260,10 +260,12 @@
 			   url: "noticeController/setRead.do",
 			   data: "nid="+nid+"&version="+version,
 			   success: function(msg){
-				   alert(msg.info);
 				   if(msg.status){
+					   toastr.success(msg.info);
 					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-				   }
+				   }else{
+                   	toastr.error(msg.info);
+                   }
 			   }
 			});
 		}

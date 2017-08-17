@@ -76,4 +76,7 @@
 				'0'
 			);
 	</insert>
+	<update id="flushDbCache" flushCache="true">
+		SELECT 1 FROM DUAL;
+	</update>
 </mapper>  

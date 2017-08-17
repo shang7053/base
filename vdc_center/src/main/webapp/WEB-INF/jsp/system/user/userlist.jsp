@@ -301,11 +301,13 @@
 					   url: "userController/addUserRule.do",
 					   data:"uid="+uid+"&rids="+rids,
 					   success: function(msg){
-						   alert(msg.info);
         				   if(msg.status){
+							   toastr.success(msg.info);
         					   $("#user_model").modal("hide");
         					   $("#user_model .modal-footer button:last").unbind("click");
-        				   }
+        				   }else{
+	                        	toastr.error(msg.info);
+                           }
 					   }
 				   });
 			   }); 
@@ -320,9 +322,11 @@ function freezeuser(uid,version){
 		   url: "userController/changeuser.do",
 		   data: "is_on=0&uid="+uid+"&version="+version,
 		   success: function(msg){
-			   alert(msg.info);
 			   if(msg.status){
+				   toastr.success(msg.info);
 				   $('#sample_1').dataTable( ruletablesettings).fnDraw();
+			   }else{
+				   toastr.error(msg.info);
 			   }
 		   }
 		});
@@ -335,10 +339,12 @@ function startuser(uid,version){
 		   url: "userController/changeuser.do",
 		   data: "is_on=1&uid="+uid+"&version="+version,
 		   success: function(msg){
-			   alert(msg.info);
 			   if(msg.status){
+				   toastr.success(msg.info);
 				   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-			   }
+			   }else{
+               	toastr.error(msg.info);
+               }
 		   }
 		});
 	}
@@ -367,17 +373,20 @@ function restpassword(uid,version){
 		   if(formvalidate.form()){
 			   if(confirm("确认重置？")){
 				   if($("#passwordcode").val()!=""&&$("#passwordcode").val()!=$("#passwordcode2").val()){
-					   alert("不允许空密码或两次密码不一致！");
+					   toastr.info("不允许空密码或两次密码不一致！");
 				   }
 					$.ajax({
 					   type: "POST",
 					   url: "userController/changeuser.do",
 					   data: "uid="+uid+"&passwordcode="+$("#passwordcode").val()+"&version="+version,
 					   success: function(msg){
-						   alert(msg.info);
 						   if(msg.status){
+							   toastr.success(msg.info);
 							   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-						   }
+							   $("#rest_pw_model").modal("hide");
+						   }else{
+	                        	toastr.error(msg.info);
+                           }
 					   }
 					});
 				}
@@ -422,10 +431,6 @@ $("#create_user").click(function(){
 		                    maxlength:100,
 		                    email: true
 		                },
-		                tel: {
-		                    required: true,
-		                    maxlength:11
-		                },
 		                is_on: {
 		                    required: true,
 		                    maxlength:1
@@ -450,12 +455,14 @@ $("#create_user").click(function(){
 							   url: "userController/addUser.do",
 							   data:$("#create_user_form").serialize()+"&rids="+rids,
 							   success: function(msg){
-								   alert(msg.info);
 	            				   if(msg.status){
+									   toastr.success(msg.info);
 	            					   $("#create_user_model").modal("hide");
 	            					   $("#create_user_model .modal-footer button:last").unbind("click");
 	            					   $('#sample_1').dataTable( ruletablesettings).fnDraw();
-	            				   }
+	            				   }else{
+	   	                        	toastr.error(msg.info);
+	                               }
 							   }
 						   });
 					   }

@@ -30,7 +30,7 @@
 			</td>
 			<td></td>
 		</tr>
-		<tr>
+		<tr style="display: none;">
 			<td width="20%">权限链接：</td>
 			<td><div id="create_user_choosenodetree"></div></td>
 			<td></td>

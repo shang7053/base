@@ -23,6 +23,7 @@
 <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="media/css/uniform.default.css" rel="stylesheet" type="text/css" />
 <link href="media/css/base.css" rel="stylesheet" type="text/css" />
+<link href="media/js/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN CORE PLUGINS -->
 <script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
@@ -42,7 +43,12 @@
 <script src="media/js/moment.js"></script>     
 <script src="media/js/datautil.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
-<!-- highcharts相关js begin -->
 <script src="media/js/jquery-1.8.3.min.js" type="text/javascript"></script>   
 <script src="media/js/jquery.pulsate.min.js" type="text/javascript"></script>
-<!-- highcharts相关js end -->
+<script src="media/js/toastr/toastr.min.js"></script>
+<script>
+    toastr.options.escapeHtml = true;
+    toastr.options.closeButton = true;
+    toastr.options.positionClass = 'toast-top-center';
+    toastr.options.preventDuplicates=true;
+</script>

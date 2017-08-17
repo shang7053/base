@@ -114,8 +114,8 @@
 						                    			   url: "functionController/insertFunction.do",
 						                    			   data: $(".form-horizontal").serialize(),
 						                    			   success: function(msg){
-						                    			     alert(msg.info);
 						                    				   if(msg.status){
+							                    				   toastr.success(msg.info);
 							                    			     inst.destroy();
 							                    			     inittree();
 							                    			     $(".form-actions").hide("fast");
@@ -123,7 +123,9 @@
 							                    			     formvalidate.resetForm();
 							                    			     $(".form-horizontal img[src='media/image/right_1.png']").parent().remove();
 							                    			     $(".form-horizontal img[src='media/image/error.png']").parent().remove();
-						                    				   }
+						                    				   }else{
+						           	                        	toastr.error(msg.info);
+						                                       }
 						                    			   }
 						                    			});
 						                    		}
@@ -137,6 +139,10 @@
 						                	$("#pfname").unbind("click");
 						                    var inst = jQuery.jstree.reference(data.reference),  
 						                    obj = inst.get_node(data.reference);  
+						                    if(inst.is_parent(obj)){
+						                    	toastr.info("请先清空该菜单下所有子菜单");
+						                    	return ;
+						                    }
 						                    if(confirm("确定要删除此菜单？删除后不可恢复。")){
 						                    	$.ajax({
 						                    	   type: "POST",
@@ -149,12 +155,12 @@
 								                    	   data: "fid="+obj.id+"&version="+msg.version,
 								                    	   success: function(msg){
 								                    		   if(msg.status){  
-									                                alert(msg.info);  
+								                    			   toastr.success(msg.info);  
 									                                inst.destroy();
 								                    			    inittree();
 								                    			    $(".form-horizontal")[0].reset();
 									                            }else{  
-									                                alert(msg.info);  
+									                            	toastr.error(msg.info);  
 									                            }
 								                    	   }
 								                    	});
@@ -226,8 +232,8 @@
 					                    			   url: "functionController/updateFunction.do",
 					                    			   data: $(".form-horizontal").serialize(),
 					                    			   success: function(msg){
-					                    				   alert(msg.info);
 					                    				   if(msg.status){
+						                    				   toastr.success(msg.info);
 						                    			     inst.destroy();
 						                    			     inittree();
 						                    			     $(".form-actions").hide("fast");
@@ -235,7 +241,9 @@
 						                    			     formvalidate.resetForm();
 						                    			     $(".form-horizontal img[src='media/image/right_1.png']").parent().remove();
 						                    			     $(".form-horizontal img[src='media/image/error.png']").parent().remove();
-					                    				   }
+					                    				   }else{
+					           	                        	toastr.error(msg.info);
+					                                       }
 					                    			   }
 					                    			});
 					                    		}

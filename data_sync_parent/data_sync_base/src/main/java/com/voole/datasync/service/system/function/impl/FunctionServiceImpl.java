@@ -21,7 +21,7 @@ import com.voole.datasync.vo.system.function.RuleFunctionVo;
  * @date 2016年7月7日 下午2:38:10
  * 
  */
-@Service(timeout = 1200000)
+@Service(timeout = 1200000, owner = "shangchengcai", retries = 3, token = "true", version = "1.0")
 public class FunctionServiceImpl implements IFunctionService {
 	@Resource
 	private IFunctionMapper functionMapper;

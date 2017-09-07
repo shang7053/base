@@ -62,9 +62,7 @@ public final class RedisCache implements Cache {
 		switch (redisConfig.getDeployType()) {
 		case 0:
 			String address = redisConfig.getAddress();
-			pool = new JedisPool(redisConfig, address.split(":")[0], Integer.valueOf(address.split(":")[1]),
-					redisConfig.getConnectionTimeout(), redisConfig.getSoTimeout(), redisConfig.getPassword(),
-					redisConfig.getDatabase(), redisConfig.getClientName());
+			pool = new JedisPool(address.split(":")[0], Integer.valueOf(address.split(":")[1]));
 			break;
 		case 1:
 			// 池基本配置

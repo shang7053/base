@@ -66,7 +66,7 @@ public class Test {
 					String sql = sqls[new Random().nextInt(3)];
 					DBUtil.insert(sql);
 					try {
-						Thread.currentThread().sleep(1000);
+						Thread.currentThread().sleep(2000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

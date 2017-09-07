@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voole.trdpay.mapper.system.cache.IFlushDbMapper">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryFlushDb" parameterType="com.voole.trdpay.vo.system.cache.FlushDbVo" resultType="com.voole.trdpay.vo.system.cache.FlushDbVo">
+		SELECT * FROM t_flush_db
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null ">
+				AND id =#{id}
+			</if>
+			<if test="last_ping_date != null and last_ping_date != ''">
+				AND last_ping_date = #{last_ping_date}
+			</if>
+			<if test="flush_cache_interval != null ">
+				AND flush_cache_interval  = #{flush_cache_interval}
+			</if>
+			<if test="interval_unit != null ">
+				AND interval_unit = #{interval_unit}
+			</if>
+			<if test="update_time != null and update_time != ''">
+				AND update_time = #{update_time}
+			</if>
+			<if test="create_time != null and create_time != ''">
+				AND create_time = #{create_time}
+			</if>
+			<if test="is_on != null ">
+				AND is_on = #{is_on}
+			</if>
+		</trim>
+	</select>
+	<select id="queryFlushDbCount" parameterType="com.voole.trdpay.vo.system.cache.FlushDbVo" resultType="java.lang.Integer">
+		SELECT count(*) FROM t_flush_db
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null ">
+				AND id =#{id}
+			</if>
+			<if test="last_ping_date != null and last_ping_date != ''">
+				AND last_ping_date = #{last_ping_date}
+			</if>
+			<if test="flush_cache_interval != null ">
+				AND flush_cache_interval  = #{flush_cache_interval}
+			</if>
+			<if test="interval_unit != null ">
+				AND interval_unit = #{interval_unit}
+			</if>
+			<if test="update_time != null and update_time != ''">
+				AND update_time = #{update_time}
+			</if>
+			<if test="create_time != null and create_time != ''">
+				AND create_time = #{create_time}
+			</if>
+			<if test="is_on != null ">
+				AND is_on = #{is_on}
+			</if>
+		</trim>
+	</select>
+	<update id="updateFlushDb" flushCache="true"  parameterType="com.voole.trdpay.entry.sytem.cache.FlushDbEntry" >
+		UPDATE t_flush_db
+		SET 
+			 <if test="id != null ">
+				id =#{id},
+			</if>
+			<if test="last_ping_date != null and last_ping_date != ''">
+				last_ping_date = #{last_ping_date},
+			</if>
+			<if test="flush_cache_interval != null ">
+				flush_cache_interval  = #{flush_cache_interval},
+			</if>
+			<if test="interval_unit != null ">
+				interval_unit = #{interval_unit},
+			</if>
+			<if test="create_time != null and create_time != ''">
+				create_time = #{create_time},
+			</if>
+			<if test="is_on != null ">
+				is_on = #{is_on},
+			</if>
+				update_time = #{update_time}
+		WHERE
+			id = #{id}
+	</update>
+	<update id="deleteFlushDb" flushCache="true"  parameterType="com.voole.trdpay.vo.system.cache.FlushDbVo">
+		DELETE FROM t_flush_db
+		WHERE
+		id=#{id}
+		
+	</update>
+	<insert id="insertFlushDb" flushCache="true"  parameterType="com.voole.trdpay.entry.sytem.cache.FlushDbEntry" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_flush_db (
+			<if test="id != null ">
+				id ,
+			</if>
+			<if test="last_ping_date != null and last_ping_date != ''">
+				last_ping_date,
+			</if>
+			<if test="flush_cache_interval != null ">
+				flush_cache_interval ,
+			</if>
+			<if test="interval_unit != null ">
+				interval_unit ,
+			</if>
+			<if test="update_time != null and update_time != ''">
+				update_time,
+			</if>
+			<if test="is_on != null ">
+				is_on ,
+			</if>
+				create_time
+		)
+		VALUES
+			(
+			<if test="id != null ">
+				#{id},
+			</if>
+			<if test="last_ping_date != null and last_ping_date != ''">
+				#{last_ping_date},
+			</if>
+			<if test="flush_cache_interval != null ">
+				#{flush_cache_interval},
+			</if>
+			<if test="interval_unit != null ">
+				#{interval_unit},
+			</if>
+			<if test="update_time != null and update_time != ''">
+				#{update_time},
+			</if>
+			<if test="is_on != null ">
+				#{is_on},
+			</if>
+				now()
+			);
+	</insert>
+</mapper>  

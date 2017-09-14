@@ -60,8 +60,8 @@ public class RuleController extends BaseController {
 			List<RuleVo> rules = this.ruleService.queryRule(rulequerycase);
 			pmv.setAaData(rules);
 			Integer totalsize = this.ruleService.queryUserRulesCount(rulequerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
+			pmv.setiTotalRecords(Long.valueOf(totalsize));
+			pmv.setiTotalDisplayRecords(Long.valueOf(totalsize));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}

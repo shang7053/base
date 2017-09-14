@@ -62,8 +62,8 @@ public class UserController extends BaseController {
 			List<UserVo> rules = this.userService.queryUser(userquerycase);
 			pmv.setAaData(rules);
 			Integer totalsize = this.userService.queryUserCount(userquerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
+			pmv.setiTotalRecords(Long.valueOf(totalsize));
+			pmv.setiTotalDisplayRecords(Long.valueOf(totalsize));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}

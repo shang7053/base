@@ -24,6 +24,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.apache.ibatis.cache.Cache;
+import org.apache.log4j.Logger;
 
 import redis.clients.jedis.BinaryJedisCluster;
 import redis.clients.jedis.HostAndPort;
@@ -39,7 +40,7 @@ import redis.clients.jedis.ShardedJedisPool;
  * @author Eduardo Macarron
  */
 public final class RedisCache implements Cache {
-
+	private static final Logger LOGGER = Logger.getLogger(RedisCache.class);
 	private final ReadWriteLock readWriteLock = new DummyReadWriteLock();
 
 	private String id;
@@ -49,10 +50,14 @@ public final class RedisCache implements Cache {
 	private static BinaryJedisCluster cluster;
 
 	public RedisCache(final String id) {
+		LOGGER.info("init redis start");
 		if (id == null) {
 			throw new IllegalArgumentException("Cache instances require an ID");
 		}
+		LOGGER.info("id=" + id);
 		RedisConfig redisConfig = RedisConfigurationBuilder.getInstance().parseConfiguration();
+		LOGGER.info("id=" + id);
+		LOGGER.info("redisConfig=" + redisConfig);
 		String sysCode = redisConfig.getSysCode();
 		if (sysCode == null || "".equals(sysCode)) {
 			throw new IllegalArgumentException("sysCode is required");
@@ -91,6 +96,7 @@ public final class RedisCache implements Cache {
 		default:
 			break;
 		}
+		LOGGER.info("init redis end");
 	}
 
 	private Object execute(RedisCallback callback) {

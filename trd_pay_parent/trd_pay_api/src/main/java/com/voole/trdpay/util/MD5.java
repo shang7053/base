@@ -1,5 +1,6 @@
 package com.voole.trdpay.util;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -11,11 +12,47 @@ import java.security.NoSuchAlgorithmException;
  * 
  */
 public class MD5 {
-	// 全局数组
-	private final static String[] strDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
-			"e", "f" };
+	private final static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
+			'F' };
 
-	public MD5() {
+	private static String bytesToHex(byte[] bytes) {
+		StringBuffer sb = new StringBuffer();
+		int t;
+		for (int i = 0; i < 16; i++) {
+			t = bytes[i];
+			if (t < 0) {
+				t += 256;
+			}
+			sb.append(hexDigits[(t >>> 4)]);
+			sb.append(hexDigits[(t % 16)]);
+		}
+		return sb.toString();
+	}
+
+	public static String md5(String input) {
+		return code(input, 32);
+	}
+
+	public static String code(String input, int bit) {
+		try {
+			MessageDigest md = MessageDigest.getInstance(System.getProperty("MD5.algorithm", "MD5"));
+			if (bit == 16) {
+				return bytesToHex(md.digest(input.getBytes("utf-8"))).substring(8, 24);
+			}
+			return bytesToHex(md.digest(input.getBytes("utf-8")));
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String md5_3(String b) throws Exception {
+		MessageDigest md = MessageDigest.getInstance(System.getProperty("MD5.algorithm", "MD5"));
+		byte[] a = md.digest(b.getBytes());
+		a = md.digest(a);
+		a = md.digest(a);
+
+		return bytesToHex(a);
 	}
 
 	// 返回形式为数字跟字符串
@@ -27,7 +64,7 @@ public class MD5 {
 		}
 		int iD1 = iRet / 16;
 		int iD2 = iRet % 16;
-		return strDigits[iD1] + strDigits[iD2];
+		return hexDigits[iD1] + hexDigits[iD2] + "";
 	}
 
 	// 转换字节数组为16进制字串
@@ -52,7 +89,8 @@ public class MD5 {
 		return resultString;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(MD5.GetMD5Code("1"));
+	public static void main(String[] args) throws Exception {
+		System.out.println(code("sssss", 16));
+		System.out.println(code("sssss", 32));
 	}
 }

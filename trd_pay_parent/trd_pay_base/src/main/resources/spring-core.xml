@@ -24,6 +24,8 @@
 		<property name="locations">
 			<list>
 				<value>system.properties</value>
+				<value>redis.properties</value>
+				<value>log4j.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -37,13 +39,6 @@
 	</bean>
 	<!-- 采用注释的方式配置bean -->
 	<context:annotation-config />
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:*.properties</value>
-			</list>
-		</property>
-	</bean>
 	<context:component-scan base-package="com.voole.trdpay">
 	</context:component-scan>
 	<!-- db config -->
@@ -57,5 +52,8 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<import resource="dubbo_provider.xml" />
 	<import resource="spring-db.xml" />
+	<import resource="mongodb.xml" />
+	<import resource="spring-queue.xml" />
+	<import resource="spring-timer.xml" />
 	<!-- timer -->
 </beans>

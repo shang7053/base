@@ -39,9 +39,4 @@ public class JumpController extends BaseController {
 		return new ModelAndView("login");
 	}
 
-	@RequestMapping("/tohome.do")
-	public ModelAndView tohome() {
-		ModelAndView mav = new ModelAndView("analysis/home");
-		return mav;
-	}
 }

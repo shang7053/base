@@ -66,7 +66,7 @@ public class UserLogFilter implements Filter {
 						sle.setParam(JSON.toJSONString(request.getParameterMap()));
 						BeanFactory beans = WebApplicationContextUtils
 								.getWebApplicationContext(request.getSession().getServletContext());
-						ISystemLogService sysytemLogService = (ISystemLogService) beans.getBean("ISystemLogService");
+						ISystemLogService sysytemLogService = (ISystemLogService) beans.getBean("systemLogServiceImpl");
 						sysytemLogService.addSystemLog(sle);
 					}
 				}

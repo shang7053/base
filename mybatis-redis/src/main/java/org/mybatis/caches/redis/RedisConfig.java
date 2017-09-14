@@ -150,4 +150,18 @@ public class RedisConfig extends JedisPoolConfig {
 		this.sysCode = sysCode;
 	}
 
+	/*
+	 * (非 Javadoc) <p>Title: toString</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "RedisConfig [host=" + this.host + ", port=" + this.port + ", address=" + this.address + ", deployType="
+				+ this.deployType + ", sysCode=" + this.sysCode + ", connectionTimeout=" + this.connectionTimeout
+				+ ", soTimeout=" + this.soTimeout + ", password=" + this.password + ", database=" + this.database
+				+ ", clientName=" + this.clientName + "]";
+	}
 }

@@ -17,10 +17,10 @@ public class PageMessageVo implements Serializable {
 	 */
 	private static final long serialVersionUID = -925765116060112847L;
 	private String sEcho;
-	private Integer iTotalRecords;
-	private Integer iTotalDisplayRecords;
-	private Integer iDisplayLength;
-	private Integer iDisplayStart;
+	private Long iTotalRecords;
+	private Long iTotalDisplayRecords;
+	private Long iDisplayLength;
+	private Long iDisplayStart;
 	private Object aaData;
 
 	/**
@@ -43,73 +43,73 @@ public class PageMessageVo implements Serializable {
 
 	/**
 	 * @return the iTotalRecords
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 */
-	public Integer getiTotalRecords() {
+	public Long getiTotalRecords() {
 		return this.iTotalRecords;
 	}
 
 	/**
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 * @param iTotalRecords the iTotalRecords to set
 	 */
-	public void setiTotalRecords(Integer iTotalRecords) {
+	public void setiTotalRecords(Long iTotalRecords) {
 		this.iTotalRecords = iTotalRecords;
 	}
 
 	/**
 	 * @return the iTotalDisplayRecords
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 */
-	public Integer getiTotalDisplayRecords() {
+	public Long getiTotalDisplayRecords() {
 		return this.iTotalDisplayRecords;
 	}
 
 	/**
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 * @param iTotalDisplayRecords the iTotalDisplayRecords to set
 	 */
-	public void setiTotalDisplayRecords(Integer iTotalDisplayRecords) {
+	public void setiTotalDisplayRecords(Long iTotalDisplayRecords) {
 		this.iTotalDisplayRecords = iTotalDisplayRecords;
 	}
 
 	/**
 	 * @return the iDisplayLength
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 */
-	public Integer getiDisplayLength() {
+	public Long getiDisplayLength() {
 		return this.iDisplayLength;
 	}
 
 	/**
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 * @param iDisplayLength the iDisplayLength to set
 	 */
-	public void setiDisplayLength(Integer iDisplayLength) {
+	public void setiDisplayLength(Long iDisplayLength) {
 		this.iDisplayLength = iDisplayLength;
 	}
 
 	/**
 	 * @return the iDisplayStart
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 */
-	public Integer getiDisplayStart() {
+	public Long getiDisplayStart() {
 		return this.iDisplayStart;
 	}
 
 	/**
-	 * @author A18ccms a18ccms_gmail_com
-	 * @date 2016年7月14日 下午1:57:41
+	 * @author shangchengcai@voole.com
+	 * @date 2017年9月12日 上午11:29:38
 	 * @param iDisplayStart the iDisplayStart to set
 	 */
-	public void setiDisplayStart(Integer iDisplayStart) {
+	public void setiDisplayStart(Long iDisplayStart) {
 		this.iDisplayStart = iDisplayStart;
 	}
 

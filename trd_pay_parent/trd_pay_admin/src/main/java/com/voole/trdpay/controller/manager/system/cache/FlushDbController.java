@@ -39,8 +39,8 @@ public class FlushDbController extends BaseController {
 			List<FlushDbVo> rules = this.flushdbService.queryFlushDb(FlushDbquerycase);
 			pmv.setAaData(rules);
 			Integer totalsize = this.flushdbService.queryFlushDbCount(FlushDbquerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
+			pmv.setiTotalRecords(Long.valueOf(totalsize));
+			pmv.setiTotalDisplayRecords(Long.valueOf(totalsize));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}

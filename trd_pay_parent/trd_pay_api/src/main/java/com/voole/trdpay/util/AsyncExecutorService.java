@@ -51,8 +51,8 @@ public class AsyncExecutorService {
 		this.defaultKeepAliveTime = this.executorService.getKeepAliveTime(TimeUnit.SECONDS);
 	}
 
-	public void execute(BaseAsyncRunner baseRunner) {
-		this.executorService.execute(baseRunner);
+	public void execute(Runnable runnable) {
+		this.executorService.execute(runnable);
 	}
 
 	public void resizePoolMaxSize(int maxSize) {

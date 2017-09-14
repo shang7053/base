@@ -20,7 +20,7 @@ import com.voole.trdpay.service.system.rule.IRuleService;
 import com.voole.trdpay.service.system.settings.ISystemSettingsService;
 import com.voole.trdpay.service.system.user.IUserService;
 import com.voole.trdpay.util.ListUtils;
-import com.voole.trdpay.util.MD5;
+import com.voole.trdpay.util.MD5ForPWD;
 import com.voole.trdpay.vo.AjaxRet;
 import com.voole.trdpay.vo.system.function.FunctionVo;
 import com.voole.trdpay.vo.system.rule.RuleVo;
@@ -76,7 +76,7 @@ public class LoginController extends BaseController {
 			if (null != loginUserList && loginUserList.size() > 0) {
 				loginUser = loginUserList.get(0);
 			}
-			String pw = MD5.GetMD5Code(passwordcode);
+			String pw = MD5ForPWD.GetMD5Code(passwordcode);
 			if (null != loginUser) {
 				if (loginUser.getIs_on() == 0) {
 					mpdel.addAttribute("msg", "登录失败！用户账户已冻结！");
@@ -141,7 +141,7 @@ public class LoginController extends BaseController {
 			return new AjaxRet(false, "密码不能为空！");
 		}
 		try {
-			String pw = MD5.GetMD5Code(passwordcode);
+			String pw = MD5ForPWD.GetMD5Code(passwordcode);
 			UserVo loginUser = (UserVo) session.getAttribute("user");
 			if (null == loginUser) {
 				return new AjaxRet(false, "session 已失效，请重新登录！");
@@ -156,7 +156,6 @@ public class LoginController extends BaseController {
 				this.userService.updateUser(loginUser);
 				session.setAttribute("user", loginUser);
 				session.setAttribute("lockstatus", false);
-				System.out.println(session.getAttribute("lockstatus"));
 				return new AjaxRet(true, "解锁成功");
 			} else {
 				if (loginUser.getError_pw_count() - 1 <= 0) {

@@ -47,8 +47,8 @@ public class SettingsController extends BaseController {
 			List<SystemSettingsVo> rules = this.settingsService.querySystenSettings(settingsquerycase);
 			pmv.setAaData(rules);
 			Integer totalsize = this.settingsService.querySystenSettingsCount(settingsquerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
+			pmv.setiTotalRecords(Long.valueOf(totalsize));
+			pmv.setiTotalDisplayRecords(Long.valueOf(totalsize));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}

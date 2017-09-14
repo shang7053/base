@@ -50,8 +50,8 @@ public class NoticeController extends BaseController {
 			List<NotificationsVo> rules = this.notificationsService.queryNotifications(noticequerycase);
 			pmv.setAaData(rules);
 			Integer totalsize = this.notificationsService.queryCountNotifications(noticequerycase);
-			pmv.setiTotalRecords(totalsize);
-			pmv.setiTotalDisplayRecords(totalsize);
+			pmv.setiTotalRecords(Long.valueOf(totalsize));
+			pmv.setiTotalDisplayRecords(Long.valueOf(totalsize));
 			return pmv;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
@@ -76,8 +76,8 @@ public class NoticeController extends BaseController {
 						notificationsqc.setIs_read(0);
 						notificationsqc.setQueryStart(date);
 						PageMessageVo pmv = new PageMessageVo();
-						pmv.setiDisplayStart(0);
-						pmv.setiDisplayLength(8);
+						pmv.setiDisplayStart(0L);
+						pmv.setiDisplayLength(8L);
 						notificationsqc.setPmv(pmv);
 						List<NotificationsVo> notificationsVos = this.notificationsService
 								.queryNotifications(notificationsqc);

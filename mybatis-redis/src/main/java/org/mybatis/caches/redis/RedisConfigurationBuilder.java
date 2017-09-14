@@ -15,6 +15,8 @@
  */
 package org.mybatis.caches.redis;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -23,6 +25,7 @@ import java.util.Properties;
 import org.apache.ibatis.cache.CacheException;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
+import org.apache.log4j.Logger;
 
 /**
  * Converter from the Config to a proper {@link RedisConfig}.
@@ -30,7 +33,7 @@ import org.apache.ibatis.reflection.SystemMetaObject;
  * @author Eduardo Macarron
  */
 final class RedisConfigurationBuilder {
-
+	private static final Logger LOGGER = Logger.getLogger(RedisConfigurationBuilder.class);
 	/**
 	 * This class instance.
 	 */
@@ -46,6 +49,8 @@ final class RedisConfigurationBuilder {
 	 * Hidden constructor, this class can't be instantiated.
 	 */
 	private RedisConfigurationBuilder() {
+		LOGGER.info("redis properties file="
+				+ System.getProperty(SYSTEM_PROPERTY_REDIS_PROPERTIES_FILENAME, REDIS_RESOURCE));
 		this.redisPropertiesFilename = System.getProperty(SYSTEM_PROPERTY_REDIS_PROPERTIES_FILENAME, REDIS_RESOURCE);
 	}
 
@@ -76,7 +81,16 @@ final class RedisConfigurationBuilder {
 	public RedisConfig parseConfiguration(ClassLoader classLoader) {
 		Properties config = new Properties();
 
-		InputStream input = classLoader.getResourceAsStream(this.redisPropertiesFilename);
+		InputStream input = null;
+		try {
+			if (this.redisPropertiesFilename.startsWith("/")) {
+				input = new FileInputStream(this.redisPropertiesFilename);
+			} else {
+				input = classLoader.getResourceAsStream(this.redisPropertiesFilename);
+			}
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
 		if (input != null) {
 			try {
 				config.load(input);

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voole.trdpay.mapper.system.function.IRuleFunctionMapper">
+	<cache type="org.mybatis.caches.redis.RedisCache"></cache>
+	<select id="queryRuleFunction" parameterType="com.voole.trdpay.vo.system.function.RuleFunctionVo" resultType="com.voole.trdpay.vo.system.function.RuleFunctionVo">
+		SELECT * FROM r_rule_function
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null ">
+				AND id =#{id}
+			</if>
+			<if test="rid != null ">
+				AND rid =#{rid}
+			</if>
+			<if test="fid != null ">
+				AND fid =#{fid}
+			</if>
+			<if test="is_on != null ">
+				AND is_on  = #{is_on}
+			</if>
+			<if test="rids != null">
+				AND rid  IN 
+				<foreach collection="rids" item="item" index="index" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+		</trim>
+	</select>
+	<insert id="insertRuleFunction" flushCache="true"  parameterType="com.voole.trdpay.entry.sytem.function.RuleFunctionEntry" >
+		INSERT INTO r_rule_function (
+			<if test="id != null ">
+				id,
+			</if>
+			<if test="rid != null ">
+				rid,
+			</if>
+			<if test="fid != null ">
+				fid,
+			</if>
+			<if test="is_on != null ">
+				is_on,
+			</if>
+			<if test="create_time != null ">
+				create_time,
+			</if>
+			<if test="update_time != null ">
+				update_time,
+			</if>
+				version
+		)
+		VALUES
+			(
+			<if test="id != null ">
+				#{id},
+			</if>
+			<if test="rid != null ">
+				#{rid},
+			</if>
+			<if test="fid != null ">
+				#{fid},
+			</if>
+			<if test="is_on != null ">
+				#{is_on},
+			</if>
+			<if test="create_time != null ">
+				#{create_time},
+			</if>
+			<if test="update_time != null ">
+				#{update_time},
+			</if>
+				'0'
+			);
+	</insert>
+	<delete id="deleteRuleFunction" flushCache="true"  parameterType="com.voole.trdpay.vo.system.function.RuleFunctionVo">
+		DELETE FROM r_rule_function
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null ">
+				AND id =#{id}
+			</if>
+			<if test="rid != null ">
+				AND rid =#{rid}
+			</if>
+			<if test="fid != null ">
+				AND fid =#{fid}
+			</if>
+			<if test="is_on != null ">
+				AND is_on  = #{is_on}
+			</if>
+			<if test="rids != null">
+				AND rid  IN 
+				<foreach collection="rids" item="item" index="index" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+		</trim>
+	</delete>
+</mapper>  

@@ -29,15 +29,15 @@ import kafka.message.MessageAndMetadata;
  */
 public class ConsumerDemo {
 
-	private static final String topic = "test-stop";
+	private static final String topic = "log_data_sync_base";
 
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
 
-		props.put("zookeeper.connect", "172.16.40.4:2181,172.16.40.5:2182");
+		props.put("zookeeper.connect", "172.16.40.4:2181");
 
-		props.put("group.id", "test-kafka2");
+		props.put("group.id", "flume2");
 
 		props.put("zookeeper.session.timeout.ms", "40000");
 		props.put("zookeeper.sync.time.ms", "200");
@@ -54,7 +54,7 @@ public class ConsumerDemo {
 
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 
-		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("test-stop");
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("log_data_sync_base");
 
 		for (final KafkaStream<byte[], byte[]> kafkaStream : streams) {
 

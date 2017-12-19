@@ -43,7 +43,7 @@ public class ProducerDemo {
 
 	public void produce(byte[] data) {
 		KafkaProducer<byte[], byte[]> kafkaProducer = new KafkaProducer<byte[], byte[]>(properties);
-		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("test-stop", data);
+		ProducerRecord<byte[], byte[]> kafkaRecord = new ProducerRecord<byte[], byte[]>("log_data_sync_base", data);
 		kafkaProducer.send(kafkaRecord, new Callback() {
 			@Override
 			public void onCompletion(RecordMetadata metadata, Exception e) {

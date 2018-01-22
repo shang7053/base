@@ -9,6 +9,8 @@
 package com.scc.stu.kafka;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.Consumer;
@@ -16,6 +18,8 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 /**
@@ -26,7 +30,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
  * @date 2017年3月15日 下午2:50:09
  * 
  */
-public class ConsumerDemo2 {
+public class ConsumerWithTranDemo {
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
@@ -42,15 +46,20 @@ public class ConsumerDemo2 {
 		consumer.subscribe(Arrays.asList("log_data_sync_base"));
 		ConsumerRecords<String, String> records = consumer.poll(1);
 
-		while (true) {
-			consumer.subscribe(Arrays.asList("log_data_sync_base", "log_data_sync_base2"));
-			records = consumer.poll(1);
-			for (ConsumerRecord<String, String> record : records) {
-				System.out.println(records.count());
-				// System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(),
-				// record.value());
-				// System.out.println(record.value());
+		try {
+			while (true) {
+				records = consumer.poll(Long.MAX_VALUE);
+				for (TopicPartition partition : records.partitions()) {
+					List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
+					for (ConsumerRecord<String, String> record : partitionRecords) {
+						System.out.println(record.offset() + ": " + record.value());
+					}
+					long lastOffset = partitionRecords.get(partitionRecords.size() - 1).offset();
+					consumer.commitSync(Collections.singletonMap(partition, new OffsetAndMetadata(lastOffset + 1)));
+				}
 			}
+		} finally {
+			consumer.close();
 		}
 	}
 }

@@ -114,3 +114,7 @@ sustainable-parent/sustainable-service/.settings/org.eclipse.wst.jsdt.ui.superTy
 *.MF
 */target
 target/*
+*.cache
+*.lock
+*/logs
+logs/*

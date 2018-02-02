@@ -112,3 +112,5 @@ sustainable-parent/sustainable-service/.settings/org.eclipse.wst.common.componen
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.common.project.facet.core.xml
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.jsdt.ui.superType.container
 *.MF
+*/target
+target/*

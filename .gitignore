@@ -119,3 +119,7 @@ target/*
 */logs
 logs/*
 */target/*
+.project
+.classpath
+.settings
+.metadata

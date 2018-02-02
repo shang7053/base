@@ -1,0 +1,14 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  context-path: /
+  port: ${server_port:8080}
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  

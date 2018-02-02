@@ -113,12 +113,12 @@ sustainable-parent/sustainable-service/.settings/org.eclipse.wst.common.project.
 sustainable-parent/sustainable-service/.settings/org.eclipse.wst.jsdt.ui.superType.container
 *.MF
 */target
-target/*
+target/**
 *.cache
 *.lock
 */logs
 logs/*
-*/target/*
+*/target/**
 .project
 .classpath
 .settings

@@ -16,7 +16,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 
 /**
  *
@@ -31,22 +31,23 @@ public class ConsumerDemo2 {
 	public static void main(String[] args) {
 		Properties props = new Properties();
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.16.40.4:9092");
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, "flume3");
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, "flume5");
 		props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
 		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+		props.put(ConsumerConfig.MAX_PARTITION_FETCH_BYTES_CONFIG, "10485760");
 		props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");// 一次只取1条
-		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
 
-		Consumer<String, String> consumer = new KafkaConsumer<>(props);
-		consumer.subscribe(Arrays.asList("log_data_sync_base"));
-		ConsumerRecords<String, String> records = consumer.poll(1);
+		Consumer<byte[], byte[]> consumer = new KafkaConsumer<>(props);
+		consumer.subscribe(Arrays.asList("test_kafka_message_size"));
+		ConsumerRecords<byte[], byte[]> records = consumer.poll(1);
 
 		while (true) {
-			consumer.subscribe(Arrays.asList("log_data_sync_base", "log_data_sync_base2"));
-			records = consumer.poll(1);
-			for (ConsumerRecord<String, String> record : records) {
-				System.out.println(records.count());
+			consumer.subscribe(Arrays.asList("test_kafka_message_size"));
+			records = consumer.poll(1000);
+			for (ConsumerRecord<byte[], byte[]> record : records) {
+				System.out.printf("offset = %d", record.offset());
 				// System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(),
 				// record.value());
 				// System.out.println(record.value());

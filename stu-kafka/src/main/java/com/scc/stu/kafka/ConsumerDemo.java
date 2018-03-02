@@ -29,13 +29,13 @@ import kafka.message.MessageAndMetadata;
  */
 public class ConsumerDemo {
 
-	private static final String topic = "log_data_sync_base";
+	private static final String topic = "test_kafka_message_size";
 
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
 
-		props.put("zookeeper.connect", "172.16.40.4:2181");
+		props.put("zookeeper.connect", "172.16.40.5:2181");
 
 		props.put("group.id", "flume2");
 
@@ -54,7 +54,7 @@ public class ConsumerDemo {
 
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 
-		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("log_data_sync_base");
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("test_kafka_message_size");
 
 		for (final KafkaStream<byte[], byte[]> kafkaStream : streams) {
 

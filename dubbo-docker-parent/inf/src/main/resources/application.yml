@@ -2,7 +2,7 @@ server:
   tomcat:
     uri-encoding: UTF-8
   context-path: /
-  port: ${server_port:8080}
+  port: ${server_port:8081}
 spring:
   http:
     encoding:

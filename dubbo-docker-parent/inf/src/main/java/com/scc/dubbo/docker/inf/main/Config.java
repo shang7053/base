@@ -3,15 +3,19 @@ package com.scc.dubbo.docker.inf.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.MonitorConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.scc.dubbo.docker.api.util.PropertyUtil;
+import com.scc.dubbo.docker.inf.conf.SystemConf;
 
 import net.bull.javamelody.MonitoringFilter;
 
@@ -23,7 +27,11 @@ import net.bull.javamelody.MonitoringFilter;
  * 
  */
 @Configuration
+@ImportResource(locations = { "classpath:spring-mvc.xml" })
 public class Config {
+	@Resource
+	private SystemConf systemConf;
+
 	@Bean
 	public FilterRegistrationBean monitoringFilter() {
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
@@ -39,7 +47,7 @@ public class Config {
 	@Bean
 	public ApplicationConfig applicationConfig() {
 		ApplicationConfig applicationConfig = new ApplicationConfig();
-		applicationConfig.setName("inf");
+		applicationConfig.setName("dubbo-inf");
 		MonitorConfig monitorConfig = new MonitorConfig();
 		monitorConfig.setProtocol("registry");
 		applicationConfig.setMonitor(monitorConfig);
@@ -58,7 +66,7 @@ public class Config {
 	public RegistryConfig registryConfig() {
 		RegistryConfig registry = new RegistryConfig();
 		registry.setProtocol("zookeeper");
-		registry.setAddress(PropertyUtil.getStringFromSystem("dubbo.zk.address", "127.0.0.1:2181"));
+		registry.setAddress(this.systemConf.getDubbo_zk_address());
 		registry.setFile("./dubbo.cache");
 		return registry;
 	}

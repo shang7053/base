@@ -1,13 +1,17 @@
 package com.scc.dubbo.docker.base.main;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.MonitorConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.scc.dubbo.docker.api.util.PropertyUtil;
+import com.scc.dubbo.docker.base.conf.SystemConf;
 
 /**
  * @ClassName: XMLConfig
@@ -17,12 +21,15 @@ import com.scc.dubbo.docker.api.util.PropertyUtil;
  * 
  */
 @Configuration
+@ImportResource(locations = { "classpath:spring-core.xml" })
 public class Config {
+	@Resource
+	private SystemConf systemConf;
 
 	@Bean
 	public ApplicationConfig applicationConfig() {
 		ApplicationConfig applicationConfig = new ApplicationConfig();
-		applicationConfig.setName("base");
+		applicationConfig.setName("dubbo-base");
 		MonitorConfig monitorConfig = new MonitorConfig();
 		monitorConfig.setProtocol("registry");
 		applicationConfig.setMonitor(monitorConfig);
@@ -41,7 +48,7 @@ public class Config {
 	public RegistryConfig registryConfig() {
 		RegistryConfig registry = new RegistryConfig();
 		registry.setProtocol("zookeeper");
-		registry.setAddress(PropertyUtil.getStringFromSystem("dubbo.zk.address", "127.0.0.1:2181"));
+		registry.setAddress(this.systemConf.getDubbo_zk_address());
 		registry.setFile("./dubbo.cache");
 		return registry;
 	}

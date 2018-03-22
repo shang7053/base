@@ -120,3 +120,4 @@ logs/
 *.classpath
 *.settings
 *.metadata
+mybatis-redis/target/classes/META-INF/maven/com.scc/mybatis-redis/pom.properties

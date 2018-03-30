@@ -30,8 +30,8 @@ public class ConsumerDemo2 {
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.16.40.4:9092");
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, "flume5");
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "119.90.32.181:9092");
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, "thirdCDN");
 		props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
 		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
 		props.put(ConsumerConfig.MAX_PARTITION_FETCH_BYTES_CONFIG, "10485760");
@@ -40,17 +40,17 @@ public class ConsumerDemo2 {
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
 
 		Consumer<byte[], byte[]> consumer = new KafkaConsumer<>(props);
-		consumer.subscribe(Arrays.asList("test_kafka_message_size"));
+		consumer.subscribe(Arrays.asList("119_90_32_181_9092-voole_vrm-vrm_sp_authorlist_20151019_mp4"));
 		ConsumerRecords<byte[], byte[]> records = consumer.poll(1);
 
 		while (true) {
-			consumer.subscribe(Arrays.asList("test_kafka_message_size"));
+			consumer.subscribe(Arrays.asList("119_90_32_181_9092-voole_vrm-vrm_sp_authorlist_20151019_mp4"));
 			records = consumer.poll(1000);
 			for (ConsumerRecord<byte[], byte[]> record : records) {
-				System.out.printf("offset = %d", record.offset());
+				// System.out.printf("offset = %d", record.offset());
 				// System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(),
 				// record.value());
-				// System.out.println(record.value());
+				System.out.println(new String(record.value()));
 			}
 		}
 	}

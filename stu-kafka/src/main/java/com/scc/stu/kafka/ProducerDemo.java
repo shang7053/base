@@ -36,7 +36,7 @@ public class ProducerDemo {
 	private static Properties properties = new Properties();
 
 	static {
-		properties.put("bootstrap.servers", "172.16.40.4:9092");
+		properties.put("bootstrap.servers", "172.16.41.11:9092");
 		properties.put("acks", "1");
 		properties.put("retries", 0);
 		properties.put("batch.size", 16384);
@@ -68,8 +68,8 @@ public class ProducerDemo {
 	public static void main(String[] args) throws InterruptedException {
 		ProducerDemo kafkaProducerTest = new ProducerDemo();
 		for (int j = 0; j < 50; j++) {
-			kafkaProducerTest.produce(fileToBytes("/Users/shangchengcai/Pictures/QQ20180208-095400@2x.png"));
-			// kafkaProducerTest.produce("sss".getBytes());
+			// kafkaProducerTest.produce(fileToBytes("/Users/shangchengcai/Pictures/QQ20180208-095400@2x.png"));
+			kafkaProducerTest.produce("sss".getBytes());
 			Thread.sleep(1000L);
 
 		}

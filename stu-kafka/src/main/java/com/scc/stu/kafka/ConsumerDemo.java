@@ -29,15 +29,15 @@ import kafka.message.MessageAndMetadata;
  */
 public class ConsumerDemo {
 
-	private static final String topic = "test_kafka_message_size";
+	private static final String topic = "119_90_32_181_9092-voole_vrm-vrm_sp_authorlist_20151019_mp4";
 
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
 
-		props.put("zookeeper.connect", "172.16.40.5:2181");
+		props.put("zookeeper.connect", "119.90.32.181:2181");
 
-		props.put("group.id", "flume2");
+		props.put("group.id", "thirdCDN");
 
 		props.put("zookeeper.session.timeout.ms", "40000");
 		props.put("zookeeper.sync.time.ms", "200");
@@ -54,7 +54,8 @@ public class ConsumerDemo {
 
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 
-		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("test_kafka_message_size");
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap
+				.get("119_90_32_181_9092-voole_vrm-vrm_sp_authorlist_20151019_mp4");
 
 		for (final KafkaStream<byte[], byte[]> kafkaStream : streams) {
 

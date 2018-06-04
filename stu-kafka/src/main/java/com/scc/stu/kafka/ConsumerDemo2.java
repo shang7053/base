@@ -30,7 +30,7 @@ public class ConsumerDemo2 {
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "119.90.32.181:9092");
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "1:9092");
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "thirdCDN");
 		props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
 		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
